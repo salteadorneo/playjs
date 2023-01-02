@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #1e1e1e;
+}
+
+#root {
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.container > div {
+  width: 50%;
+  /*width: 100%;
+  resize: horizontal;
+  overflow: hidden;*/
+}
+
+.editor {
+  width: 100%;
+  height: calc(100vh - 24px);
+  padding: 6px 0;
+}
+
+#result {
+  width: 100%;
+  height: 100vh;
+  color: #dcdcdc;
+  padding: 6px 12px;
+  text-align: left;
+  font-family: 'Droid Sans Mono', 'monospace', monospace;
+  font-size: 14px;
+  line-height: 19px;
+  white-space: pre;
+  border-left: 1px solid #3f3f3f;
+}
