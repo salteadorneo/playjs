@@ -1,22 +1,31 @@
-import { useRef } from 'react';
-import Split from 'react-split'
-import Editor from '@monaco-editor/react';
+import { useRef } from "react";
+import Split from "react-split";
+import Editor from "@monaco-editor/react";
 
 import packageInfo from "../package.json";
 const { version } = packageInfo;
 
-import { encode, decode } from 'js-base64';
-import { useWindowSize } from './hooks/useWindowSize';
+import { encode, decode } from "js-base64";
+import { useWindowSize } from "./hooks/useWindowSize";
 
 function updateURL(code) {
-  const hashedCode = `${encode(code)}`
-  window.history.replaceState(null, null, `/${hashedCode}`)
+  const hashedCode = `${encode(code)}`;
+  window.history.replaceState(null, null, `/${hashedCode}`);
 }
 
-const { pathname } = window.location
-const hashCode = pathname.slice(1);
+function getCodeFromURL() {
+  try {
+    const { pathname } = window.location;
+    const hashCode = pathname.slice(1);
+    return hashCode ? decode(hashCode) : null;
+  } catch {
+    return null;
+  }
+}
 
-const defaultValue = hashCode ? decode(hashCode) : `/*
+const defaultValue =
+  getCodeFromURL() ||
+  `/*
 * Bienvenido a PlayJS
 *
 * Escribe código JavaScript para pruebas y demos rápidamente
@@ -46,6 +55,10 @@ export default function App() {
 
   const isMobile = size.width < WIDTH_MOBILE;
 
+  function formatDocument() {
+    editorRef.current.getAction("editor.action.formatDocument").run();
+  }
+
   function handleInit(editor) {
     editorRef.current = editor;
     editor.focus();
@@ -57,25 +70,25 @@ export default function App() {
     const code = editorRef.current.getValue();
     updateURL(code);
     if (!code) {
-      document.querySelector('#result').innerHTML = '';
+      document.querySelector("#result").innerHTML = "";
       return;
     }
     const lines = code.trim().split(/\r?\n|\r|\n/g).length;
-    let result = isMobile ? '' : '\n'.repeat(lines - 1);
+    let result = isMobile ? "" : "\n".repeat(lines - 1);
 
     try {
       const html = eval(code);
       switch (typeof html) {
-        case 'object':
+        case "object":
           result += JSON.stringify(html);
           break;
-        case 'string':
+        case "string":
           result += `'${html}'`;
           break;
-        case 'function':
+        case "function":
           result += html();
           break;
-        case 'symbol':
+        case "symbol":
           result += html.toString();
           break;
         default:
@@ -84,7 +97,7 @@ export default function App() {
     } catch (err) {
       result += err;
     }
-    document.querySelector('#result').innerHTML = result;
+    document.querySelector("#result").innerHTML = result;
   };
 
   function handleEditorChange(value, event) {
@@ -93,6 +106,24 @@ export default function App() {
 
   return (
     <>
+      <div className="toolbar">
+        <button onClick={formatDocument} title="Format document">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+          >
+            <path d="M14 6h14v2H14zm0 6h14v2H14zm-7 6h21v2H7zm0 6h21v2H7zM4 13.59 7.29 10 4 6.41 5.42 5l4.62 5-4.62 5L4 13.59z" />
+            <path
+              data-name="&lt;Transparent Rectangle&gt;"
+              d="M0 0h32v32H0z"
+              fill="none"
+            />
+          </svg>
+        </button>
+      </div>
       <Split
         className="split"
         direction={isMobile ? "vertical" : "horizontal"}
@@ -109,6 +140,7 @@ export default function App() {
             onChange={handleEditorChange}
             loading=""
             options={{
+              formatOnPaste: true,
               automaticLayout: true,
               minimap: {
                 enabled: false,
@@ -118,8 +150,8 @@ export default function App() {
               },
               overviewRulerLanes: 0,
               scrollbar: {
-                vertical: 'hidden',
-                horizontal: 'hidden',
+                vertical: "hidden",
+                horizontal: "hidden",
                 handleMouseWheel: false,
               },
             }}
@@ -129,7 +161,7 @@ export default function App() {
           <div id="result" />
         </div>
       </Split>
-      <span className='version'>v.{version}</span>
+      <span className="version">v.{version}</span>
     </>
   );
 }
