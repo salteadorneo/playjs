@@ -2,6 +2,18 @@ import { useRef } from 'react';
 
 import Editor from '@monaco-editor/react';
 
+const defaultValue = `/*
+* Bienvenido a PlayJS
+*
+* Escribe código JavaScript para pruebas y demos rápidamente
+*
+*/
+
+const holaMundo = () => '👋🌎'
+
+holaMundo()
+`;
+
 let throttlePause;
 const throttle = (callback, time) => {
   if (throttlePause) return;
@@ -18,39 +30,41 @@ export default function App() {
   function handleInit(editor) {
     editorRef.current = editor;
     editor.focus();
+
+    if (editor.getValue()) showResult();
   }
 
   const showResult = () => {
-    document.querySelector('#result').innerHTML = '';
-
     const code = editorRef.current.getValue();
+    if (!code) {
+      document.querySelector('#result').innerHTML = '';
+      return;
+    }
     const lines = code.trim().split(/\r?\n|\r|\n/g).length;
-    document.querySelector('#result').innerHTML = '\n'.repeat(lines - 1);
+    let result = window.innerWidth > 860 ? '\n'.repeat(lines - 1) : '';
 
     try {
       const html = eval(code);
-
-      if (!html && html !== false && html !== 0) {
-        document.querySelector('#result').innerHTML = '';
-        return;
-      }
-
       switch (typeof html) {
         case 'object':
-          document.querySelector('#result').innerHTML += JSON.stringify(html);
+          result += JSON.stringify(html);
           break;
         case 'string':
-          document.querySelector('#result').innerHTML += `'${html}'`;
+          result += `'${html}'`;
           break;
         case 'function':
-          document.querySelector('#result').innerHTML += html();
+          result += html();
+          break;
+        case 'symbol':
+          result += html.toString();
           break;
         default:
-          document.querySelector('#result').innerHTML += html;
+          result += html;
       }
     } catch (err) {
-      document.querySelector('#result').innerHTML += err;
+      result += err;
     }
+    document.querySelector('#result').innerHTML = result;
   };
 
   function handleEditorChange(value, event) {
@@ -64,6 +78,7 @@ export default function App() {
           className="editor"
           language="javascript"
           theme="vs-dark"
+          defaultValue={defaultValue}
           onMount={handleInit}
           onChange={handleEditorChange}
           loading=""
