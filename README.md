@@ -1,3 +1,3 @@
-# playjs
+# ![](https://github.com/salteadorneo/playjs/blob/main/public/icon.svg) PlayJS
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/vitejs-vite-c7rzd3)
+[playjs.salteadorneo.dev](https://playjs.salteadorneo.dev/)
