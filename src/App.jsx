@@ -1,8 +1,12 @@
 import { useRef } from 'react';
-
+import Split from 'react-split'
 import Editor from '@monaco-editor/react';
 
+import packageInfo from "../package.json";
+const { version } = packageInfo;
+
 import { encode, decode } from 'js-base64';
+import { useWindowSize } from './hooks/useWindowSize';
 
 function updateURL(code) {
   const hashedCode = `${encode(code)}`
@@ -34,8 +38,13 @@ const throttle = (callback, time) => {
   }, time);
 };
 
+const WIDTH_MOBILE = 480;
+
 export default function App() {
   const editorRef = useRef(null);
+  const size = useWindowSize();
+
+  const isMobile = size.width < WIDTH_MOBILE;
 
   function handleInit(editor) {
     editorRef.current = editor;
@@ -52,7 +61,7 @@ export default function App() {
       return;
     }
     const lines = code.trim().split(/\r?\n|\r|\n/g).length;
-    let result = window.innerWidth > 860 ? '\n'.repeat(lines - 1) : '';
+    let result = isMobile ? '' : '\n'.repeat(lines - 1);
 
     try {
       const html = eval(code);
@@ -83,36 +92,44 @@ export default function App() {
   }
 
   return (
-    <section className="container">
-      <div>
-        <Editor
-          className="editor"
-          language="javascript"
-          theme="vs-dark"
-          defaultValue={defaultValue}
-          onMount={handleInit}
-          onChange={handleEditorChange}
-          loading=""
-          options={{
-            automaticLayout: true,
-            minimap: {
-              enabled: false,
-            },
-            inlineSuggest: {
-              enabled: true,
-            },
-            overviewRulerLanes: 0,
-            scrollbar: {
-              vertical: 'hidden',
-              horizontal: 'hidden',
-              handleMouseWheel: false,
-            },
-          }}
-        />
-      </div>
-      <div>
-        <div id="result" />
-      </div>
-    </section>
+    <>
+      <Split
+        className="split"
+        direction={isMobile ? "vertical" : "horizontal"}
+        minSize={200}
+        gutterSize={isMobile ? 6 : 2}
+      >
+        <div>
+          <Editor
+            className="editor"
+            language="javascript"
+            theme="vs-dark"
+            defaultValue={defaultValue}
+            onMount={handleInit}
+            onChange={handleEditorChange}
+            loading=""
+            options={{
+              automaticLayout: true,
+              minimap: {
+                enabled: false,
+              },
+              inlineSuggest: {
+                enabled: true,
+              },
+              overviewRulerLanes: 0,
+              scrollbar: {
+                vertical: 'hidden',
+                horizontal: 'hidden',
+                handleMouseWheel: false,
+              },
+            }}
+          />
+        </div>
+        <div>
+          <div id="result" />
+        </div>
+      </Split>
+      <span className='version'>v.{version}</span>
+    </>
   );
 }

@@ -12,7 +12,8 @@
     "@monaco-editor/react": "^4.4.6",
     "js-base64": "^3.7.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-split": "^2.0.14"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
