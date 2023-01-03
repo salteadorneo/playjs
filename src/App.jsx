@@ -8,6 +8,7 @@ const { version } = packageInfo;
 
 import { encode, decode } from "js-base64";
 import { useWindowSize } from "./hooks/useWindowSize";
+import Logo from "./components/Logo";
 
 function updateURL(code) {
   const hashedCode = `${encode(code)}`;
@@ -145,6 +146,7 @@ export default function App() {
 
   return (
     <>
+      <Logo />
       <div className="toolbar">
         <button onClick={formatDocument} title="Format document">
           <svg
