@@ -2,7 +2,17 @@ import { useRef } from 'react';
 
 import Editor from '@monaco-editor/react';
 
-const defaultValue = `/*
+import { encode, decode } from 'js-base64';
+
+function updateURL(code) {
+  const hashedCode = `${encode(code)}`
+  window.history.replaceState(null, null, `/${hashedCode}`)
+}
+
+const { pathname } = window.location
+const hashCode = pathname.slice(1);
+
+const defaultValue = hashCode ? decode(hashCode) : `/*
 * Bienvenido a PlayJS
 *
 * Escribe código JavaScript para pruebas y demos rápidamente
@@ -36,6 +46,7 @@ export default function App() {
 
   const showResult = () => {
     const code = editorRef.current.getValue();
+    updateURL(code);
     if (!code) {
       document.querySelector('#result').innerHTML = '';
       return;
