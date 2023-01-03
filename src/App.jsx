@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import Split from "react-split";
 import Editor from "@monaco-editor/react";
+import JSMonacoLinter from 'monaco-js-linter';
 
 import packageInfo from "../package.json";
 const { version } = packageInfo;
@@ -47,6 +48,7 @@ const throttle = (callback, time) => {
   }, time);
 };
 
+let linter;
 const WIDTH_MOBILE = 480;
 
 export default function App() {
@@ -62,6 +64,10 @@ export default function App() {
   function handleInit(editor, monaco) {
     editorRef.current = editor;
 
+    linter = new JSMonacoLinter(editor, monaco, {
+      esversion: 11,
+    });
+
     editor.focus();
 
     if (editor.getValue()) showResult();
@@ -69,6 +75,10 @@ export default function App() {
 
   function formatDocument() {
     editorRef.current.getAction("editor.action.formatDocument").run();
+  }
+
+  function toggleLinter() {
+    linter.watch();
   }
 
   const showResult = () => {
@@ -89,20 +99,20 @@ export default function App() {
         return acc + "\n";
       }
 
+      const htmlPart = acc + line;
+
       if (line || line === "" || !line.startsWith(/\/\//) || !line.startsWith(/\/*/)) {
         try {
-          const htmlPart = acc + line;
           const html = eval(htmlPart);
           result += parseResultHTML(html) + "\n";
         } catch (err) {
           if (err.toString().match(/ReferenceError/gi)) {
-            result += err + "\n";
-          } else {
-            result += "\n";
+            result += err;
           }
+          result += "\n";
         }
       }
-      return acc + line + "\n";
+      return htmlPart + "\n";
     }, "");
 
     document.querySelector("#result").innerHTML = result;
@@ -152,6 +162,9 @@ export default function App() {
             />
           </svg>
         </button>
+        {/* <button onClick={toggleLinter} title="Format document">
+          Linter
+        </button> */}
       </div>
       <Split
         className="split"
