@@ -55,50 +55,79 @@ export default function App() {
 
   const isMobile = size.width < WIDTH_MOBILE;
 
-  function formatDocument() {
-    editorRef.current.getAction("editor.action.formatDocument").run();
-  }
+  window.console.log = function (...data) {
+    return parseResultHTML(...data);
+  };
 
-  function handleInit(editor) {
+  function handleInit(editor, monaco) {
     editorRef.current = editor;
+
     editor.focus();
 
     if (editor.getValue()) showResult();
   }
 
+  function formatDocument() {
+    editorRef.current.getAction("editor.action.formatDocument").run();
+  }
+
   const showResult = () => {
     const code = editorRef.current.getValue();
+
     updateURL(code);
+
     if (!code) {
       document.querySelector("#result").innerHTML = "";
       return;
     }
-    const lines = code.trim().split(/\r?\n|\r|\n/g).length;
-    let result = isMobile ? "" : "\n".repeat(lines - 1);
 
-    try {
-      const html = eval(code);
-      switch (typeof html) {
-        case "object":
-          result += JSON.stringify(html);
-          break;
-        case "string":
-          result += `'${html}'`;
-          break;
-        case "function":
-          result += html();
-          break;
-        case "symbol":
-          result += html.toString();
-          break;
-        default:
-          result += html;
+    let result = "";
+
+    code.trimEnd().split(/\r?\n|\r|\n/g).reduce((acc, line) => {
+      if (line.trim() === "") {
+        result += "\n";
+        return acc + "\n";
       }
-    } catch (err) {
-      result += err;
-    }
+
+      if (line || line === "" || !line.startsWith(/\/\//) || !line.startsWith(/\/*/)) {
+        try {
+          const htmlPart = acc + line;
+          const html = eval(htmlPart);
+          result += parseResultHTML(html) + "\n";
+        } catch (err) {
+          if (err.toString().match(/ReferenceError/gi)) {
+            result += err + "\n";
+          } else {
+            result += "\n";
+          }
+        }
+      }
+      return acc + line + "\n";
+    }, "");
+
     document.querySelector("#result").innerHTML = result;
   };
+
+  function parseResultHTML(html) {
+    if (typeof html === "object") {
+      return JSON.stringify(html);
+    }
+    if (typeof html === "string") {
+      // start o end with ' or "
+      if (html.match(/^['"].*['"]$/)) return html;
+      return `'${html}'`;
+    }
+    if (typeof html === "function") {
+      return html();
+    }
+    if (typeof html === "symbol") {
+      return html.toString();
+    }
+    if (typeof html === "undefined") {
+      return "";
+    }
+    return html;
+  }
 
   function handleEditorChange(value, event) {
     throttle(showResult, 800);
@@ -127,7 +156,6 @@ export default function App() {
       <Split
         className="split"
         direction={isMobile ? "vertical" : "horizontal"}
-        minSize={200}
         gutterSize={isMobile ? 6 : 2}
       >
         <div>
