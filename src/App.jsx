@@ -1,13 +1,11 @@
 import { useRef } from "react";
 import Split from "react-split";
 import Editor from "@monaco-editor/react";
-import JSMonacoLinter from 'monaco-js-linter';
-
-import packageInfo from "../package.json";
-const { version } = packageInfo;
+import JSMonacoLinter from "monaco-js-linter";
 
 import { encode, decode } from "js-base64";
 import { useWindowSize } from "./hooks/useWindowSize";
+import Logo from "./components/Logo";
 
 function updateURL(code) {
   const hashedCode = `${encode(code)}`;
@@ -93,27 +91,35 @@ export default function App() {
 
     let result = "";
 
-    code.trimEnd().split(/\r?\n|\r|\n/g).reduce((acc, line) => {
-      if (line.trim() === "") {
-        result += "\n";
-        return acc + "\n";
-      }
-
-      const htmlPart = acc + line;
-
-      if (line || line === "" || !line.startsWith(/\/\//) || !line.startsWith(/\/*/)) {
-        try {
-          const html = eval(htmlPart);
-          result += parseResultHTML(html) + "\n";
-        } catch (err) {
-          if (err.toString().match(/ReferenceError/gi)) {
-            result += err;
-          }
+    code
+      .trimEnd()
+      .split(/\r?\n|\r|\n/g)
+      .reduce((acc, line) => {
+        if (line.trim() === "") {
           result += "\n";
+          return acc + "\n";
         }
-      }
-      return htmlPart + "\n";
-    }, "");
+
+        const htmlPart = acc + line;
+
+        if (
+          line ||
+          line === "" ||
+          !line.startsWith(/\/\//) ||
+          !line.startsWith(/\/*/)
+        ) {
+          try {
+            const html = eval(htmlPart);
+            result += parseResultHTML(html) + "\n";
+          } catch (err) {
+            if (err.toString().match(/ReferenceError/gi)) {
+              result += err;
+            }
+            result += "\n";
+          }
+        }
+        return htmlPart + "\n";
+      }, "");
 
     document.querySelector("#result").innerHTML = result;
   };
@@ -145,6 +151,7 @@ export default function App() {
 
   return (
     <>
+      <Logo />
       <div className="toolbar">
         <button onClick={formatDocument} title="Format document">
           <svg
@@ -169,7 +176,7 @@ export default function App() {
       <Split
         className="split"
         direction={isMobile ? "vertical" : "horizontal"}
-        gutterSize={isMobile ? 6 : 2}
+        gutterSize={isMobile ? 6 : 3}
       >
         <div>
           <Editor
@@ -202,7 +209,6 @@ export default function App() {
           <div id="result" />
         </div>
       </Split>
-      <span className="version">v.{version}</span>
     </>
   );
 }
