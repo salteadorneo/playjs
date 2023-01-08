@@ -6,6 +6,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  font-family: monospace;
   background: #1e1e1e;
 }
 
@@ -48,24 +49,6 @@ body {
   width: 100%;
   height: 100%;
   padding: 24px 0;
-}
-
-#result {
-  width: 100%;
-  height: 100%;
-  color: #dcdcdc;
-  padding: 24px 12px 0 12px;
-  text-align: left;
-  font-family: monospace;
-  font-size: 14px;
-  line-height: 19px;
-  white-space: pre;
-}
-
-@media (max-width: 480px) {
-  #result {
-    padding: 24px 0 0 32px;
-  }
 }
 
 .editor-toolbar {
@@ -157,4 +140,22 @@ body {
   padding: 12px;
   display: flex;
   gap: 5px;
+}
+
+#result {
+  width: 100%;
+  height: 100%;
+  color: #dcdcdc;
+  padding: 12px 0 0 0;
+  text-align: left;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 19px;
+  white-space: pre;
+}
+
+@media (max-width: 480px) {
+  #result {
+    padding: 12px 0 0 0;
+  }
 }

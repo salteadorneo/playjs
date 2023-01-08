@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Split from "react-split";
 import Editor from "@monaco-editor/react";
 import JSMonacoLinter from "monaco-js-linter";
@@ -52,6 +52,8 @@ export default function App() {
   const editorRef = useRef(null);
   const size = useWindowSize();
 
+  const [lines, setLines] = useState(0);
+
   const isMobile = size.width < WIDTH_MOBILE;
 
   window.console.log = function (...data) {
@@ -104,6 +106,8 @@ export default function App() {
     }
 
     let result = "";
+
+    setLines(code.split(/\r?\n|\r|\n/g).length);
 
     code
       .trimEnd()
@@ -193,8 +197,9 @@ export default function App() {
             onChange={handleEditorChange}
             loading=""
             options={{
-              formatOnPaste: true,
               automaticLayout: true,
+              fontLigatures: true,
+              formatOnPaste: true,
               minimap: {
                 enabled: false,
               },
@@ -207,6 +212,7 @@ export default function App() {
                 horizontal: "hidden",
                 handleMouseWheel: false,
               },
+              fontFamily: "monospace",
             }}
           />
           <div className="editor-toolbar">
@@ -229,7 +235,24 @@ export default function App() {
             </button> */}
           </div>
         </div>
-        <div>
+        <div style={{ display: "flex" }}>
+          <div
+            style={{
+              paddingTop: "12px",
+              width: "68px",
+              textAlign: "center",
+            }}
+          >
+            {Array.from(Array(lines).keys()).map((index) => {
+              return <span key={index} style={{
+                display: "block",
+                width: "68px",
+                color: "#858585",
+                fontSize: "14px",
+                lineHeight: "19px",
+              }}>{index + 1}</span>;
+            })}
+          </div>
           <div id="result" />
         </div>
       </Split>
