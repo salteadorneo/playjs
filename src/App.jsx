@@ -2,10 +2,13 @@ import { useRef } from "react";
 import Split from "react-split";
 import Editor from "@monaco-editor/react";
 import JSMonacoLinter from "monaco-js-linter";
-
 import { encode, decode } from "js-base64";
+
 import { useWindowSize } from "./hooks/useWindowSize";
+
 import Logo from "./components/Logo";
+import ShareIcon from "./assets/ShareIcon";
+import FormatIcon from "./assets/FormatIcon";
 
 function updateURL(code) {
   const hashedCode = `${encode(code)}`;
@@ -24,12 +27,7 @@ function getCodeFromURL() {
 
 const defaultValue =
   getCodeFromURL() ||
-  `/*
-* Bienvenido a PlayJS
-*
-* Escribe código JavaScript para pruebas y demos rápidamente
-*
-*/
+  `// Bienvenido a PlayJS
 
 const holaMundo = () => '👋🌎'
 
@@ -73,6 +71,11 @@ export default function App() {
 
   function formatDocument() {
     editorRef.current.getAction("editor.action.formatDocument").run();
+  }
+
+  function shareURL() {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url);
   }
 
   function toggleLinter() {
@@ -153,21 +156,12 @@ export default function App() {
     <>
       <Logo />
       <div className="toolbar">
-        <button onClick={formatDocument} title="Format document">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 32 32"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-          >
-            <path d="M14 6h14v2H14zm0 6h14v2H14zm-7 6h21v2H7zm0 6h21v2H7zM4 13.59 7.29 10 4 6.41 5.42 5l4.62 5-4.62 5L4 13.59z" />
-            <path
-              data-name="&lt;Transparent Rectangle&gt;"
-              d="M0 0h32v32H0z"
-              fill="none"
-            />
-          </svg>
+        <button
+          className="button-toolbar"
+          onClick={shareURL}
+          title="Share code"
+        >
+          <ShareIcon />
         </button>
         {/* <button onClick={toggleLinter} title="Format document">
           Linter
@@ -204,6 +198,18 @@ export default function App() {
               },
             }}
           />
+          <div className="editor-toolbar">
+            <button
+              className="button-toolbar"
+              onClick={formatDocument}
+              title="Format document"
+            >
+              <FormatIcon />
+            </button>
+            {/* <button onClick={toggleLinter} title="Format document">
+              Linter
+            </button> */}
+          </div>
         </div>
         <div>
           <div id="result" />

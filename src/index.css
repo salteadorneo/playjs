@@ -68,22 +68,24 @@ body {
   }
 }
 
-.toolbar {
+.editor-toolbar {
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 1;
   padding: 12px;
+  display: flex;
+  gap: 5px;
 }
 
-.toolbar button {
+.button-toolbar {
   background: none;
   border: none;
   color: #dcdcdc;
   padding: 0;
 }
 
-.toolbar button:hover {
+.button-toolbar:hover {
   color: #999999;
 }
 
@@ -114,7 +116,7 @@ body {
   bottom: 0;
   left: 0;
   background: linear-gradient(1deg, #fff95b 0%, #ff930f 100%);
-  filter: blur(12px);
+  filter: blur(20px);
   opacity: 0.5;
   transition: opacity 0.3s;
   border-radius: inherit;
@@ -145,4 +147,14 @@ body {
   font-size: 12px;
   font-family: monospace;
   margin-top: 10px;
+}
+
+.toolbar {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  z-index: 1;
+  padding: 12px;
+  display: flex;
+  gap: 5px;
 }
