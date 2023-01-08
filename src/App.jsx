@@ -9,6 +9,7 @@ import { useWindowSize } from "./hooks/useWindowSize";
 import Logo from "./components/Logo";
 import ShareIcon from "./assets/ShareIcon";
 import FormatIcon from "./assets/FormatIcon";
+import DownloadIcon from "./assets/DownloadIcon";
 
 function updateURL(code) {
   const hashedCode = `${encode(code)}`;
@@ -76,6 +77,16 @@ export default function App() {
   function shareURL() {
     const url = window.location.href;
     navigator.clipboard.writeText(url);
+  }
+
+  function downloadCode() {
+    const code = editorRef.current.getValue();
+    const blob = new Blob([code], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.download = "playjs.js";
+    link.href = url;
+    link.click();
   }
 
   function toggleLinter() {
@@ -205,6 +216,13 @@ export default function App() {
               title="Format document"
             >
               <FormatIcon />
+            </button>
+            <button
+              className="button-toolbar"
+              onClick={downloadCode}
+              title="Download code"
+            >
+              <DownloadIcon />
             </button>
             {/* <button onClick={toggleLinter} title="Format document">
               Linter
