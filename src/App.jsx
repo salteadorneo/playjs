@@ -170,7 +170,8 @@ export default function App() {
   return (
     <>
       <Logo />
-      <div className="toolbar">
+
+      {/* <div className="toolbar">
         <button
           className="button-toolbar"
           onClick={shareURL}
@@ -178,10 +179,8 @@ export default function App() {
         >
           <ShareIcon />
         </button>
-        {/* <button onClick={toggleLinter} title="Format document">
-          Linter
-        </button> */}
-      </div>
+      </div> */}
+
       <Split
         className="split"
         direction={direction}
