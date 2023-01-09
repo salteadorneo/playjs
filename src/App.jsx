@@ -53,7 +53,9 @@ export default function App() {
   const size = useWindowSize();
   const isMobile = size.width < WIDTH_MOBILE;
 
-  const [direction, setDirection] = useState(isMobile ? "vertical" : "horizontal");
+  const [direction, setDirection] = useState(
+    isMobile ? "vertical" : "horizontal"
+  );
   const [lines, setLines] = useState(0);
 
   window.console.log = function (...data) {
@@ -104,10 +106,11 @@ export default function App() {
       document.querySelector("#result").innerHTML = "";
       return;
     }
-
-    let result = "";
-
     setLines(code.split(/\r?\n|\r|\n/g).length);
+
+    let result = "",
+      prevLine = "",
+      prevResult = "";
 
     code
       .trimEnd()
@@ -118,17 +121,22 @@ export default function App() {
           return acc + "\n";
         }
 
-        const htmlPart = acc + line;
+        const lineCode = acc + line;
 
-        if (
-          line ||
-          line === "" ||
-          !line.startsWith(/\/\//) ||
-          !line.startsWith(/\/*/)
-        ) {
+        if (line || !line.startsWith(/\/\//) || !line.startsWith(/\/*/)) {
           try {
-            const html = eval(htmlPart);
-            result += parseResultHTML(html) + "\n";
+            const html = eval(lineCode);
+            if (
+              prevLine !== "" &&
+              line !== "" &&
+              prevLine !== line &&
+              prevResult === html
+            ) {
+              prevResult = html;
+              result += "\n";
+            } else {
+              result += parseResultHTML(html) + "\n";
+            }
           } catch (err) {
             if (err.toString().match(/ReferenceError/gi)) {
               result += err;
@@ -136,7 +144,10 @@ export default function App() {
             result += "\n";
           }
         }
-        return htmlPart + "\n";
+
+        prevLine = line;
+
+        return lineCode + "\n";
       }, "");
 
     document.querySelector("#result").innerHTML = result;
@@ -242,20 +253,29 @@ export default function App() {
             }}
           >
             {Array.from(Array(lines).keys()).map((index) => {
-              return <span key={index} style={{
-                display: "block",
-                width: "68px",
-                color: "#858585",
-                fontSize: "14px",
-                lineHeight: "19px",
-              }}>{index + 1}</span>;
+              return (
+                <span
+                  key={index}
+                  style={{
+                    display: "block",
+                    width: "68px",
+                    color: "#858585",
+                    fontSize: "14px",
+                    lineHeight: "19px",
+                  }}
+                >
+                  {index + 1}
+                </span>
+              );
             })}
           </div>
           <div id="result" />
         </div>
       </Split>
       <section className="credits">
-        <a href="https://salteadorneo.dev/" target="_blank">salteadorneo</a>
+        <a href="https://salteadorneo.dev/" target="_blank">
+          salteadorneo
+        </a>
       </section>
     </>
   );
