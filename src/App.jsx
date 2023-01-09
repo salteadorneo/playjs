@@ -4,12 +4,12 @@ import Editor from "@monaco-editor/react";
 import JSMonacoLinter from "monaco-js-linter";
 import { encode, decode } from "js-base64";
 
-import { useWindowSize } from "./hooks/useWindowSize";
+import { useWindowSize } from "@/hooks/useWindowSize";
 
-import Logo from "./components/Logo";
-import ShareIcon from "./assets/ShareIcon";
-import FormatIcon from "./assets/FormatIcon";
-import DownloadIcon from "./assets/DownloadIcon";
+import Logo from "@/components/Logo";
+import ShareIcon from "@/assets/ShareIcon";
+import FormatIcon from "@/assets/FormatIcon";
+import DownloadIcon from "@/assets/DownloadIcon";
 
 function updateURL(code) {
   const hashedCode = `${encode(code)}`;
