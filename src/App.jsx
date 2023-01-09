@@ -132,11 +132,11 @@ export default function App() {
               prevLine !== line &&
               prevResult === html
             ) {
-              prevResult = html;
               result += "\n";
             } else {
               result += parseResultHTML(html) + "\n";
             }
+            prevResult = html;
           } catch (err) {
             if (err.toString().match(/ReferenceError/gi)) {
               result += err;
