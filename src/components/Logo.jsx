@@ -21,7 +21,7 @@ export default function Logo() {
                 </svg>
             </div>
             <h1 className="title">PlayJS</h1>
-            <span className="version">v.{version}</span>
+            <span className="version">v.{version} <tag>BETA</tag></span>
         </div>
     );
 }

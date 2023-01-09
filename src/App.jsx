@@ -254,6 +254,9 @@ export default function App() {
           <div id="result" />
         </div>
       </Split>
+      <section className="credits">
+        <a href="https://salteadorneo.dev/" target="_blank">salteadorneo</a>
+      </section>
     </>
   );
 }

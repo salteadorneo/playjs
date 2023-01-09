@@ -87,6 +87,12 @@ body {
   margin-top: 5px;
 }
 
+tag {
+  background: #3f3f3f;
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
 .gradient {
   position: relative;
 }
@@ -153,7 +159,20 @@ body {
   white-space: pre;
 }
 
-@media (max-width: 480px) {
-  #result {
-  }
+.credits {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  padding: 12px;
+}
+
+.credits a {
+  font-size: 11px;
+  text-decoration: none;
+  color: #616161;
+}
+
+.credits a:hover {
+  color: #999999;
 }
