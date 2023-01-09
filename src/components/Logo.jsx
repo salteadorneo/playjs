@@ -6,7 +6,7 @@ export default function Logo() {
         <div className="logo">
             <div className="square" />
             <h1 className="title">PlayJS</h1>
-            <span className="version">v.{version} <tag>BETA</tag></span>
+            <span className="version">v.{version} <span className="badge">BETA</span></span>
         </div>
     );
 }

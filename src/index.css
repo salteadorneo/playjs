@@ -90,7 +90,7 @@ body {
   justify-content: center;
 }
 
-tag {
+.badge {
   font-size: 10px;
   color: #1a1a1a;
   font-weight: 700;
