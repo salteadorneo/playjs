@@ -58,7 +58,7 @@ body {
   z-index: 1;
   padding: 12px;
   display: flex;
-  gap: 5px;
+  gap: 8px;
 }
 
 .button-toolbar {
