@@ -51,10 +51,10 @@ const WIDTH_MOBILE = 480;
 export default function App() {
   const editorRef = useRef(null);
   const size = useWindowSize();
-
-  const [lines, setLines] = useState(0);
-
   const isMobile = size.width < WIDTH_MOBILE;
+
+  const [direction, setDirection] = useState(isMobile ? "vertical" : "horizontal");
+  const [lines, setLines] = useState(0);
 
   window.console.log = function (...data) {
     return parseResultHTML(...data);
@@ -184,7 +184,7 @@ export default function App() {
       </div>
       <Split
         className="split"
-        direction={isMobile ? "vertical" : "horizontal"}
+        direction={direction}
         gutterSize={isMobile ? 6 : 3}
       >
         <div>
@@ -235,10 +235,9 @@ export default function App() {
             </button> */}
           </div>
         </div>
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", paddingTop: "24px" }}>
           <div
             style={{
-              paddingTop: "12px",
               width: "68px",
               textAlign: "center",
             }}
