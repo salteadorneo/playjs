@@ -85,8 +85,8 @@ body {
 }
 
 .logo .square {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   background: #f0db4f;
   display: flex;
   align-items: center;
@@ -149,12 +149,10 @@ body {
 
 .toolbar {
   position: fixed;
-  top: 5px;
-  right: 5px;
+  top: 16px;
+  right: 16px;
   z-index: 1;
-  padding: 12px;
   display: flex;
-  gap: 5px;
 }
 
 #result {

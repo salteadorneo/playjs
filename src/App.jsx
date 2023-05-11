@@ -1,13 +1,13 @@
 import { useRef, useState } from 'react'
 import Split from 'react-split'
 import Editor from '@monaco-editor/react'
-import JSMonacoLinter from 'monaco-js-linter'
 import { encode, decode } from 'js-base64'
 
 import { useWindowSize } from '@/hooks/useWindowSize'
 
 import Logo from '@/components/Logo'
-import { IconDownload, IconFormat } from './Icons'
+import { IconDownload, IconFormat, IconShare } from './Icons'
+import { Toaster, toast } from 'sonner'
 
 function updateURL (code) {
   const hashedCode = `${encode(code)}`
@@ -43,7 +43,6 @@ const throttle = (callback, time) => {
   }, time)
 }
 
-let linter
 const WIDTH_MOBILE = 480
 
 export default function App () {
@@ -51,9 +50,7 @@ export default function App () {
   const size = useWindowSize()
   const isMobile = size.width < WIDTH_MOBILE
 
-  const [direction, setDirection] = useState(
-    isMobile ? 'vertical' : 'horizontal'
-  )
+  const direction = isMobile ? 'vertical' : 'horizontal'
   const [lines, setLines] = useState(0)
 
   window.console.log = function (...data) {
@@ -62,10 +59,6 @@ export default function App () {
 
   function handleInit (editor, monaco) {
     editorRef.current = editor
-
-    linter = new JSMonacoLinter(editor, monaco, {
-      esversion: 11
-    })
 
     editor.focus()
 
@@ -79,6 +72,8 @@ export default function App () {
   function shareURL () {
     const url = window.location.href
     navigator.clipboard.writeText(url)
+
+    toast.success('Copied to clipboard!')
   }
 
   function downloadCode () {
@@ -89,10 +84,6 @@ export default function App () {
     link.download = 'playjs.js'
     link.href = url
     link.click()
-  }
-
-  function toggleLinter () {
-    linter.watch()
   }
 
   const showResult = () => {
@@ -123,6 +114,7 @@ export default function App () {
 
         if (line || !line.startsWith(/\/\//) || !line.startsWith(/\/*/)) {
           try {
+            // eslint-disable-next-line no-eval
             const html = eval(lineCode)
             if (
               prevLine !== '' &&
@@ -178,17 +170,19 @@ export default function App () {
 
   return (
     <>
+      <Toaster position='top-center' />
+
       <Logo />
 
-      {/* <div className="toolbar">
+      <div className='toolbar'>
         <button
-          className="button-toolbar"
+          className='button-toolbar'
           onClick={shareURL}
-          title="Share code"
+          title='Share code'
         >
-          <ShareIcon />
+          <IconShare /> Share
         </button>
-      </div> */}
+      </div>
 
       <Split
         className='split'
@@ -238,9 +232,6 @@ export default function App () {
             >
               <IconDownload /> Download
             </button>
-            {/* <button onClick={toggleLinter} title="Format document">
-              Linter
-            </button> */}
           </div>
         </div>
         <div style={{ display: 'flex', paddingTop: '24px' }}>
