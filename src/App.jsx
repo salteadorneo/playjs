@@ -7,6 +7,7 @@ import { useWindowSize } from '@/hooks/useWindowSize'
 
 import { Toaster } from 'sonner'
 
+import { DEFAULT_VALUE, WIDTH_MOBILE } from '@/consts'
 import { IconDownload, IconFormat } from '@/Icons'
 
 import Logo from '@/components/Logo'
@@ -14,6 +15,7 @@ import Button from '@/components/Button'
 import Share from '@/components/Share'
 import Footer from '@/components/Footer'
 import Console from './components/Console'
+import { EDITOR_OPTIONS } from './consts'
 
 function updateURL (code) {
   const hashedCode = `${encode(code)}`
@@ -30,15 +32,6 @@ function getCodeFromURL () {
   }
 }
 
-const defaultValue =
-  getCodeFromURL() ||
-  `// Bienvenido a PlayJS
-
-const holaMundo = () => '👋🌎'
-
-holaMundo()
-`
-
 let throttlePause
 const throttle = (callback, time) => {
   if (throttlePause) return
@@ -48,8 +41,6 @@ const throttle = (callback, time) => {
     throttlePause = false
   }, time)
 }
-
-const WIDTH_MOBILE = 480
 
 export default function App () {
   const editorRef = useRef(null)
@@ -70,7 +61,9 @@ export default function App () {
 
     editor.focus()
 
-    if (editor.getValue()) showResult()
+    if (editor.getValue()) {
+      showResult()
+    }
   }
 
   function formatDocument () {
@@ -91,6 +84,7 @@ export default function App () {
 
   const showResult = () => {
     const editor = editorRef.current
+
     const code = editor.getValue()
 
     updateURL(code)
@@ -99,6 +93,7 @@ export default function App () {
       setResult('')
       return
     }
+
     setLines(code.split(/\r?\n|\r|\n/g).length)
 
     let result = ''
@@ -192,28 +187,11 @@ export default function App () {
             className='editor'
             language='javascript'
             theme='vs-dark'
-            defaultValue={defaultValue}
+            defaultValue={getCodeFromURL() || DEFAULT_VALUE}
             onMount={handleInit}
             onChange={handleEditorChange}
             loading=''
-            options={{
-              automaticLayout: true,
-              fontLigatures: true,
-              formatOnPaste: true,
-              minimap: {
-                enabled: false
-              },
-              inlineSuggest: {
-                enabled: true
-              },
-              overviewRulerLanes: 0,
-              scrollbar: {
-                vertical: 'hidden',
-                horizontal: 'hidden',
-                handleMouseWheel: false
-              },
-              fontFamily: 'monospace'
-            }}
+            options={EDITOR_OPTIONS}
           />
           <div className='editor-toolbar'>
             <Button
