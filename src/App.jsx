@@ -5,9 +5,15 @@ import { encode, decode } from 'js-base64'
 
 import { useWindowSize } from '@/hooks/useWindowSize'
 
+import { Toaster } from 'sonner'
+
+import { IconDownload, IconFormat } from '@/Icons'
+
 import Logo from '@/components/Logo'
-import { IconDownload, IconFormat, IconShare } from './Icons'
-import { Toaster, toast } from 'sonner'
+import Button from '@/components/Button'
+import Share from '@/components/Share'
+import Footer from '@/components/Footer'
+import Console from './components/Console'
 
 function updateURL (code) {
   const hashedCode = `${encode(code)}`
@@ -51,7 +57,9 @@ export default function App () {
   const isMobile = size.width < WIDTH_MOBILE
 
   const direction = isMobile ? 'vertical' : 'horizontal'
+
   const [lines, setLines] = useState(0)
+  const [result, setResult] = useState('')
 
   window.console.log = function (...data) {
     return parseResultHTML(...data)
@@ -66,18 +74,13 @@ export default function App () {
   }
 
   function formatDocument () {
-    editorRef.current.getAction('editor.action.formatDocument').run()
-  }
-
-  function shareURL () {
-    const url = window.location.href
-    navigator.clipboard.writeText(url)
-
-    toast.success('Copied to clipboard!')
+    const editor = editorRef.current
+    editor.getAction('editor.action.formatDocument').run()
   }
 
   function downloadCode () {
-    const code = editorRef.current.getValue()
+    const editor = editorRef.current
+    const code = editor.getValue()
     const blob = new window.Blob([code], { type: 'text/plain' })
     const url = URL.createObjectURL(blob)
     const link = document.createElement('a')
@@ -87,12 +90,13 @@ export default function App () {
   }
 
   const showResult = () => {
-    const code = editorRef.current.getValue()
+    const editor = editorRef.current
+    const code = editor.getValue()
 
     updateURL(code)
 
     if (!code) {
-      document.querySelector('#result').innerHTML = ''
+      setResult('')
       return
     }
     setLines(code.split(/\r?\n|\r|\n/g).length)
@@ -140,7 +144,7 @@ export default function App () {
         return lineCode + '\n'
       }, '')
 
-    document.querySelector('#result').innerHTML = result
+    setResult(result)
   }
 
   function parseResultHTML (html) {
@@ -175,13 +179,7 @@ export default function App () {
       <Logo />
 
       <div className='toolbar'>
-        <button
-          className='button-toolbar'
-          onClick={shareURL}
-          title='Share code'
-        >
-          <IconShare /> Share
-        </button>
+        <Share />
       </div>
 
       <Split
@@ -218,54 +216,25 @@ export default function App () {
             }}
           />
           <div className='editor-toolbar'>
-            <button
-              className='button-toolbar'
+            <Button
               onClick={formatDocument}
-              title='Format document'
+              title='Format code'
             >
               <IconFormat /> Format
-            </button>
-            <button
-              className='button-toolbar'
+            </Button>
+            <Button
               onClick={downloadCode}
-              title='Download code'
+              title='Download code as file'
             >
               <IconDownload /> Download
-            </button>
+            </Button>
           </div>
         </div>
-        <div style={{ display: 'flex', paddingTop: '24px' }}>
-          <div
-            style={{
-              width: '68px',
-              textAlign: 'center'
-            }}
-          >
-            {Array.from(Array(lines).keys()).map((index) => {
-              return (
-                <span
-                  key={index}
-                  style={{
-                    display: 'block',
-                    width: '68px',
-                    color: '#858585',
-                    fontSize: '14px',
-                    lineHeight: '19px'
-                  }}
-                >
-                  {index + 1}
-                </span>
-              )
-            })}
-          </div>
-          <div id='result' />
-        </div>
+
+        <Console lines={lines} result={result} />
       </Split>
-      <section className='credits'>
-        <a href='https://salteadorneo.dev/' target='_blank' rel='noreferrer'>
-          salteadorneo
-        </a>
-      </section>
+
+      <Footer />
     </>
   )
 }
