@@ -7,15 +7,14 @@ import { useWindowSize } from '@/hooks/useWindowSize'
 
 import { Toaster } from 'sonner'
 
-import { DEFAULT_VALUE, WIDTH_MOBILE } from '@/consts'
-import { IconDownload, IconFormat } from '@/Icons'
+import { DEFAULT_VALUE, WIDTH_MOBILE, EDITOR_OPTIONS } from './consts'
+import { IconDownload, IconFormat } from './Icons'
 
-import Logo from '@/components/Logo'
-import Button from '@/components/Button'
-import Share from '@/components/Share'
-import Footer from '@/components/Footer'
+import Logo from './components/Logo'
+import Button from './components/Button'
+import Share from './components/Share'
+import Footer from './components/Footer'
 import Console from './components/Console'
-import { EDITOR_OPTIONS } from './consts'
 
 function updateURL (code) {
   const hashedCode = `${encode(code)}`
