@@ -15,6 +15,7 @@ import Button from './components/Button'
 import Share from './components/Share'
 import Footer from './components/Footer'
 import Console from './components/Console'
+import Embed from './components/Embed'
 
 function updateURL (code) {
   const hashedCode = `${encode(code)}`
@@ -45,6 +46,8 @@ export default function App () {
   const editorRef = useRef(null)
   const size = useWindowSize()
   const isMobile = size.width < WIDTH_MOBILE
+
+  const isMainDomain = window.location.hostname === 'playjs.dev'
 
   const direction = isMobile ? 'vertical' : 'horizontal'
 
@@ -174,6 +177,9 @@ export default function App () {
 
       <div className='toolbar'>
         <Share />
+        {isMainDomain && (
+          <Embed />
+        )}
       </div>
 
       <Split
