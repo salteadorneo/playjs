@@ -1,50 +1,26 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import Split from 'react-split'
-import Editor from '@monaco-editor/react'
-import { encode, decode } from 'js-base64'
+import { encode } from 'js-base64'
 
 import { useWindowSize } from '@/hooks/useWindowSize'
 
 import { Toaster } from 'sonner'
 
-import { DEFAULT_VALUE, WIDTH_MOBILE, EDITOR_OPTIONS } from './consts'
-import { IconDownload, IconFormat } from './Icons'
+import { WIDTH_MOBILE } from './consts'
 
 import Logo from './components/Logo'
-import Button from './components/Button'
 import Share from './components/Share'
 import Footer from './components/Footer'
 import Console from './components/Console'
 import Embed from './components/Embed'
-import Report from './components/Report'
+import Code from './components/Code'
 
 function updateURL (code) {
   const hashedCode = `${encode(code)}`
   window.history.replaceState(null, null, `/${hashedCode}`)
 }
 
-function getCodeFromURL () {
-  try {
-    const { pathname } = window.location
-    const hashCode = pathname.slice(1)
-    return hashCode ? decode(hashCode) : null
-  } catch {
-    return null
-  }
-}
-
-let throttlePause
-const throttle = (callback, time) => {
-  if (throttlePause) return
-  throttlePause = true
-  setTimeout(() => {
-    callback()
-    throttlePause = false
-  }, time)
-}
-
 export default function App () {
-  const editorRef = useRef(null)
   const size = useWindowSize()
   const isMobile = size.width < WIDTH_MOBILE
 
@@ -58,37 +34,7 @@ export default function App () {
     return parseResultHTML(...data)
   }
 
-  function handleInit (editor, monaco) {
-    editorRef.current = editor
-
-    editor.focus()
-
-    if (editor.getValue()) {
-      showResult()
-    }
-  }
-
-  function formatDocument () {
-    const editor = editorRef.current
-    editor.getAction('editor.action.formatDocument').run()
-  }
-
-  function downloadCode () {
-    const editor = editorRef.current
-    const code = editor.getValue()
-    const blob = new window.Blob([code], { type: 'text/plain' })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.download = 'playjs.js'
-    link.href = url
-    link.click()
-  }
-
-  const showResult = () => {
-    const editor = editorRef.current
-
-    const code = editor.getValue()
-
+  const onChange = ({ code }) => {
     updateURL(code)
 
     if (!code) {
@@ -156,10 +102,6 @@ export default function App () {
     return html
   }
 
-  function handleEditorChange () {
-    throttle(showResult, 800)
-  }
-
   return (
     <>
       <Toaster position='top-center' />
@@ -176,35 +118,7 @@ export default function App () {
         direction={direction}
         gutterSize={gutterSize}
       >
-        <div>
-          <Editor
-            className='editor'
-            language='javascript'
-            theme='vs-dark'
-            defaultValue={getCodeFromURL() || DEFAULT_VALUE}
-            onMount={handleInit}
-            onChange={handleEditorChange}
-            loading=''
-            options={EDITOR_OPTIONS}
-          />
-          <div className='editor-toolbar'>
-            <Button
-              onClick={formatDocument}
-              title='Format code'
-            >
-              <IconFormat />
-              <span className='hidden sm:block'>Format</span>
-            </Button>
-            <Button
-              onClick={downloadCode}
-              title='Download code as file'
-            >
-              <IconDownload />
-              <span className='hidden sm:block'>Download</span>
-            </Button>
-            <Report />
-          </div>
-        </div>
+        <Code onChange={onChange} />
 
         <Console lines={lines} result={result} />
       </Split>
