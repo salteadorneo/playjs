@@ -1,23 +1,12 @@
 export default function Console ({ lines, result }) {
   return (
-    <div className='flex pt-[24px]'>
-      <div
-        style={{
-          width: '68px',
-          textAlign: 'center'
-        }}
-      >
+    <div className='flex pt-6'>
+      <div className='w-[68px] text-center'>
         {Array.from(Array(lines).keys()).map((index) => {
           return (
             <span
               key={index}
-              style={{
-                display: 'block',
-                width: '68px',
-                color: '#858585',
-                fontSize: '14px',
-                lineHeight: '19px'
-              }}
+              className='inline-block w-[68px] text-[#858585] text-[14px] leading-[19px]'
             >
               {index + 1}
             </span>
@@ -25,10 +14,9 @@ export default function Console ({ lines, result }) {
         })}
       </div>
 
-      <div className='console'>
+      <div className='w-full h-full text-[#dcdcdc] text-left font-[monospace] text-[14px] leading-[19px] whitespace-pre'>
         {result}
       </div>
-
     </div>
   )
 }

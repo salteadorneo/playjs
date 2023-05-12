@@ -68,7 +68,7 @@ export default function Code ({ onChange }) {
   return (
     <div>
       <Editor
-        className='editor'
+        className='w-full h-full pt-6 pb-12'
         language='javascript'
         theme='vs-dark'
         defaultValue={getCodeFromURL() || DEFAULT_VALUE}
@@ -77,7 +77,7 @@ export default function Code ({ onChange }) {
         loading=''
         options={EDITOR_OPTIONS}
       />
-      <div className='editor-toolbar'>
+      <div className='fixed bottom-0 left-0 z-10 p-3 flex gap-4'>
         <Button
           onClick={formatDocument}
           title='Format code'

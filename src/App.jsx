@@ -108,7 +108,7 @@ export default function App () {
 
       <Logo />
 
-      <div className='toolbar'>
+      <div className='fixed top-3 right-4 z-10 flex items-center gap-4'>
         <Share />
         <Embed />
       </div>
