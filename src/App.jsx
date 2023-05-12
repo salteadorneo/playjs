@@ -16,6 +16,7 @@ import Share from './components/Share'
 import Footer from './components/Footer'
 import Console from './components/Console'
 import Embed from './components/Embed'
+import Report from './components/Report'
 
 function updateURL (code) {
   const hashedCode = `${encode(code)}`
@@ -164,7 +165,7 @@ export default function App () {
     return html
   }
 
-  function handleEditorChange (value, event) {
+  function handleEditorChange () {
     throttle(showResult, 800)
   }
 
@@ -210,6 +211,7 @@ export default function App () {
               <IconDownload />
               <span className='hidden sm:block'>Download</span>
             </Button>
+            <Report />
           </div>
         </div>
 
