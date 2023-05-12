@@ -1,6 +1,6 @@
 export default function Console ({ lines, result }) {
   return (
-    <div style={{ display: 'flex', paddingTop: '24px' }}>
+    <div className='flex pt-[24px]'>
       <div
         style={{
           width: '68px',

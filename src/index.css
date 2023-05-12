@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background: #1e1e1e;
+  --primary: #d4d4d4;
+}
+
 * {
   box-sizing: border-box;
 }
