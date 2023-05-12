@@ -47,9 +47,8 @@ export default function App () {
   const size = useWindowSize()
   const isMobile = size.width < WIDTH_MOBILE
 
-  const isMainDomain = window.location.hostname === 'playjs.dev'
-
   const direction = isMobile ? 'vertical' : 'horizontal'
+  const gutterSize = isMobile ? 6 : 3
 
   const [lines, setLines] = useState(0)
   const [result, setResult] = useState('')
@@ -177,15 +176,13 @@ export default function App () {
 
       <div className='toolbar'>
         <Share />
-        {isMainDomain && (
-          <Embed />
-        )}
+        <Embed />
       </div>
 
       <Split
         className='split'
         direction={direction}
-        gutterSize={isMobile ? 6 : 3}
+        gutterSize={gutterSize}
       >
         <div>
           <Editor
@@ -203,13 +200,15 @@ export default function App () {
               onClick={formatDocument}
               title='Format code'
             >
-              <IconFormat /> Format
+              <IconFormat />
+              <span className='hidden sm:block'>Format</span>
             </Button>
             <Button
               onClick={downloadCode}
               title='Download code as file'
             >
-              <IconDownload /> Download
+              <IconDownload />
+              <span className='hidden sm:block'>Download</span>
             </Button>
           </div>
         </div>

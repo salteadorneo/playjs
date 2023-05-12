@@ -17,7 +17,12 @@ export default function Embed () {
     navigator.clipboard.writeText(textareaRef.current.value)
 
     toast.success('Copied to clipboard!')
+
+    setModal(false)
   }
+
+  const isMainDomain = window.location.hostname === 'playjs.dev' || window.location.hostname === 'localhost'
+  if (!isMainDomain) return null
 
   return (
     <>
@@ -25,7 +30,8 @@ export default function Embed () {
         onClick={handleClick}
         title=''
       >
-        <IconEmbed /> Embed
+        <IconEmbed />
+        <span className='hidden sm:block'>Embed</span>
       </Button>
       {modal && (
         <section className='modal'>
