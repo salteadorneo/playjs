@@ -26,12 +26,12 @@ export default function App () {
   const [lines, setLines] = useState(0)
   const [result, setResult] = useState('')
 
-  const onChange = ({ code = '' }) => {
+  const onChange = async ({ code = '' }) => {
     updateURL(code)
 
     setLines(code?.split(/\r?\n|\r|\n/g).length)
 
-    const result = getResult(code)
+    const result = await getResult(code)
 
     setResult(result)
   }
@@ -48,7 +48,7 @@ export default function App () {
       </div>
 
       <Split
-        className='split'
+        className='flex pt-12 h-screen'
         direction={direction}
         gutterSize={gutterSize}
       >

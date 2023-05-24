@@ -4,7 +4,7 @@ export function updateURL (code) {
   const hashedCode = `${encode(code)}`
   window.history.replaceState(null, null, `/${hashedCode}`)
 }
-export function getResult (code) {
+export async function getResult (code) {
   if (!code) {
     return ''
   }
@@ -32,7 +32,7 @@ export function getResult (code) {
       if (i > 0 && line !== codeLines[i - 1].trim() && prevResult === html) {
         result += '\n'
       } else {
-        result += parseResultHTML(html) + '\n'
+        result += await resolveHTML(html) + '\n'
       }
       prevResult = html
     } catch (err) {
@@ -46,16 +46,20 @@ export function getResult (code) {
   return result
 }
 
-window.console.log = function (...data) {
-  return parseResultHTML(...data)
+window.console.log = async function (...data) {
+  return await resolveHTML(...data)
 }
 
-export function parseResultHTML (html) {
+export async function resolveHTML (html) {
   if (typeof html === 'object') {
+    if (html instanceof Promise) {
+      const resolvedValue = await html
+      return await resolveHTML(resolvedValue)
+    }
     return JSON.stringify(html)
   }
   if (typeof html === 'string') {
-    // start o end with ' or "
+    // start or end with ' or "
     if (html.match(/^['"].*['"]$/)) return html
     return `'${html}'`
   }
