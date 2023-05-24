@@ -11,7 +11,20 @@ export async function getResult (code) {
 
   let result = ''
   let prevResult = ''
-  const codeLines = code.trimEnd().split(/\r?\n|\r|\n/g)
+
+  let wrappedCode = code
+
+  const regex = /import\s+(\w+)\s+from\s+(['"])(.*?)\2\s*;?/g
+  if (code.match(regex)) {
+    const updatedCode = code.replace(regex, "const { default: $1 } = await import('https://cdn.skypack.dev/$3');")
+    wrappedCode = `(async () => {
+      ${updatedCode}
+    })();`
+  }
+
+  const codeLines = wrappedCode
+    .trimEnd()
+    .split(/\r?\n|\r|\n/g)
 
   for (let i = 0; i < codeLines.length; i++) {
     const line = codeLines[i].trim()
