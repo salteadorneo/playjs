@@ -22,16 +22,7 @@ body {
   padding: 0;
 }
 
-.split {
-  height: calc(100vh - 59px);
-}
-
 @media (min-width: 480px) {
-  .split {
-    display: flex;
-    flex-direction: row;
-  }
-
   .gutter {
     height: 100% !important;
   }

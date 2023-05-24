@@ -68,14 +68,17 @@ export default function Code ({ onChange }) {
   return (
     <div>
       <Editor
-        className='w-full h-full pt-6 pb-12'
+        className='w-full h-full pt-6'
         language='javascript'
         theme='vs-dark'
         defaultValue={getCodeFromURL() || DEFAULT_VALUE}
         onMount={onMount}
         onChange={handleEditorChange}
         loading=''
-        options={EDITOR_OPTIONS}
+        options={{
+          ...EDITOR_OPTIONS,
+          lineNumbers: 'on'
+        }}
       />
       <div className='fixed bottom-0 left-0 z-10 p-3 flex gap-4'>
         <Button

@@ -9,6 +9,8 @@ holaMundo()
 
 export const EDITOR_OPTIONS = {
   automaticLayout: true,
+  lineNumbers: 'off',
+  fontFamily: 'monospace',
   fontLigatures: true,
   formatOnPaste: true,
   minimap: {
@@ -22,6 +24,5 @@ export const EDITOR_OPTIONS = {
     vertical: 'hidden',
     horizontal: 'hidden',
     handleMouseWheel: false
-  },
-  fontFamily: 'monospace'
+  }
 }
