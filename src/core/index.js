@@ -1,7 +1,5 @@
 export async function getResult (code) {
-  if (!code) {
-    return ''
-  }
+  if (!code) return ''
 
   let result = ''
   let prevResult = ''
@@ -50,11 +48,16 @@ export async function getResult (code) {
     }
   }
 
+  // remove last \n
+  result = result.slice(0, -1)
+
   return result
 }
 
-window.console.log = async function (...data) {
-  return await resolveHTML(...data)
+if (typeof window !== 'undefined') {
+  window.console.log = async function (...data) {
+    return await resolveHTML(...data)
+  }
 }
 
 export async function resolveHTML (html) {
