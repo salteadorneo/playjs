@@ -48,7 +48,7 @@ export default function App () {
       </div>
 
       <Split
-        className='flex pt-12 h-screen'
+        className='split pt-12 h-screen'
         direction={direction}
         gutterSize={gutterSize}
       >
