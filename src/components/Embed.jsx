@@ -16,9 +16,7 @@ export default function Embed () {
 
   function handleCopy () {
     navigator.clipboard.writeText(iframe)
-
     toast.success('Copied to clipboard!')
-
     setModal(false)
   }
 
