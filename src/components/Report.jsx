@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { IconBug } from '../Icons'
 import Button from './Button'
+import { IS_IFRAME } from '../consts'
 
 export default function Report () {
   const [modal, setModal] = useState(false)
@@ -60,7 +61,9 @@ export default function Report () {
         title='Report a bug'
       >
         <IconBug />
-        <span className='hidden sm:block'>Report bug</span>
+        {!IS_IFRAME && (
+          <span className='hidden sm:block'>Report bug</span>
+        )}
       </Button>
       {modal && (
         <section className='fixed top-0 left-0 z-10 w-screen h-screen bg-black/80 grid place-content-center'>

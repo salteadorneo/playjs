@@ -1,9 +1,3 @@
-import { encode } from 'js-base64'
-
-export function updateURL (code) {
-  const hashedCode = `${encode(code)}`
-  window.history.replaceState(null, null, `/${hashedCode}`)
-}
 export async function getResult (code) {
   if (!code) {
     return ''
