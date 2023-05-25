@@ -1,3 +1,5 @@
+export const IS_IFRAME = typeof window !== 'undefined' && window.location !== window.parent.location
+
 export const WIDTH_MOBILE = 480
 
 export const DEFAULT_VALUE = `// Bienvenido a PlayJS

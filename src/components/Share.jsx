@@ -1,6 +1,7 @@
 import { toast } from 'sonner'
 import { IconShare } from '../Icons'
 import Button from './Button'
+import { IS_IFRAME } from '../consts'
 
 export default function Share () {
   function shareURL () {
@@ -16,7 +17,9 @@ export default function Share () {
       title='Share code'
     >
       <IconShare />
-      <span className='hidden sm:block'>Share</span>
+      {!IS_IFRAME && (
+        <span className='hidden sm:block'>Share</span>
+      )}
     </Button>
   )
 }

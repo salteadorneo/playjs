@@ -2,12 +2,13 @@ import { useState } from 'react'
 import Button from './Button'
 import { toast } from 'sonner'
 import { IconEmbed } from '../Icons'
+import { IS_IFRAME } from '../consts'
 
 export default function Embed () {
   const [modal, setModal] = useState(false)
 
   const url = window.location.href
-  const iframe = `<iframe src="${url}" width="100%" height="500" style="border:none;"></iframe>`
+  const iframe = `<iframe src="${url}" width="100%" height="500" style="border:none;" allow="clipboard-read;clipboard-write"></iframe>`
 
   function handleClick () {
     setModal(status => !status)
@@ -15,14 +16,14 @@ export default function Embed () {
 
   function handleCopy () {
     navigator.clipboard.writeText(iframe)
-
     toast.success('Copied to clipboard!')
-
     setModal(false)
   }
 
   const isMainDomain = window.location.hostname === 'playjs.dev' || window.location.hostname === 'localhost'
   if (!isMainDomain) return null
+
+  if (IS_IFRAME) return null
 
   return (
     <>

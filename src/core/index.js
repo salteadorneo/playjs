@@ -1,13 +1,5 @@
-import { encode } from 'js-base64'
-
-export function updateURL (code) {
-  const hashedCode = `${encode(code)}`
-  window.history.replaceState(null, null, `/${hashedCode}`)
-}
 export async function getResult (code) {
-  if (!code) {
-    return ''
-  }
+  if (!code) return ''
 
   let result = ''
   let prevResult = ''
@@ -56,11 +48,16 @@ export async function getResult (code) {
     }
   }
 
+  // remove last \n
+  result = result.slice(0, -1)
+
   return result
 }
 
-window.console.log = async function (...data) {
-  return await resolveHTML(...data)
+if (typeof window !== 'undefined') {
+  window.console.log = async function (...data) {
+    return await resolveHTML(...data)
+  }
 }
 
 export async function resolveHTML (html) {

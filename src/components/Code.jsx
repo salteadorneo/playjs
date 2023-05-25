@@ -1,12 +1,13 @@
+import { useRef } from 'react'
 import Editor from '@monaco-editor/react'
-import { decode } from 'js-base64'
 
-import { IconDownload, IconFormat } from '../Icons'
-import { DEFAULT_VALUE, EDITOR_OPTIONS } from '../consts'
+import { DEFAULT_VALUE, EDITOR_OPTIONS, IS_IFRAME } from '../consts'
+import { getCodeFromURL } from '../core/encode'
 
 import Button from './Button'
 import Report from './Report'
-import { useRef } from 'react'
+
+import { IconDownload, IconFormat } from '../Icons'
 
 let throttlePause
 const throttle = (callback, time) => {
@@ -37,16 +38,6 @@ export default function Code ({ onChange }) {
 
   function handleEditorChange () {
     throttle(handleChange, 800)
-  }
-
-  function getCodeFromURL () {
-    try {
-      const { pathname } = window.location
-      const hashCode = pathname.slice(1)
-      return hashCode ? decode(hashCode) : null
-    } catch {
-      return null
-    }
   }
 
   function formatDocument () {
@@ -81,19 +72,23 @@ export default function Code ({ onChange }) {
         }}
       />
       <div className='fixed bottom-0 left-0 z-10 p-3 flex gap-4'>
-        <Button
-          onClick={formatDocument}
-          title='Format code'
-        >
-          <IconFormat />
-          <span className='hidden sm:block'>Format</span>
-        </Button>
+        {!IS_IFRAME && (
+          <Button
+            onClick={formatDocument}
+            title='Format code'
+          >
+            <IconFormat />
+            <span className='hidden sm:block'>Format</span>
+          </Button>
+        )}
         <Button
           onClick={downloadCode}
           title='Download code as file'
         >
           <IconDownload />
-          <span className='hidden sm:block'>Download</span>
+          {!IS_IFRAME && (
+            <span className='hidden sm:block'>Download</span>
+          )}
         </Button>
         <Report />
       </div>

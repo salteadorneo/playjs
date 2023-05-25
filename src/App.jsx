@@ -5,7 +5,8 @@ import { useWindowSize } from '@/hooks/useWindowSize'
 
 import { Toaster } from 'sonner'
 
-import { getResult, updateURL } from './core'
+import { getResult } from './core'
+import { updateURL } from './core/encode'
 import { WIDTH_MOBILE } from './consts'
 
 import Logo from './components/Logo'
