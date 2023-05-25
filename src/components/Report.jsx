@@ -19,9 +19,6 @@ export default function Report () {
 
   function reportBug () {
     setModal(status => !status)
-
-    const url = window.location.href
-    console.log(url)
   }
 
   function handleSubmit (event) {
@@ -48,9 +45,8 @@ export default function Report () {
           }
         })
       }
-    }).catch(error => {
+    }).catch(() => {
       setStatus('Oops! There was a problem submitting your form')
-      console.error(error)
     })
   }
 
