@@ -10,7 +10,7 @@ export default function Logo () {
   return (
     <div className='fixed top-0 z-10 w-full flex items-center gap-3 p-3 shadow-sm bg-[#1a1a1a]'>
       <Wrapper>
-        <div className='w-7 h-7 bg-secondary flex items-center justify-center' />
+        <div className='w-6 h-6 bg-secondary flex items-center justify-center' />
         <h1 className='text-white text-2xl font-extrabold'>
           PlayJS
         </h1>
