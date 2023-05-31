@@ -36,10 +36,10 @@ export default function Embed () {
       </Button>
       {modal && (
         <section className='modal fixed top-0 left-0 z-20 w-screen h-screen bg-black/80 grid place-content-center'>
-          <div className='max-w-xl w-screen px-4 space-y-2 text-right'>
+          <div className='max-w-6xl w-screen px-4 space-y-2 text-right'>
             <textarea
               value={iframe}
-              className='w-full h-48 bg-background text-primary border-none outline-none resize-none p-4'
+              className='w-full h-60 bg-background text-primary border-none outline-none resize-none p-4'
               readOnly
             />
             <button
