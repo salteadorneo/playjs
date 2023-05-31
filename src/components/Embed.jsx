@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Button from './Button'
 import { toast } from 'sonner'
-import { IconEmbed } from '../Icons'
+import { IconEmbed } from './Icons'
 import { IS_IFRAME } from '../consts'
 
 export default function Embed () {

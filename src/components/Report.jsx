@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { IconBug } from '../Icons'
+import { IconBug } from './Icons'
 import Button from './Button'
 import { IS_IFRAME } from '../consts'
 

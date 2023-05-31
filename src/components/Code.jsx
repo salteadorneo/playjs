@@ -7,7 +7,7 @@ import { getCodeFromURL } from '../core/encode'
 import Button from './Button'
 import Report from './Report'
 
-import { IconDownload, IconFormat } from '../Icons'
+import { IconDownload, IconFormat } from './Icons'
 
 let throttlePause
 const throttle = (callback, time) => {

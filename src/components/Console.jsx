@@ -1,8 +1,16 @@
-import Editor from '@monaco-editor/react'
 import { useEffect, useRef } from 'react'
-import { EDITOR_OPTIONS } from '../consts'
+
+import Editor from '@monaco-editor/react'
+
+import { useWindowSize } from '@/hooks/useWindowSize'
+
+import { EDITOR_OPTIONS, WIDTH_MOBILE } from '../consts'
 
 export default function Console ({ lines, result }) {
+  const size = useWindowSize()
+
+  const isMobile = size.width < WIDTH_MOBILE
+
   const editorRef = useRef(null)
 
   useEffect(() => {
@@ -23,6 +31,7 @@ export default function Console ({ lines, result }) {
         }}
         options={{
           ...EDITOR_OPTIONS,
+          lineNumbers: isMobile ? 'on' : 'off',
           readOnly: true,
           renderLineHighlight: 'none'
         }}

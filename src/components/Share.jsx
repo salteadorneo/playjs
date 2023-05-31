@@ -1,5 +1,5 @@
 import { toast } from 'sonner'
-import { IconShare } from '../Icons'
+import { IconShare } from './Icons'
 import Button from './Button'
 import { IS_IFRAME } from '../consts'
 

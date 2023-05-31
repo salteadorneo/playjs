@@ -1,4 +1,4 @@
-import { IconGitHub } from '../Icons'
+import { IconGitHub } from './Icons'
 import { IS_IFRAME } from '../consts'
 
 export default function Footer () {

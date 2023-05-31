@@ -8,18 +8,10 @@
   --secondary: #f0db4f;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 html,
 body {
   font-family: monospace;
   background: var(--background);
-}
-
-#root {
-  padding: 0;
 }
 
 @media (min-width: 480px) {
