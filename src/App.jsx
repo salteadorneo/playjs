@@ -27,12 +27,12 @@ export default function App () {
   const [lines, setLines] = useState(0)
   const [result, setResult] = useState('')
 
-  const onChange = async ({ code = '' }) => {
+  const onChange = async ({ code = '', language = 'javascript' }) => {
     updateURL(code)
 
     setLines(code?.split(/\r?\n|\r|\n/g).length)
 
-    const result = await getResult(code)
+    const result = await getResult({ code, language })
 
     setResult(result)
   }

@@ -4,7 +4,7 @@ import { DEFAULT_VALUE } from '../consts'
 
 describe('test code results', () => {
   it('console.log', async () => {
-    const output = await getResult(DEFAULT_VALUE)
+    const output = await getResult({ code: DEFAULT_VALUE })
     const expected = `
 
 
@@ -14,12 +14,14 @@ describe('test code results', () => {
   })
 
   it('await fetch', async () => {
-    const output = await getResult(`async function getFetch() {
+    const output = await getResult({
+      code: `async function getFetch() {
     return await fetch('https://jsonplaceholder.typicode.com/todos/1')
         .then(res => res.json())
 }
 
-getFetch()`)
+getFetch()`
+    })
     const expected = `
 
 
@@ -30,7 +32,8 @@ getFetch()`)
   })
 
   it('import from', async () => {
-    const output = await getResult(`import confetti from 'canvas-confetti'
+    const output = await getResult({
+      code: `import confetti from 'canvas-confetti'
 
 function getParty() {
     confetti({
@@ -44,7 +47,8 @@ function getParty() {
     });
     setTimeout(getParty, 2000)
 }
-getParty()`)
+getParty()`
+    })
     const expected = `
 
 
