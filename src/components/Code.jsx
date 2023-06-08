@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import Editor from '@monaco-editor/react'
 
-import { DEFAULT_VALUE, EDITOR_OPTIONS, IS_IFRAME } from '../consts'
+import { DEFAULT_VALUE, EDITOR_OPTIONS, IS_IFRAME, language } from '../consts'
 import { getCodeFromURL } from '../core/encode'
 
 import Button from './Button'
 import Report from './Report'
 
-import { IconDownload, IconFormat, JavaScript, TypeScript } from './Icons'
+import { IconDownload, IconFormat } from './Icons'
 
 let throttlePause
 const throttle = (callback, time) => {
@@ -21,12 +21,6 @@ const throttle = (callback, time) => {
 
 export default function Code ({ onChange }) {
   const editorRef = useRef(null)
-
-  const [language, setLanguage] = useState('javascript')
-
-  useEffect(() => {
-    handleChange()
-  }, [language])
 
   function handleChange () {
     if (!editorRef.current) return
@@ -79,20 +73,6 @@ export default function Code ({ onChange }) {
         }}
       />
       <div className='fixed bottom-0 left-2 z-10 p-3 flex gap-4'>
-        <div className='flex gap-2'>
-          <Button
-            onClick={() => setLanguage('javascript')}
-            title='JavaScript'
-          >
-            <JavaScript className={language !== 'javascript' ? 'grayscale' : ''} />
-          </Button>
-          <Button
-            onClick={() => setLanguage('typescript')}
-            title='TypeScript'
-          >
-            <TypeScript className={language !== 'typescript' ? 'grayscale' : ''} />
-          </Button>
-        </div>
         {!IS_IFRAME && (
           <Button
             onClick={formatDocument}

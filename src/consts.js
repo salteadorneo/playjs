@@ -1,3 +1,7 @@
+export const language = window.location.host === 'ts.playjs.dev'
+  ? 'typescript'
+  : 'javascript'
+
 export const IS_IFRAME = typeof window !== 'undefined' && window.location !== window.parent.location
 
 export const WIDTH_MOBILE = 480
