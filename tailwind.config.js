@@ -9,7 +9,8 @@ export default {
       colors: {
         background: 'var(--background)',
         primary: 'var(--primary)',
-        secondary: 'var(--secondary)'
+        secondary: 'var(--secondary)',
+        typescript: 'var(--typescript)'
       }
     }
   },

@@ -4,7 +4,7 @@ import Editor from '@monaco-editor/react'
 
 import { useWindowSize } from '@/hooks/useWindowSize'
 
-import { EDITOR_OPTIONS, WIDTH_MOBILE } from '../consts'
+import { EDITOR_OPTIONS, WIDTH_MOBILE, language } from '../consts'
 
 export default function Console ({ result }) {
   const size = useWindowSize()
@@ -22,7 +22,7 @@ export default function Console ({ result }) {
     <>
       <Editor
         className='w-full h-full pt-6'
-        language='javascript'
+        language={language}
         theme='vs-dark'
         loading=''
         value={result}

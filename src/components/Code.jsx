@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import Editor from '@monaco-editor/react'
 
-import { DEFAULT_VALUE, EDITOR_OPTIONS, IS_IFRAME } from '../consts'
+import { DEFAULT_VALUE, EDITOR_OPTIONS, IS_IFRAME, language } from '../consts'
 import { getCodeFromURL } from '../core/encode'
 
 import Button from './Button'
@@ -23,9 +23,10 @@ export default function Code ({ onChange }) {
   const editorRef = useRef(null)
 
   function handleChange () {
+    if (!editorRef.current) return
     const editor = editorRef.current
     const code = editor.getValue()
-    onChange({ code })
+    onChange({ code, language })
   }
 
   function onMount (editor, monaco) {
@@ -51,7 +52,7 @@ export default function Code ({ onChange }) {
     const blob = new window.Blob([code], { type: 'text/plain' })
     const url = URL.createObjectURL(blob)
     const link = document.createElement('a')
-    link.download = 'playjs.js'
+    link.download = 'playjs.' + (language === 'javascript' ? 'js' : 'ts')
     link.href = url
     link.click()
   }
@@ -60,7 +61,7 @@ export default function Code ({ onChange }) {
     <div>
       <Editor
         className='w-full h-full pt-6'
-        language='javascript'
+        language={language}
         theme='vs-dark'
         defaultValue={getCodeFromURL() || DEFAULT_VALUE}
         onMount={onMount}
@@ -71,7 +72,7 @@ export default function Code ({ onChange }) {
           lineNumbers: 'on'
         }}
       />
-      <div className='fixed bottom-0 left-0 z-10 p-3 flex gap-4'>
+      <div className='fixed bottom-0 left-2 z-10 p-3 flex gap-4'>
         {!IS_IFRAME && (
           <Button
             onClick={formatDocument}

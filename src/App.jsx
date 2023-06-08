@@ -26,10 +26,10 @@ export default function App () {
 
   const [result, setResult] = useState('')
 
-  const onChange = async ({ code = '' }) => {
+  const onChange = async ({ code = '', language = 'javascript' }) => {
     setCodeToURL(code)
 
-    const result = await getResult(code)
+    const result = await getResult({ code, language })
 
     setResult(result)
   }
