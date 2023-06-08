@@ -1,4 +1,6 @@
-export async function getResult (code) {
+import ts from 'typescript'
+
+export async function getResult ({ code, language = 'javascript' }) {
   if (!code) return ''
 
   let result = ''
@@ -32,8 +34,12 @@ export async function getResult (code) {
     }
 
     try {
+      const lineCodeJS = language === 'typescript'
+        ? ts.transpile(lineCode)
+        : lineCode
+
       // eslint-disable-next-line no-eval
-      const html = eval(lineCode)
+      const html = eval(lineCodeJS)
       if (i > 0 && line !== codeLines[i - 1].trim() && prevResult === html) {
         result += '\n'
       } else {

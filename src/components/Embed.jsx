@@ -20,7 +20,7 @@ export default function Embed () {
     setModal(false)
   }
 
-  const isMainDomain = window.location.hostname === 'playjs.dev' || window.location.hostname === 'localhost'
+  const isMainDomain = window.location.hostname.match(/playjs.dev/) !== null || window.location.hostname === 'localhost'
   if (!isMainDomain) return null
 
   if (IS_IFRAME) return null
