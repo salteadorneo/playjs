@@ -1,4 +1,4 @@
-export const language = window.location.host === 'ts.playjs.dev'
+export const language = typeof window !== 'undefined' && window.location.host === 'ts.playjs.dev'
   ? 'typescript'
   : 'javascript'
 
