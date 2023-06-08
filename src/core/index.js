@@ -1,7 +1,13 @@
 import ts from 'typescript'
 
+let codeWithDependencies = false
+
 export async function getResult ({ code, language = 'javascript' }) {
   if (!code) return ''
+
+  if (codeWithDependencies) {
+    window.location.reload()
+  }
 
   let result = ''
   let prevResult = ''
@@ -14,6 +20,7 @@ export async function getResult ({ code, language = 'javascript' }) {
     wrappedCode = `(async () => {
       ${updatedCode}
     })();`
+    codeWithDependencies = true
   }
 
   const codeLines = wrappedCode
