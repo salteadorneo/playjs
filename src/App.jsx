@@ -6,7 +6,7 @@ import { useWindowSize } from '@/hooks/useWindowSize'
 import { Toaster } from 'sonner'
 
 import { getResult } from './core'
-import { updateURL } from './core/encode'
+import { setCodeToURL } from './core/encode'
 import { WIDTH_MOBILE } from './consts'
 
 import Logo from './components/Logo'
@@ -24,13 +24,10 @@ export default function App () {
   const direction = isMobile ? 'vertical' : 'horizontal'
   const gutterSize = isMobile ? 6 : 3
 
-  const [lines, setLines] = useState(0)
   const [result, setResult] = useState('')
 
   const onChange = async ({ code = '', language = 'javascript' }) => {
-    updateURL(code)
-
-    setLines(code?.split(/\r?\n|\r|\n/g).length)
+    setCodeToURL(code)
 
     const result = await getResult({ code, language })
 
@@ -55,7 +52,7 @@ export default function App () {
       >
         <Code onChange={onChange} />
 
-        <Console lines={lines} result={result} />
+        <Console result={result} />
       </Split>
 
       <Footer />

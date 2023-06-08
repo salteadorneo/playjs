@@ -6,7 +6,7 @@ import { useWindowSize } from '@/hooks/useWindowSize'
 
 import { EDITOR_OPTIONS, WIDTH_MOBILE, language } from '../consts'
 
-export default function Console ({ lines, result }) {
+export default function Console ({ result }) {
   const size = useWindowSize()
 
   const isMobile = size.width < WIDTH_MOBILE

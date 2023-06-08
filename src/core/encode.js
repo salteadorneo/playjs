@@ -1,6 +1,6 @@
 import { encode, decode } from 'js-base64'
 
-export function updateURL (code) {
+export function setCodeToURL (code) {
   const hashedCode = encode(code)
   window.history.replaceState(null, null, `/${hashedCode}`)
 }
