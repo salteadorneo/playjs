@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest'
 import { getResult } from '../core'
-import { DEFAULT_VALUE } from '../consts'
+import { DEFAULT_CODE } from '../consts'
 
 describe('test code results', () => {
   it('console.log', async () => {
-    const output = await getResult({ code: DEFAULT_VALUE })
+    const output = await getResult({ code: DEFAULT_CODE })
     const expected = `
 
 

@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import Editor from '@monaco-editor/react'
 
-import { DEFAULT_VALUE, EDITOR_OPTIONS, IS_IFRAME, language } from '../consts'
+import { DEFAULT_CODE, EDITOR_OPTIONS, IS_IFRAME, language } from '../consts'
 import { getCodeFromURL } from '../core/encode'
 
 import Button from './Button'
@@ -63,7 +63,7 @@ export default function Code ({ onChange }) {
         className='w-full h-full pt-6'
         language={language}
         theme='vs-dark'
-        defaultValue={getCodeFromURL() || DEFAULT_VALUE}
+        defaultValue={getCodeFromURL() || DEFAULT_CODE}
         onMount={onMount}
         onChange={handleEditorChange}
         loading=''
