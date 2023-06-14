@@ -13,6 +13,12 @@ describe('test code results', () => {
     expect(output).eq(expected)
   })
 
+  it('console.log multiple args', async () => {
+    const output = await getResult({ code: 'console.log("a", "b")' })
+    const expected = "'a' 'b'"
+    expect(output).eq(expected)
+  })
+
   it('await fetch', async () => {
     const output = await getResult({
       code: `async function getFetch() {

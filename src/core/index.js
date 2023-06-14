@@ -2,6 +2,8 @@ import ts from 'typescript'
 
 let codeWithDependencies = false
 
+const TAG_CONSOLE_LOG = 'window.console.log'
+
 export async function getResult ({ code, language = 'javascript' }) {
   if (!code) return ''
 
@@ -68,8 +70,8 @@ export async function getResult ({ code, language = 'javascript' }) {
 }
 
 if (typeof window !== 'undefined') {
-  window.console.log = async function (...data) {
-    return await resolveHTML(...data)
+  window.console.log = async function (...args) {
+    return TAG_CONSOLE_LOG + args
   }
 }
 
@@ -82,6 +84,14 @@ export async function resolveHTML (html) {
     return JSON.stringify(html)
   }
   if (typeof html === 'string') {
+    if (html.startsWith(TAG_CONSOLE_LOG)) {
+      const htmlParsed = html.replace(TAG_CONSOLE_LOG, '')
+      return htmlParsed.split(',').map(arg => {
+        const value = isNumeric(arg)
+        if (isNaN(value)) return `'${arg}'`
+        return value
+      }).join(' ')
+    }
     // start or end with ' or "
     if (html.match(/^['"].*['"]$/)) return html
     return `'${html}'`
@@ -96,4 +106,12 @@ export async function resolveHTML (html) {
     return ''
   }
   return html
+}
+
+function isNumeric (str) {
+  try {
+    return parseFloat(str)
+  } catch (err) {
+    return str
+  }
 }
