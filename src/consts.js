@@ -4,7 +4,7 @@ export const language = typeof window !== 'undefined' && window.location.host ==
 
 export const IS_IFRAME = typeof window !== 'undefined' && window.location !== window.parent.location
 
-export const WIDTH_MOBILE = 480
+export const WIDTH_MOBILE = 640
 
 const DEFAULT_VALUE = `// Bienvenido a PlayJS
 
@@ -35,9 +35,5 @@ export const EDITOR_OPTIONS = {
     enabled: true
   },
   overviewRulerLanes: 0,
-  scrollbar: {
-    vertical: 'hidden',
-    horizontal: 'hidden',
-    handleMouseWheel: false
-  }
+  scrollBeyondLastLine: false
 }

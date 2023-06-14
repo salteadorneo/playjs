@@ -21,7 +21,7 @@ export default function Console ({ result }) {
   return (
     <>
       <Editor
-        className='w-full h-full pt-6'
+        className='w-full pt-3 sm:pt-6 pb-14'
         language={language}
         theme='vs-dark'
         loading=''

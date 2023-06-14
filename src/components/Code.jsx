@@ -60,7 +60,7 @@ export default function Code ({ onChange }) {
   return (
     <div>
       <Editor
-        className='w-full h-full pt-6'
+        className='w-full pt-6 pb-3 sm:pb-14'
         language={language}
         theme='vs-dark'
         defaultValue={getCodeFromURL() || DEFAULT_CODE}

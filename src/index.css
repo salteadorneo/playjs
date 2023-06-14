@@ -15,7 +15,7 @@ body {
   background: var(--background);
 }
 
-@media (min-width: 480px) {
+@media (min-width: 640px) {
   .split {
     display: flex;
     flex-direction: row;
