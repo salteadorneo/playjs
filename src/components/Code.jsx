@@ -92,7 +92,7 @@ export default function Code ({ onChange }) {
             <span className='hidden sm:block'>Download</span>
           )}
         </Button>
-        <Upload />
+        <Upload editor={editorRef.current} />
         <Report />
       </div>
     </div>

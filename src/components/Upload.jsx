@@ -1,17 +1,11 @@
-import { useEffect, useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { IconDownload } from './Icons'
 import Button from './Button'
-import { IS_IFRAME } from '../consts'
+import { IS_IFRAME, language } from '../consts'
 
-export default function Upload() {
+export default function Upload({ editor }) {
   const [modal, setModal] = useState(false)
-  const [status, setStatus] = useState(null)
-
-  useEffect(() => {
-    if (modal) {
-      setStatus(null)
-    }
-  }, [modal])
+  const fileInputRef = useRef(null)
 
   function handleClose() {
     setModal(!modal)
@@ -21,8 +15,12 @@ export default function Upload() {
     setModal(!modal)
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
+    const file = fileInputRef.current.files[0]
+    if (!fileInputRef || !file) return
+    const fileText = await file.text()
+    editor.setValue(fileText);
     handleClose();
   }
 
@@ -48,6 +46,8 @@ export default function Upload() {
                 type='file'
                 name='file'
                 className='w-full bg-background text-primary border-none outline-none resize-none px-4 py-2'
+                accept={language === 'javascript' ? '.js' : '.js, .ts'}
+                ref={fileInputRef}
               />
               <button
                 type='button'
