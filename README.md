@@ -1,6 +1,6 @@
 # 🟨PlayJS
 
-Try your JavaScript code online. [**Start Programing now.**](https://playjs.dev/) 
+Try your JavaScript code online. [**Start programming now.**](https://playjs.dev/) 
 
 ## Current Features
 
