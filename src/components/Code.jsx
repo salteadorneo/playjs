@@ -8,6 +8,7 @@ import Button from './Button'
 import Report from './Report'
 
 import { IconDownload, IconFormat } from './Icons'
+import Upload from './Upload'
 
 let throttlePause
 const throttle = (callback, time) => {
@@ -91,6 +92,7 @@ export default function Code ({ onChange }) {
             <span className='hidden sm:block'>Download</span>
           )}
         </Button>
+        <Upload />
         <Report />
       </div>
     </div>
