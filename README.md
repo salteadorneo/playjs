@@ -11,11 +11,11 @@ Try your JavaScript code online. [**Start programming now.**](https://playjs.dev
 - Share the current state of your code with others
 - Embed your code in another website
 
-## Contributing to the project
+## Contributing
 
 If you think PlayJS is a cool project and you would like to do your bit, check out [**How to Contribute**](HOW_TO_CONTRIBUTE.md) for more information. 
 
-## Setup Instructions
+## Setup locally
 
 1. Clone the repository on your local machine with `git clone https://github.com/salteadorneo/PlayJS`. Alternatively, you can download the project as a ZIP file. 
 2. Go to the project folder and, using your terminal, execute the command `npm install` to install the dependencies.
