@@ -6,7 +6,7 @@ export default function DisplayOptions ({ direction, changeDirection }) {
     <>
       <Button
         onClick={changeDirection}
-        title='Change direction'
+        title='Change view'
       >
         <svg
           width={20}
@@ -18,7 +18,7 @@ export default function DisplayOptions ({ direction, changeDirection }) {
         >
           <path
             fillRule='evenodd'
-            d='M19 13a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-3a3 3 0 0 1 3-3h14Zm0 2H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1Zm0-13a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h14Zm0 2H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1Z'
+            d='M5 22a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H5Zm6-18H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h6V4Zm8 0h-6v16h6a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1Z'
           />
         </svg>
         {!IS_IFRAME && (

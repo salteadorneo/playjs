@@ -60,7 +60,7 @@ export default function App () {
 
       {direction === 'horizontal' && (
         <Split
-          className={`flex horizontal h-screen ${lengthLimit ? 'pt-[135px] sm:pt-[80px]' : 'pt-12'}`}
+          className={`flex horizontal h-screen ${lengthLimit ? 'pt-[135px] sm:pt-[80px]' : 'pt-14'}`}
           direction='horizontal'
           gutterSize={gutterSize}
         >
@@ -70,7 +70,7 @@ export default function App () {
       )}
       {direction === 'vertical' && (
         <Split
-          className={`vertical h-screen ${lengthLimit ? 'pt-[135px] sm:pt-[80px]' : 'pt-12'}`}
+          className={`vertical h-screen ${lengthLimit ? 'pt-[135px] sm:pt-[80px]' : 'pt-14'}`}
           direction='vertical'
           gutterSize={gutterSize}
         >
