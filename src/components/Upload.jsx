@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { toast } from 'sonner'
 import { IconUpload } from './Icons'
 import Button from './Button'
 import { IS_IFRAME, language } from '../consts'
@@ -21,6 +22,7 @@ export default function Upload({ editor }) {
     if (!fileInputRef || !file) return
     const fileText = await file.text()
     editor.setValue(fileText);
+    toast.success('File uploaded!')
     handleClose();
   }
 
@@ -42,9 +44,13 @@ export default function Upload({ editor }) {
               className='space-y-2 text-right'
               onSubmit={handleSubmit}
             >
+              <label
+                className='block text-primary text-center text-lg'
+                htmlFor='file'
+                >Select or drop a file below</label>
               <input
                 type='file'
-                name='file'
+                id='file'
                 className='w-full bg-background text-primary border-none outline-none resize-none px-4 py-2'
                 accept={language === 'javascript' ? '.js' : '.js, .ts'}
                 ref={fileInputRef}
