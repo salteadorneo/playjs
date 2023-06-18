@@ -16,13 +16,19 @@ import Console from './components/Console'
 import Embed from './components/Embed'
 import Code from './components/Code'
 import UrlLengthError from './components/UrlLengthError'
+import DisplayOptions from './components/DisplayOptions'
 
 export default function App () {
   const size = useWindowSize()
-  
+
   const isMobile = size.width < WIDTH_MOBILE
 
-  const direction = isMobile ? 'vertical' : 'horizontal'
+  const [direction, setDirection] = useState(isMobile ? 'vertical' : 'horizontal')
+
+  function changeDirection () {
+    setDirection(direction === 'horizontal' ? 'vertical' : 'horizontal')
+  }
+
   const gutterSize = isMobile ? 6 : 3
 
   const [lengthLimit, setLengthLimit] = useState(false)
@@ -47,19 +53,31 @@ export default function App () {
       </div>
 
       <div className='fixed top-3 right-4 z-10 flex items-center gap-4'>
+        <DisplayOptions direction={direction} changeDirection={changeDirection} />
         <Share />
         <Embed />
       </div>
 
-      <Split
-        className={`split h-screen ${lengthLimit ? 'pt-[135px] sm:pt-[80px]' : 'pt-12'}`}
-        direction={direction}
-        gutterSize={gutterSize}
-      >
-        <Code onChange={onChange} />
-
-        <Console result={result} />
-      </Split>
+      {direction === 'horizontal' && (
+        <Split
+          className={`flex horizontal h-screen ${lengthLimit ? 'pt-[135px] sm:pt-[80px]' : 'pt-12'}`}
+          direction='horizontal'
+          gutterSize={gutterSize}
+        >
+          <Code onChange={onChange} />
+          <Console result={result} direction={direction} />
+        </Split>
+      )}
+      {direction === 'vertical' && (
+        <Split
+          className={`vertical h-screen ${lengthLimit ? 'pt-[135px] sm:pt-[80px]' : 'pt-12'}`}
+          direction='vertical'
+          gutterSize={gutterSize}
+        >
+          <Code onChange={onChange} />
+          <Console result={result} direction={direction} />
+        </Split>
+      )}
 
       <Footer />
     </>
