@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { IconDownload } from './Icons'
+import { IconUpload } from './Icons'
 import Button from './Button'
 import { IS_IFRAME, language } from '../consts'
 
@@ -30,7 +30,7 @@ export default function Upload({ editor }) {
         onClick={openUpload}
         title='Upload code from file'
       >
-        <IconDownload className='rotate-90' />
+        <IconUpload />
         {!IS_IFRAME && (
           <span className='hidden sm:block'>Upload</span>
         )}
