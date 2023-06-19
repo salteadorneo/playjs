@@ -16,6 +16,7 @@ import Console from './components/Console'
 import Embed from './components/Embed'
 import Code from './components/Code'
 import UrlLengthError from './components/UrlLengthError'
+import Language from './components/Language'
 
 export default function App () {
   const size = useWindowSize()
@@ -49,6 +50,7 @@ export default function App () {
       <div className='fixed top-3 right-4 z-10 flex items-center gap-4'>
         <Share />
         <Embed />
+        <Language />
       </div>
 
       <Split
