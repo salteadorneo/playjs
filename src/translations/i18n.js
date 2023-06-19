@@ -15,7 +15,10 @@ i18n
       en: {
         translation: {
           code: {
+            formatTitle: 'Format code',
             format: 'Format',
+            downloadTitle: 'Download code as file',
+            download: 'Download',
           },
           language: {
             globeTitle: 'Change language',
@@ -26,7 +29,10 @@ i18n
       es: {
         translation: {
           code: {
+            formatTitle: 'Dar formato',
             format: 'Formato',
+            downloadTitle: 'Descargar código en fichero',
+            download: 'Descargar',
           },
           language: {
             globeTitle: 'Cambiar idioma',

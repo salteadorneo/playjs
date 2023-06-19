@@ -79,7 +79,7 @@ export default function Code ({ onChange }) {
         {!IS_IFRAME && (
           <Button
             onClick={formatDocument}
-            title='Format code'
+            title={t('code.formatTitle')}
           >
             <IconFormat />
             <span className='hidden sm:block'>{t('code.format')}</span>
@@ -87,11 +87,11 @@ export default function Code ({ onChange }) {
         )}
         <Button
           onClick={downloadCode}
-          title='Download code as file'
+          title={t('code.downloadTitle')}
         >
           <IconDownload />
           {!IS_IFRAME && (
-            <span className='hidden sm:block'>Download</span>
+            <span className='hidden sm:block'>{t('code.download')}</span>
           )}
         </Button>
         <Upload editor={editorRef.current} />
