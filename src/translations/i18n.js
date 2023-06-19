@@ -23,7 +23,15 @@ i18n
           language: {
             globeTitle: 'Change language',
             toast: 'Language changed!',
-          }
+          },
+          upload: {
+            toast: 'File uploaded!',
+            uploadTitle: 'Upload code from file',
+            upload: 'Upload',
+            instructions: 'Select or drop a file below',
+            formCancel: 'Cancel',
+            formUpload: 'Upload',
+          },
         }
       },
       es: {
@@ -37,7 +45,15 @@ i18n
           language: {
             globeTitle: 'Cambiar idioma',
             toast: 'Idioma cambiado!',
-          }
+          },
+          upload: {
+            toast: 'Fichero subido!',
+            uploadTitle: 'Subir código de fichero',
+            upload: 'Subir',
+            instructions: 'Selecciona o arrastra un fichero',
+            formCancel: 'Cancelar',
+            formUpload: 'Subir',
+          },
         }
       }
     }
