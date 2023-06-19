@@ -23,12 +23,30 @@ export default function App () {
 
   const isMobile = size.width < WIDTH_MOBILE
 
-  const [direction, setDirection] = useState(isMobile ? 'vertical' : 'horizontal')
+  const [direction, setDirection] = useState(() => {
+    const direction = window.localStorage.getItem('split-direction')
+    if (direction) return direction
+    return isMobile ? 'vertical' : 'horizontal'
+  })
 
   function changeDirection () {
-    setDirection(direction === 'horizontal' ? 'vertical' : 'horizontal')
+    const newDirection = direction === 'horizontal' ? 'vertical' : 'horizontal'
+    setDirection(newDirection)
+    window.localStorage.setItem('split-direction', newDirection)
+    setSizes([50, 50])
   }
 
+  const [sizes, setSizes] = useState(() => {
+    const sizes = window.localStorage.getItem('split-sizes')
+    if (sizes) return JSON.parse(sizes)
+    return [50, 50]
+  })
+
+  function handleDragEnd (e) {
+    const [left, right] = e
+    setSizes([left, right])
+    window.localStorage.setItem('split-sizes', JSON.stringify([left, right]))
+  }
   const gutterSize = isMobile ? 6 : 3
 
   const [lengthLimit, setLengthLimit] = useState(false)
@@ -60,9 +78,11 @@ export default function App () {
 
       {direction === 'horizontal' && (
         <Split
-          className={`flex horizontal h-screen ${lengthLimit ? 'pt-[135px] sm:pt-[80px]' : 'pt-14'}`}
-          direction='horizontal'
+          className={`flex ${direction} h-screen ${lengthLimit ? 'pt-[135px] sm:pt-[80px]' : 'pt-14'}`}
+          direction={direction}
+          sizes={sizes}
           gutterSize={gutterSize}
+          onDragEnd={handleDragEnd}
         >
           <Code onChange={onChange} />
           <Console result={result} direction={direction} />
@@ -70,9 +90,11 @@ export default function App () {
       )}
       {direction === 'vertical' && (
         <Split
-          className={`vertical h-screen ${lengthLimit ? 'pt-[135px] sm:pt-[80px]' : 'pt-14'}`}
-          direction='vertical'
+          className={`${direction} h-screen ${lengthLimit ? 'pt-[135px] sm:pt-[80px]' : 'pt-14'}`}
+          direction={direction}
+          sizes={sizes}
           gutterSize={gutterSize}
+          onDragEnd={handleDragEnd}
         >
           <Code onChange={onChange} />
           <Console result={result} direction={direction} />
