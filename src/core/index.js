@@ -37,7 +37,7 @@ export async function getResult ({ code, language = 'javascript' }) {
     }
 
     const lineCode = codeLines.slice(0, i + 1).join('\n')
-    if (line.startsWith('//') || line.startsWith('/*')) {
+    if (line.startsWith('//') || line.startsWith('/*') || line.endsWith('*/')) {
       result += '\n'
       continue
     }
