@@ -7,7 +7,7 @@ Prueba tu código JavaScript online. [**Empezar a programar ahora.**](https://pl
 - [Soporte para TypeScript](https://ts.playjs.dev/Ly8gQmllbnZlbmlkbyBhIFBsYXlKUyBjb24gc29wb3J0ZSBUeXBlU2NyaXB0Cgpjb25zdCBob2xhTXVuZG8gPSAoZ3JlZXRpbmc6IHN0cmluZykgPT4gZ3JlZXRpbmcKCmhvbGFNdW5kbygn8J+Ri/CfjI4nKQo=)
 - [Se pueden importar paquetes NPM](https://playjs.dev/aW1wb3J0IGNvbmZldHRpIGZyb20gJ2NhbnZhcy1jb25mZXR0aScKCmZ1bmN0aW9uIGdldFBhcnR5KCkgewogICAgY29uZmV0dGkoewogICAgICAgIHBhcnRpY2xlQ291bnQ6IDEwMCwKICAgICAgICBzdGFydFZlbG9jaXR5OiAzMCwKICAgICAgICBzcHJlYWQ6IDM2MCwKICAgICAgICBvcmlnaW46IHsKICAgICAgICAgICAgeDogTWF0aC5yYW5kb20oKSwKICAgICAgICAgICAgeTogTWF0aC5yYW5kb20oKSAtIDAuMgogICAgICAgIH0KICAgIH0pOwogICAgc2V0VGltZW91dChnZXRQYXJ0eSwgMjAwMCkKfQpnZXRQYXJ0eSgp)
 - [Llamadas asíncronas a APIs](https://playjs.dev/YXN5bmMgZnVuY3Rpb24gZ2V0RmV0Y2goKSB7CiAgICByZXR1cm4gYXdhaXQgZmV0Y2goJ2h0dHBzOi8vanNvbnBsYWNlaG9sZGVyLnR5cGljb2RlLmNvbS90b2Rvcy8xJykKICAgICAgICAudGhlbihyZXMgPT4gcmVzLmpzb24oKSkKfQoKZ2V0RmV0Y2goKQ==)
-- Descarga y carga de código desde/hacia tu ordenador
+- Descarga y carga de código hacia/desde tu ordenador
 - Comparte el estado actual de tu código con los demás
 - Inserta tu código en otro sitio web
 
