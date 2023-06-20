@@ -55,6 +55,9 @@ i18n
             formCancel: 'Cancel',
             formUpload: 'Upload',
           },
+          urlLengthError: {
+            warning: '⚠️ You reached the limit of data we can store online. You may want to download your code so recent changes don\'t get lost.',
+          },
         }
       },
       es: {
@@ -99,6 +102,9 @@ i18n
             instructions: 'Selecciona o arrastra un fichero',
             formCancel: 'Cancelar',
             formUpload: 'Subir',
+          },
+          urlLengthError: {
+            warning: '⚠️ Has llegado al límite de código que podemos almacenar en línea. Puedes descargarlo para no perder los últimos cambios.',
           },
         }
       }
