@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react'
 import { toast } from 'sonner'
+import { useTranslation } from 'react-i18next'
 import { IconUpload } from './Icons'
 import Button from './Button'
 import { IS_IFRAME, language } from '../consts'
@@ -7,6 +8,7 @@ import { IS_IFRAME, language } from '../consts'
 export default function Upload({ editor }) {
   const [modal, setModal] = useState(false)
   const fileInputRef = useRef(null)
+  const { t } = useTranslation()
 
   function handleClose() {
     setModal(!modal)
@@ -22,7 +24,7 @@ export default function Upload({ editor }) {
     if (!fileInputRef || !file) return
     const fileText = await file.text()
     editor.setValue(fileText);
-    toast.success('File uploaded!')
+    toast.success(t('upload.toast'))
     handleClose();
   }
 
@@ -30,11 +32,11 @@ export default function Upload({ editor }) {
     <>
       <Button
         onClick={openUpload}
-        title='Upload code from file'
+        title={t('upload.uploadTitle')}
       >
         <IconUpload />
         {!IS_IFRAME && (
-          <span className='hidden sm:block'>Upload</span>
+          <span className='hidden sm:block'>{t('upload.upload')}</span>
         )}
       </Button>
       {modal && (
@@ -47,7 +49,9 @@ export default function Upload({ editor }) {
               <label
                 className='block text-primary text-center text-lg'
                 htmlFor='file'
-                >Select or drop a file below</label>
+              >
+                {t('upload.instructions')}
+              </label>
               <input
                 type='file'
                 id='file'
@@ -60,13 +64,13 @@ export default function Upload({ editor }) {
                 className='text-primary px-4'
                 onClick={handleClose}
               >
-                Cancel
+                {t('upload.formCancel')}
               </button>
               <button
                 type='submit'
                 className='text-primary px-4'
               >
-                Upload
+                {t('upload.formUpload')}
               </button>
             </form>
           </div>

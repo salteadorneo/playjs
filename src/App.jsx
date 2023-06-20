@@ -17,6 +17,7 @@ import Embed from './components/Embed'
 import Code from './components/Code'
 import UrlLengthError from './components/UrlLengthError'
 import DisplayOptions from './components/DisplayOptions'
+import Language from './components/Language'
 
 export default function App () {
   const size = useWindowSize()
@@ -74,6 +75,7 @@ export default function App () {
         <DisplayOptions direction={direction} changeDirection={changeDirection} />
         <Share />
         <Embed />
+        <Language />
       </div>
 
       {direction === 'horizontal' && (

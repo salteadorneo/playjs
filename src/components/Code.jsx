@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import Editor from '@monaco-editor/react'
+import { useTranslation } from 'react-i18next'
 
 import { DEFAULT_CODE, EDITOR_OPTIONS, IS_IFRAME, language } from '../consts'
 import { getCodeFromURL } from '../core/encode'
@@ -22,6 +23,7 @@ const throttle = (callback, time) => {
 
 export default function Code ({ onChange }) {
   const editorRef = useRef(null)
+  const { t } = useTranslation()
 
   function handleChange () {
     if (!editorRef.current) return
@@ -77,19 +79,19 @@ export default function Code ({ onChange }) {
         {!IS_IFRAME && (
           <Button
             onClick={formatDocument}
-            title='Format code'
+            title={t('code.formatTitle')}
           >
             <IconFormat />
-            <span className='hidden sm:block'>Format</span>
+            <span className='hidden sm:block'>{t('code.format')}</span>
           </Button>
         )}
         <Button
           onClick={downloadCode}
-          title='Download code as file'
+          title={t('code.downloadTitle')}
         >
           <IconDownload />
           {!IS_IFRAME && (
-            <span className='hidden sm:block'>Download</span>
+            <span className='hidden sm:block'>{t('code.download')}</span>
           )}
         </Button>
         <Upload editor={editorRef.current} />
