@@ -2,14 +2,10 @@ import { useEffect, useRef } from 'react'
 
 import Editor from '@monaco-editor/react'
 
-import { useWindowSize } from '@/hooks/useWindowSize'
+import { EDITOR_OPTIONS, language } from '../consts'
 
-import { EDITOR_OPTIONS, WIDTH_MOBILE, language } from '../consts'
-
-export default function Console ({ result }) {
-  const size = useWindowSize()
-
-  const isMobile = size.width < WIDTH_MOBILE
+export default function Console ({ result, direction }) {
+  const lineNumbers = direction === 'horizontal' ? 'off' : 'on'
 
   const editorRef = useRef(null)
 
@@ -21,7 +17,7 @@ export default function Console ({ result }) {
   return (
     <>
       <Editor
-        className='w-full pt-3 sm:pt-6 pb-14'
+        className='pt-4'
         language={language}
         theme='vs-dark'
         loading=''
@@ -31,7 +27,7 @@ export default function Console ({ result }) {
         }}
         options={{
           ...EDITOR_OPTIONS,
-          lineNumbers: isMobile ? 'on' : 'off',
+          lineNumbers,
           readOnly: true,
           renderLineHighlight: 'none'
         }}

@@ -16,14 +16,38 @@ import Console from './components/Console'
 import Embed from './components/Embed'
 import Code from './components/Code'
 import UrlLengthError from './components/UrlLengthError'
+import DisplayOptions from './components/DisplayOptions'
 import Language from './components/Language'
 
 export default function App () {
   const size = useWindowSize()
-  
+
   const isMobile = size.width < WIDTH_MOBILE
 
-  const direction = isMobile ? 'vertical' : 'horizontal'
+  const [direction, setDirection] = useState(() => {
+    const direction = window.localStorage.getItem('split-direction')
+    if (direction) return direction
+    return isMobile ? 'vertical' : 'horizontal'
+  })
+
+  function changeDirection () {
+    const newDirection = direction === 'horizontal' ? 'vertical' : 'horizontal'
+    setDirection(newDirection)
+    window.localStorage.setItem('split-direction', newDirection)
+    setSizes([50, 50])
+  }
+
+  const [sizes, setSizes] = useState(() => {
+    const sizes = window.localStorage.getItem('split-sizes')
+    if (sizes) return JSON.parse(sizes)
+    return [50, 50]
+  })
+
+  function handleDragEnd (e) {
+    const [left, right] = e
+    setSizes([left, right])
+    window.localStorage.setItem('split-sizes', JSON.stringify([left, right]))
+  }
   const gutterSize = isMobile ? 6 : 3
 
   const [lengthLimit, setLengthLimit] = useState(false)
@@ -48,20 +72,36 @@ export default function App () {
       </div>
 
       <div className='fixed top-3 right-4 z-10 flex items-center gap-4'>
+        <DisplayOptions direction={direction} changeDirection={changeDirection} />
         <Share />
         <Embed />
         <Language />
       </div>
 
-      <Split
-        className={`split h-screen ${lengthLimit ? 'pt-[135px] sm:pt-[80px]' : 'pt-12'}`}
-        direction={direction}
-        gutterSize={gutterSize}
-      >
-        <Code onChange={onChange} />
-
-        <Console result={result} />
-      </Split>
+      {direction === 'horizontal' && (
+        <Split
+          className={`flex ${direction} h-screen ${lengthLimit ? 'pt-[135px] sm:pt-[80px]' : 'pt-14'}`}
+          direction={direction}
+          sizes={sizes}
+          gutterSize={gutterSize}
+          onDragEnd={handleDragEnd}
+        >
+          <Code onChange={onChange} />
+          <Console result={result} direction={direction} />
+        </Split>
+      )}
+      {direction === 'vertical' && (
+        <Split
+          className={`${direction} h-screen ${lengthLimit ? 'pt-[135px] sm:pt-[80px]' : 'pt-14'}`}
+          direction={direction}
+          sizes={sizes}
+          gutterSize={gutterSize}
+          onDragEnd={handleDragEnd}
+        >
+          <Code onChange={onChange} />
+          <Console result={result} direction={direction} />
+        </Split>
+      )}
 
       <Footer />
     </>
