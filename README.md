@@ -1,5 +1,5 @@
-<p lang="es" style="text-align:right;">
-	<a href="./README.es.md" style="background-color:#FFFF99;border:2px solid black;border-radius: 3px; padding:10px; color: black;box-shadow:2px 2px 2px;">🎉 Ahora también en español</a>
+<p lang="es" align="right">
+	<a href="./README.es.md">🎉 Ahora también en español</a>
 </p>
 
 # 🟨PlayJS
