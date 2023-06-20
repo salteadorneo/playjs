@@ -26,6 +26,8 @@ export default function Upload({ editor }) {
     handleClose();
   }
 
+  if (IS_IFRAME) return null
+
   return (
     <>
       <Button
