@@ -15,20 +15,10 @@ body {
   background: var(--background);
 }
 
-@media (min-width: 640px) {
-  .split {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .gutter {
-    height: 100% !important;
-  }
-
-  .gutter.gutter-horizontal {
-    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
-    cursor: col-resize;
-  }
+.horizontal .gutter {
+  height: 100%;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
+  cursor: col-resize;
 }
 
 .gutter {
@@ -37,7 +27,8 @@ body {
   background-position: 50%;
 }
 
-.gutter.gutter-vertical {
+.vertical .gutter {
+  width: 100%;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
   cursor: row-resize;
 }
