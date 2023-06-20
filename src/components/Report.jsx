@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { IconBug } from './Icons'
 import Button from './Button'
 import { IS_IFRAME } from '../consts'
@@ -6,6 +7,7 @@ import { IS_IFRAME } from '../consts'
 export default function Report () {
   const [modal, setModal] = useState(false)
   const [status, setStatus] = useState(null)
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (modal) {
@@ -34,19 +36,19 @@ export default function Report () {
       }
     }).then(response => {
       if (response.ok) {
-        setStatus('Thanks for your report!')
+        setStatus(t('report.responseOk'))
         form.reset()
       } else {
         response.json().then(data => {
           if (Object.hasOwn(data, 'errors')) {
             setStatus(data.errors.map(error => error.message).join(', '))
           } else {
-            setStatus('Oops! There was a problem submitting your form')
+            setStatus(t('report.responseError'))
           }
         })
       }
     }).catch(() => {
-      setStatus('Oops! There was a problem submitting your form')
+      setStatus(t('report.responseError'))
     })
   }
 
@@ -54,11 +56,11 @@ export default function Report () {
     <>
       <Button
         onClick={reportBug}
-        title='Report a bug'
+        title={t('report.reportTitle')}
       >
         <IconBug />
         {!IS_IFRAME && (
-          <span className='hidden sm:block'>Report bug</span>
+          <span className='hidden sm:block'>{t('report.report')}</span>
         )}
       </Button>
       {modal && (
@@ -77,12 +79,12 @@ export default function Report () {
                   type='email'
                   name='email'
                   className='w-full bg-background text-primary border-none outline-none resize-none px-4 py-2'
-                  placeholder='Email (optional)'
+                  placeholder={t('report.formEmail')}
                 />
                 <textarea
                   name='reason'
                   className='w-full h-32 bg-background text-primary border-none outline-none resize-none p-4'
-                  placeholder='Reason'
+                  placeholder={t('report.formDescription')}
                   required
                 />
                 <button
@@ -90,13 +92,13 @@ export default function Report () {
                   className='text-primary px-4'
                   onClick={handleClick}
                 >
-                  Cancel
+                  {t('report.formCancel')}
                 </button>
                 <button
                   type='submit'
                   className='text-primary px-4'
                 >
-                  Send
+                  {t('report.formSend')}
                 </button>
               </form>
             )}
@@ -110,7 +112,7 @@ export default function Report () {
                   className='text-primary px-4'
                   onClick={handleClick}
                 >
-                  Close
+                  {t('report.close')}
                 </button>
               </div>
             )}

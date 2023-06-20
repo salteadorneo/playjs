@@ -31,6 +31,17 @@ i18n
             globeTitle: 'Change language',
             toast: 'Language changed!',
           },
+          report: {
+            responseOk: 'Thanks for your report!',
+            responseError: 'Oops! There was a problem submitting your form',
+            reportTitle: 'Report a bug',
+            report: 'Report bug',
+            formEmail: 'Email (optional)',
+            formDescription: 'Description',
+            formCancel: 'Cancel',
+            formSend: 'Send',
+            reportClose: 'Close',
+          },
           upload: {
             toast: 'File uploaded!',
             uploadTitle: 'Upload code from file',
@@ -59,6 +70,17 @@ i18n
           language: {
             globeTitle: 'Cambiar idioma',
             toast: 'Idioma cambiado!',
+          },
+          report: {
+            responseOk: 'Gracias por tu reporte!',
+            responseError: 'Ups! Ha habido un problema enviando el formulario',
+            reportTitle: 'Reportar error',
+            report: 'Reportar error',
+            formEmail: 'Email (opcional)',
+            formDescription: 'Descripción',
+            formCancel: 'Cancelar',
+            formSend: 'Enviar',
+            reportClose: 'Cerrar',
           },
           upload: {
             toast: 'Fichero subido!',
