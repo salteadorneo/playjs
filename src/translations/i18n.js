@@ -20,6 +20,13 @@ i18n
             downloadTitle: 'Download code as file',
             download: 'Download',
           },
+          embed: {
+            toast: 'Copied to clipboard!',
+            embedTitle: 'Get HTML',
+            embed: 'Embed',
+            embedClose: 'Close',
+            embedCopy: 'Copy',
+          },
           language: {
             globeTitle: 'Change language',
             toast: 'Language changed!',
@@ -41,6 +48,13 @@ i18n
             format: 'Formato',
             downloadTitle: 'Descargar código en fichero',
             download: 'Descargar',
+          },
+          embed: {
+            toast: 'Copiado al portapapeles!',
+            embedTitle: 'Obtener HTML',
+            embed: 'Insertar',
+            embedClose: 'Cerrar',
+            embedCopy: 'Copiar',
           },
           language: {
             globeTitle: 'Cambiar idioma',
