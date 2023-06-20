@@ -1,7 +1,7 @@
 {
   "name": "playjs",
   "private": true,
-  "version": "0.4.3",
+  "version": "0.4.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,10 +11,13 @@
   },
   "dependencies": {
     "@monaco-editor/react": "4.4.6",
+    "i18next": "^23.2.0",
+    "i18next-browser-languagedetector": "^7.0.2",
     "js-base64": "3.7.3",
     "monaco-js-linter": "1.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-i18next": "^13.0.0",
     "react-split": "2.0.14",
     "sonner": "^0.3.5"
   },
