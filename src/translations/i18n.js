@@ -42,6 +42,11 @@ i18n
             formSend: 'Send',
             reportClose: 'Close',
           },
+          share: {
+            toast: 'Copied to clipboard!',
+            shareTitle: 'Share code',
+            share: 'Share',
+          },
           upload: {
             toast: 'File uploaded!',
             uploadTitle: 'Upload code from file',
@@ -81,6 +86,11 @@ i18n
             formCancel: 'Cancelar',
             formSend: 'Enviar',
             reportClose: 'Cerrar',
+          },
+          share: {
+            toast: 'Copiado al portapapeles!',
+            shareTitle: 'Compartir código',
+            share: 'Compartir',
           },
           upload: {
             toast: 'Fichero subido!',
