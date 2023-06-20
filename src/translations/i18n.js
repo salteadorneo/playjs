@@ -20,6 +20,10 @@ i18n
             downloadTitle: 'Download code as file',
             download: 'Download',
           },
+          displayOptions: {
+            displayTitle: 'Change view',
+            display: 'View'
+          },
           embed: {
             toast: 'Copied to clipboard!',
             embedTitle: 'Get HTML',
@@ -67,6 +71,10 @@ i18n
             format: 'Formato',
             downloadTitle: 'Descargar código en fichero',
             download: 'Descargar',
+          },
+          displayOptions: {
+            displayTitle: 'Cambiar vista',
+            display: 'Vista'
           },
           embed: {
             toast: 'Copiado al portapapeles!',

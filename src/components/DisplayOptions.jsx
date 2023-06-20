@@ -1,12 +1,15 @@
+import { useTranslation } from 'react-i18next'
 import { IS_IFRAME } from '../consts'
 import Button from './Button'
 
 export default function DisplayOptions ({ direction, changeDirection }) {
+  const { t } = useTranslation()
+
   return (
     <>
       <Button
         onClick={changeDirection}
-        title='Change view'
+        title={t('displayOptions.displayTitle')}
       >
         <svg
           width={20}
@@ -22,7 +25,7 @@ export default function DisplayOptions ({ direction, changeDirection }) {
           />
         </svg>
         {!IS_IFRAME && (
-          <span className='hidden sm:block'>View</span>
+          <span className='hidden sm:block'>{t('displayOptions.display')}</span>
         )}
       </Button>
     </>
