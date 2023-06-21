@@ -48,7 +48,7 @@ export async function getResult ({ code, language = 'javascript' }) {
         : lineCode
 
       // eslint-disable-next-line no-eval
-      const html = eval(lineCodeJS)
+      const html = await eval(lineCodeJS)
       if (i > 0 && line !== codeLines[i - 1].trim() && prevResult === html) {
         result += '\n'
       } else {
@@ -71,7 +71,7 @@ export async function getResult ({ code, language = 'javascript' }) {
 
 if (typeof window !== 'undefined') {
   window.console.log = async function (...args) {
-    return TAG_CONSOLE_LOG + args
+    return TAG_CONSOLE_LOG + args.join('|||')
   }
 }
 
@@ -86,7 +86,7 @@ export async function resolveHTML (html) {
   if (typeof html === 'string') {
     if (html.startsWith(TAG_CONSOLE_LOG)) {
       const htmlParsed = html.replace(TAG_CONSOLE_LOG, '')
-      return htmlParsed.split(',').map(arg => {
+      return htmlParsed.split('|||').map(arg => {
         const value = isNumeric(arg)
         if (isNaN(value)) return `'${arg}'`
         return value
