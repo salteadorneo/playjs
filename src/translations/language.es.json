@@ -1,0 +1,52 @@
+{
+       "translation": {
+          "code": {
+             "formatTitle": "Dar formato",
+             "format": "Formato",
+             "downloadTitle": "Descargar código en fichero",
+             "download": "Descargar"
+          },
+          "displayOptions": {
+             "displayTitle": "Cambiar vista",
+             "display": "Vista"
+          },
+          "embed": {
+             "toast": "Copiado al portapapeles!",
+             "embedTitle": "Obtener HTML",
+             "embed": "Insertar",
+             "embedClose": "Cerrar",
+             "embedCopy": "Copiar"
+          },
+          "language": {
+             "globeTitle": "Cambiar idioma",
+             "toast": "Idioma cambiado!"
+          },
+          "report": {
+             "responseOk": "Gracias por tu reporte!",
+             "responseError": "Ups! Ha habido un problema enviando el formulario",
+             "reportTitle": "Reportar error",
+             "report": "Reportar error",
+             "formEmail": "Email (opcional)",
+             "formDescription": "Descripción",
+             "formCancel": "Cancelar",
+             "formSend": "Enviar",
+             "reportClose": "Cerrar"
+          },
+          "share": {
+             "toast": "Copiado al portapapeles!",
+             "shareTitle": "Compartir código",
+             "share": "Compartir"
+          },
+          "upload": {
+             "toast": "Fichero subido!",
+             "uploadTitle": "Subir código de fichero",
+             "upload": "Subir",
+             "instructions": "Selecciona o arrastra un fichero",
+             "formCancel": "Cancelar",
+             "formUpload": "Subir"
+          },
+          "urlLengthError": {
+             "warning": "⚠️ Has llegado al límite de código que podemos almacenar en línea. Puedes descargarlo para no perder los últimos cambios."
+          }
+       }
+    }
