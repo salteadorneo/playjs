@@ -1,0 +1,52 @@
+ {
+       "translation": {
+          "code": {
+             "formatTitle": "Format code",
+             "format": "Format",
+             "downloadTitle": "Download code as file",
+             "download": "Download"
+          },
+          "displayOptions": {
+             "displayTitle": "Change view",
+             "display": "View"
+          },
+          "embed": {
+             "toast": "Copied to clipboard!",
+             "embedTitle": "Get HTML",
+             "embed": "Embed",
+             "embedClose": "Close",
+             "embedCopy": "Copy"
+          },
+          "language": {
+             "globeTitle": "Change language",
+             "toast": "Language changed!"
+          },
+          "report": {
+             "responseOk": "Thanks for your report!",
+             "responseError": "Oops! There was a problem submitting your form",
+             "reportTitle": "Report a bug",
+             "report": "Report bug",
+             "formEmail": "Email (optional)",
+             "formDescription": "Description",
+             "formCancel": "Cancel",
+             "formSend": "Send",
+             "reportClose": "Close"
+          },
+          "share": {
+             "toast": "Copied to clipboard!",
+             "shareTitle": "Share code",
+             "share": "Share"
+          },
+          "upload": {
+             "toast": "File uploaded!",
+             "uploadTitle": "Upload code from file",
+             "upload": "Upload",
+             "instructions": "Select or drop a file below",
+             "formCancel": "Cancel",
+             "formUpload": "Upload"
+          },
+          "urlLengthError": {
+             "warning": "⚠️ You reached the limit of data we can store online. You may want to download your code so recent changes don't get lost."
+          }
+       }
+    }
