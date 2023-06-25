@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next'
 import { version } from '../../package.json'
 
 export default function Landing () {
+  const { t } = useTranslation()
+
   return (
     <>
       <section className='font-sans'>
@@ -11,12 +14,12 @@ export default function Landing () {
             <h1
               className='relative z-10 text-white text-3xl font-medium sm:text-8xl'
             >
-              The JavaScript playground{' '}
-              <span className='block leading-tight'>on your browser</span>
+              {t('title.part1')}{' '}
+              <span className='block leading-tight'>{t('title.part2')}</span>
             </h1>
 
             <p className='relative z-10 mx-auto text-white mt-8 text-2xl'>
-              Test your code, view result, share it and embed it on your website.
+              {t('slogan')}
             </p>
 
             <section className='relative my-12'>
@@ -34,7 +37,7 @@ export default function Landing () {
               href='/Ly8gQmllbnZlbmlkbyBhIFBsYXlKUwoKY29uc3QgaG9sYU11bmRvID0gKCkgPT4gJ/CfkYvwn4yOJwoKaG9sYU11bmRvKCkK'
               className='relative z-10 rounded bg-white/80 text-black hover:bg-secondary px-12 py-3 font-bold'
             >
-              Open full screen
+              {t('try_it_now')}
             </a>
           </div>
         </div>
@@ -43,47 +46,49 @@ export default function Landing () {
         <div
           className='mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8'
         >
-          <h2 className='text-3xl font-bold sm:text-4xl text-center'>Features</h2>
+          <h2 className='text-3xl font-bold sm:text-4xl text-center'>
+            {t('features')}
+          </h2>
 
           <div className='mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
             <Item
-              title='TypeScript support'
-              description=''
+              title={t('feature1.title')}
+              description={t('feature1.description')}
               image={
                 <img src='/features/typescript.png' alt='' />
               }
             />
             <Item
-              title='Autocomplete'
-              description='Code suggestions while you type'
+              title={t('feature2.title')}
+              description={t('feature2.description')}
               image={
                 <img src='/features/autocompletion.png' alt='' />
               }
             />
             <Item
-              title='NPM packages'
-              description='Work with dependencies (Experimental)'
+              title={t('feature3.title')}
+              description={t('feature3.description')}
               image={
                 <img src='/features/npm.png' alt='' />
               }
             />
             <Item
-              title='Asychronous requests to APIs'
-              description=''
+              title={t('feature4.title')}
+              description={t('feature4.description')}
               image={
                 <img src='/features/async.png' alt='' />
               }
             />
             <Item
-              title='Download / upload files'
-              description=''
+              title={t('feature5.title')}
+              description={t('feature5.description')}
               image={
                 <img src='/features/download.png' alt='' />
               }
             />
             <Item
-              title='Share / embed your code'
-              description=''
+              title={t('feature6.title')}
+              description={t('feature6.description')}
               image={
                 <img src='/features/share.png' alt='' />
               }

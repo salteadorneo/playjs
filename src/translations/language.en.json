@@ -1,52 +1,83 @@
- {
-       "translation": {
-          "code": {
-             "formatTitle": "Format code",
-             "format": "Format",
-             "downloadTitle": "Download code as file",
-             "download": "Download"
-          },
-          "displayOptions": {
-             "displayTitle": "Change view",
-             "display": "View"
-          },
-          "embed": {
-             "toast": "Copied to clipboard!",
-             "embedTitle": "Get HTML",
-             "embed": "Embed",
-             "embedClose": "Close",
-             "embedCopy": "Copy"
-          },
-          "language": {
-             "globeTitle": "Change language",
-             "toast": "Language changed!"
-          },
-          "report": {
-             "responseOk": "Thanks for your report!",
-             "responseError": "Oops! There was a problem submitting your form",
-             "reportTitle": "Report a bug",
-             "report": "Report bug",
-             "formEmail": "Email (optional)",
-             "formDescription": "Description",
-             "formCancel": "Cancel",
-             "formSend": "Send",
-             "reportClose": "Close"
-          },
-          "share": {
-             "toast": "Copied to clipboard!",
-             "shareTitle": "Share code",
-             "share": "Share"
-          },
-          "upload": {
-             "toast": "File uploaded!",
-             "uploadTitle": "Upload code from file",
-             "upload": "Upload",
-             "instructions": "Select or drop a file below",
-             "formCancel": "Cancel",
-             "formUpload": "Upload"
-          },
-          "urlLengthError": {
-             "warning": "⚠️ You reached the limit of data we can store online. You may want to download your code so recent changes don't get lost."
-          }
-       }
-    }
+{
+   "translation": {
+      "title": {
+         "part1": "The JavaScript playground",
+         "part2": "on your browser"
+      },
+      "slogan": "Test your code, view result, share it and embed it on your website.",
+      "try_it_now": "Try it now!",
+      "features": "Features",
+      "feature1": {
+         "title": "TypeScript support",
+         "description": ""
+      },
+      "feature2": {
+         "title": "Autocomplete",
+         "description": "Code suggestions while you type"
+      },
+      "feature3": {
+         "title": "NPM packages",
+         "description": "Work with dependencies (Experimental)"
+      },
+      "feature4": {
+         "title": "Asychronous requests to APIs",
+         "description": ""
+      },
+      "feature5": {
+         "title": "Download / upload files",
+         "description": ""
+      },
+      "feature6": {
+         "title": "Share / embed your code",
+         "description": ""
+      },
+      "code": {
+         "formatTitle": "Format code",
+         "format": "Format",
+         "downloadTitle": "Download code as file",
+         "download": "Download"
+      },
+      "displayOptions": {
+         "displayTitle": "Change view",
+         "display": "View"
+      },
+      "embed": {
+         "toast": "Copied to clipboard!",
+         "embedTitle": "Get HTML",
+         "embed": "Embed",
+         "embedClose": "Close",
+         "embedCopy": "Copy"
+      },
+      "language": {
+         "globeTitle": "Change language",
+         "toast": "Language changed!"
+      },
+      "report": {
+         "responseOk": "Thanks for your report!",
+         "responseError": "Oops! There was a problem submitting your form",
+         "reportTitle": "Report a bug",
+         "report": "Report bug",
+         "formEmail": "Email (optional)",
+         "formDescription": "Description",
+         "formCancel": "Cancel",
+         "formSend": "Send",
+         "reportClose": "Close"
+      },
+      "share": {
+         "toast": "Copied to clipboard!",
+         "shareTitle": "Share code",
+         "share": "Share"
+      },
+      "upload": {
+         "toast": "File uploaded!",
+         "uploadTitle": "Upload code from file",
+         "upload": "Upload",
+         "instructions": "Select or drop a file below",
+         "formCancel": "Cancel",
+         "formUpload": "Upload"
+      },
+      "urlLengthError": {
+         "warning": "⚠️ You reached the limit of data we can store online. You may want to download your code so recent changes don't get lost."
+      }
+   }
+}
