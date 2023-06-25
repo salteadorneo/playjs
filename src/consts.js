@@ -2,7 +2,7 @@ export const language = typeof window !== 'undefined' && window.location.host ==
   ? 'typescript'
   : 'javascript'
 
-export const IS_IFRAME = typeof window !== 'undefined' && window.location !== window.parent.location && window.parent.location.host !== 'playjs.dev' && window.parent.location.hostname !== 'localhost'
+export const IS_IFRAME = typeof window !== 'undefined' && window.location !== window.parent.location
 
 export const WIDTH_MOBILE = 640
 
