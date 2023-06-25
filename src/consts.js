@@ -2,23 +2,13 @@ export const language = typeof window !== 'undefined' && window.location.host ==
   ? 'typescript'
   : 'javascript'
 
-export const IS_IFRAME = typeof window !== 'undefined' && window.location !== window.parent.location
+export const IS_IFRAME = typeof window !== 'undefined' && window.location !== window.parent.location && window.parent.location.host !== 'playjs.dev' && window.parent.location.hostname !== 'localhost'
 
 export const WIDTH_MOBILE = 640
 
-const DEFAULT_VALUE = `// Bienvenido a PlayJS
+const DEFAULT_VALUE = import('./javascript')
 
-const holaMundo = () => '👋🌎'
-
-holaMundo()
-`
-
-const DEFAULT_VALUE_TS = `// Bienvenido a PlayJS con soporte para TypeScript
-
-const holaMundo = (greeting: string) => greeting
-
-holaMundo('👋🌎')
-`
+const DEFAULT_VALUE_TS = import('./typescript')
 
 export const DEFAULT_CODE = language === 'typescript' ? DEFAULT_VALUE_TS : DEFAULT_VALUE
 
