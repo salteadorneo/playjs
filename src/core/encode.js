@@ -2,7 +2,7 @@ import { encode, decode } from 'js-base64'
 
 export function setCodeToURL (code) {
   const hashedCode = encode(code)
-  const host = window.location.host;
+  const host = window.location.host
 
   if (hashedCode.length + host.length >= 2000) {
     return false
