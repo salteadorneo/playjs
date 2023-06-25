@@ -11,7 +11,7 @@ import { getResult } from '../core'
 import { setCodeToURL } from '../core/encode'
 import { WIDTH_MOBILE } from '../consts'
 
-import Logo from './Logo'
+import Logo from './atom/Logo'
 import Share from './Share'
 import Footer from './Footer'
 import Console from './Console'

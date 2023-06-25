@@ -1,4 +1,4 @@
-import { IS_IFRAME, language } from '../consts'
+import { IS_IFRAME, language } from '../../consts'
 
 export default function Logo () {
   const Wrapper = ({ children }) =>

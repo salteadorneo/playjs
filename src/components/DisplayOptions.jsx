@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { IS_IFRAME } from '../consts'
-import Button from './Button'
+import Button from './atom/Button'
 
 export default function DisplayOptions ({ direction, changeDirection }) {
   const { t } = useTranslation()
