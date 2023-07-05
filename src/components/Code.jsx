@@ -24,6 +24,8 @@ export default function Code ({ onChange }) {
   const editorRef = useRef(null)
   const { t } = useTranslation()
 
+  const defaultValue = getCodeFromURL() ?? DEFAULT_CODE
+
   function handleChange () {
     if (!editorRef.current) return
     const editor = editorRef.current
@@ -65,7 +67,7 @@ export default function Code ({ onChange }) {
         className='pt-4'
         language={language}
         theme='vs-dark'
-        defaultValue={getCodeFromURL() || DEFAULT_CODE}
+        defaultValue={defaultValue}
         onMount={onMount}
         onChange={handleEditorChange}
         loading=''

@@ -6,9 +6,9 @@ export const IS_IFRAME = typeof window !== 'undefined' && window.location !== wi
 
 export const WIDTH_MOBILE = 640
 
-const DEFAULT_VALUE = import('./javascript')
+const DEFAULT_VALUE = await import('./javascript')
 
-const DEFAULT_VALUE_TS = import('./typescript')
+const DEFAULT_VALUE_TS = await import('./typescript')
 
 export const DEFAULT_CODE = language === 'typescript' ? DEFAULT_VALUE_TS : DEFAULT_VALUE
 
