@@ -60,6 +60,7 @@ export default function Landing () {
           </div>
         </div>
       </section>
+
       <section className='font-sans text-white'>
         <div
           className='mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8'
@@ -114,6 +115,33 @@ export default function Landing () {
           </div>
         </div>
       </section>
+
+      <section className='font-sans bg-secondary py-8 my-6 text-center'>
+        <form action={`https://magic.beehiiv.com/v1/b85e29c4-ff81-4f2a-a246-adc349927c0a?utm_source=landing&redirect_to=${encodeURIComponent('https://playjs.dev')}`}>
+          <h2 className='text-4xl font-bold mb-3'>
+            {t('subscribe_title')}
+          </h2>
+          <p>
+            {t('subscribe_description')}
+          </p>
+          <div className='flex items-center justify-center gap-4 py-8'>
+            <input
+              type='email'
+              name='email'
+              placeholder={t('subscribe_placeholder')}
+              required
+              className='bg-background text-white px-4 py-3 font-bold rounded'
+            />
+            <button
+              type='submit'
+              className='bg-background text-white px-12 py-3 font-bold rounded'
+            >
+              {t('subscribe_button')}
+            </button>
+          </div>
+        </form>
+      </section>
+
       <footer>
         <div className='flex items-center justify-center gap-4 py-8'>
           <a

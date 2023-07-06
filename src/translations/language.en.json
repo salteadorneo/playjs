@@ -32,6 +32,10 @@
          "title": "Share / embed your code",
          "description": ""
       },
+      "subscribe_title": "Be the first to use new features",
+      "subscribe_description": "Sign up for project updates, early exclusive features, and to find out when it's ready.",
+      "subscribe_placeholder": "Email",
+      "subscribe_button": "Subscribe",
       "code": {
          "formatTitle": "Format code",
          "format": "Format",

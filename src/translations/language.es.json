@@ -32,6 +32,10 @@
          "title": "Comparte / integra tu código",
          "description": ""
       },
+      "subscribe_title": "Sea el primero en utilizar las nuevas funciones",
+      "subscribe_description": "Inscríbete para recibir actualizaciones del proyecto, funciones exclusivas anticipadas y saber cuándo estará listo.",
+      "subscribe_placeholder": "Email",
+      "subscribe_button": "Inscríbete",
       "code": {
          "formatTitle": "Dar formato",
          "format": "Formato",
