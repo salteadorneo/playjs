@@ -1,9 +1,13 @@
 {
     "theme_color": "#f0db4f",
     "background_color": "#1e1e1e",
-    "display": "browser",
+    "categories": [
+        "utilities",
+        "productivity"
+    ],
+    "display": "standalone",
     "scope": "/",
-    "start_url": "/",
+    "start_url": "/?utm_source=homescreen",
     "name": "PlayJS",
     "short_name": "PlayJS",
     "description": "Playground de JavaScript para navegador. Tu c\u00f3digo en cualquier dispositivo.",
