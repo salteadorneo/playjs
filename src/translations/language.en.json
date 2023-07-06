@@ -6,6 +6,7 @@
       },
       "slogan": "Test your code, view result, share it and embed it on your website.",
       "try_it_now": "Try it now!",
+      "star_github": "Star on GitHub",
       "features": "Features",
       "feature1": {
          "title": "TypeScript support",
