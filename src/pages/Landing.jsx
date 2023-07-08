@@ -52,7 +52,7 @@ export default function Landing () {
             </section>
 
             <a
-              href='/Ly8gQmllbnZlbmlkbyBhIFBsYXlKUwoKY29uc3QgaG9sYU11bmRvID0gKCkgPT4gJ/CfkYvwn4yOJwoKaG9sYU11bmRvKCkK'
+              href='/'
               className='relative z-10 rounded bg-white/80 text-black hover:bg-secondary px-12 py-3 font-bold'
             >
               {t('try_it_now')}

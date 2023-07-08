@@ -2,8 +2,9 @@ import { useRef } from 'react'
 import Editor from '@monaco-editor/react'
 import { useTranslation } from 'react-i18next'
 
-import { DEFAULT_CODE, EDITOR_OPTIONS, IS_IFRAME, language } from '../consts'
-import { getCodeFromURL } from '../core/encode'
+import { EDITOR_OPTIONS, IS_IFRAME, language } from '../consts'
+import { decodeCode, getCodeFromURL } from '../core/encode'
+import { loadCode } from '../core/storage'
 
 import Button from './atom/Button'
 import Report from './Report'
@@ -24,7 +25,9 @@ export default function Code ({ onChange }) {
   const editorRef = useRef(null)
   const { t } = useTranslation()
 
-  const defaultValue = getCodeFromURL() ?? DEFAULT_CODE
+  const localCode = loadCode()
+
+  const defaultValue = getCodeFromURL() || decodeCode(localCode)
 
   function handleChange () {
     if (!editorRef.current) return

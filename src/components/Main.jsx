@@ -8,7 +8,8 @@ import { useWindowSize } from '@/hooks/useWindowSize'
 import { Toaster } from 'sonner'
 
 import { getResult } from '../core'
-import { setCodeToURL } from '../core/encode'
+import { encodeCode } from '../core/encode'
+import { saveCode } from '../core/storage'
 import { WIDTH_MOBILE } from '../consts'
 
 import Logo from './atom/Logo'
@@ -56,8 +57,15 @@ export default function Chore () {
   const [result, setResult] = useState('')
 
   const onChange = async ({ code = '', language = 'javascript' }) => {
-    const setCodeToURLresult = setCodeToURL(code)
-    setLengthLimit(!setCodeToURLresult)
+    if (!code) return
+
+    const hashedCode = encodeCode(code)
+
+    setLengthLimit(hashedCode.length + window.location.host.length >= 2000)
+
+    window.history.replaceState(null, null, `/${hashedCode}`)
+
+    saveCode(hashedCode)
 
     const result = await getResult({ code, language })
 
