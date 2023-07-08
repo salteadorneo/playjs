@@ -14,13 +14,12 @@ import { WIDTH_MOBILE } from '../consts'
 
 import Logo from './atom/Logo'
 import Share from './Share'
-import Footer from './Footer'
 import Console from './Console'
 import Embed from './Embed'
 import Code from './Code'
 import UrlLengthError from './UrlLengthError'
 import DisplayOptions from './DisplayOptions'
-import Language from './Language'
+import Menu from './Menu'
 
 export default function Chore () {
   const size = useWindowSize()
@@ -91,8 +90,9 @@ export default function Chore () {
         <DisplayOptions direction={direction} changeDirection={changeDirection} />
         <Share />
         <Embed />
-        <Language />
       </div>
+
+      <Menu />
 
       {direction === 'horizontal' && (
         <Split
@@ -118,8 +118,6 @@ export default function Chore () {
           <Console result={result} direction={direction} />
         </Split>
       )}
-
-      <Footer />
     </>
   )
 }

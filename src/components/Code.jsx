@@ -7,7 +7,6 @@ import { decodeCode, getCodeFromURL } from '../core/encode'
 import { loadCode } from '../core/storage'
 
 import Button from './atom/Button'
-import Report from './Report'
 
 import Upload from './Upload'
 
@@ -122,7 +121,6 @@ export default function Code ({ onChange }) {
           )}
         </Button>
         <Upload editor={editorRef.current} />
-        <Report />
       </div>
     </div>
   )
