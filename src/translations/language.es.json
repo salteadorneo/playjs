@@ -5,7 +5,7 @@
          "part2": "en tu navegador"
       },
       "slogan": "Prueba tu código en tiempo real, compártelo e intégralo en tu web.",
-      "try_it_now": "¡Probar ahora!",
+      "try_it_now": "¡Empezar!",
       "star_github": "GitHub",
       "features": "Características",
       "feature1": {
@@ -68,9 +68,11 @@
          "reportClose": "Cerrar"
       },
       "share": {
-         "toast": "Copiado al portapapeles!",
-         "shareTitle": "Compartir código",
-         "share": "Compartir"
+         "toast": "¡Copiado al portapapeles!",
+         "label": "Compartir código",
+         "share": "Compartir",
+         "title": "PlayJS",
+         "text": "¡Mira este código!"
       },
       "upload": {
          "loaded": "¡Fichero cargado!",

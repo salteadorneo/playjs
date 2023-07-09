@@ -41,11 +41,11 @@ export default function Theme ({ theme, changeTheme }) {
               viewBox='0 0 20 20'
               fill='none'
               stroke='currentColor'
-              stroke-linecap='round'
-              stroke-linejoin='round'
+              strokeLinecap='round'
+              strokeLinejoin='round'
             >
               <path
-                clip-rule='evenodd'
+                clipRule='evenodd'
                 d='M10 2.5h.328a6.25 6.25 0 0 0 6.6 10.372A7.5 7.5 0 1 1 10 2.493V2.5Z' stroke='currentColor'
               />
             </svg>

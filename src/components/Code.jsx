@@ -26,6 +26,7 @@ export default function Code ({ code, theme, onChange }) {
     if (!code) return
     const editor = editorRef.current
     if (!editor) return
+    if (code === editor.getValue()) return
     editor.setValue(code)
   }, [code])
 

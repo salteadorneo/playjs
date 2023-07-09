@@ -5,7 +5,7 @@
          "part2": "on your browser"
       },
       "slogan": "Test your code, view result, share it and embed it on your website.",
-      "try_it_now": "Try it now!",
+      "try_it_now": "Start now!",
       "star_github": "Star on GitHub",
       "features": "Features",
       "feature1": {
@@ -69,8 +69,10 @@
       },
       "share": {
          "toast": "Copied to clipboard!",
-         "shareTitle": "Share code",
-         "share": "Share"
+         "label": "Share code",
+         "share": "Share",
+         "title": "PlayJS",
+         "text": "Check out this code I wrote on PlayJS"
       },
       "upload": {
          "loaded": "File loaded!",

@@ -27,7 +27,7 @@ export default function Language () {
         value={i18n.resolvedLanguage}
         onChange={changeLanguage}
         title={t('language.globeTitle')}
-        className='pl-7 w-full py-1.5 px-2 text-[#616161] bg-[#1a1a1a] rounded-md border border-[#1a1a1a] outline-none'
+        className='pl-7 w-full px-2 text-[#616161] bg-[#1a1a1a] rounded-md border border-[#1a1a1a] outline-none'
       >
         <option value='en'>English</option>
         <option value='es'>Español</option>

@@ -7,7 +7,6 @@ import { useWindowSize } from '@/hooks/useWindowSize'
 
 import { Toaster } from 'sonner'
 
-import { getResult } from '../core'
 import { encodeCode } from '../core/encode'
 import { saveCode } from '../core/storage'
 import { WIDTH_MOBILE } from '../consts'
@@ -61,9 +60,8 @@ export default function Chore () {
   const gutterSize = isMobile ? 6 : 3
 
   const [lengthLimit, setLengthLimit] = useState(false)
-  const [result, setResult] = useState('')
 
-  const onChange = async ({ code = '', language = 'javascript' }) => {
+  const onChange = async ({ code = '' }) => {
     if (!code) return
 
     const hashedCode = encodeCode(code)
@@ -74,9 +72,7 @@ export default function Chore () {
 
     saveCode(hashedCode)
 
-    const result = await getResult({ code, language })
-
-    setResult(result)
+    setCode(code)
   }
 
   function changeTheme () {
@@ -125,7 +121,7 @@ export default function Chore () {
           onDragEnd={handleDragEnd}
         >
           <Code code={code} onChange={onChange} theme={theme} />
-          <Console result={result} direction={direction} theme={theme} />
+          <Console code={code} direction={direction} theme={theme} />
         </Split>
       )}
       {direction === 'vertical' && (
@@ -137,7 +133,7 @@ export default function Chore () {
           onDragEnd={handleDragEnd}
         >
           <Code code={code} onChange={onChange} theme={theme} />
-          <Console result={result} direction={direction} theme={theme} />
+          <Console code={code} direction={direction} theme={theme} />
         </Split>
       )}
     </>

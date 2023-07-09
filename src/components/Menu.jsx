@@ -37,14 +37,14 @@ export default function Menu ({ theme, changeTheme, setCode }) {
       </button>
       {open && (
         <section
-          className='absolute top-14 left-0 flex flex-col gap-3 w-72 bg-[#1a1a1a] p-2'
+          className='absolute top-14 left-0 pl-4 flex flex-col gap-3 w-72 bg-[#1a1a1a] p-2'
         >
           <Upload setCode={handleUpload} />
           <Download />
-          <Report />
-          <Language />
           <Theme theme={theme} changeTheme={changeTheme} />
+          <Report />
           <GitHub />
+          <Language />
         </section>
       )}
     </section>
