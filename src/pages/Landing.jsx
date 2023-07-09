@@ -150,7 +150,7 @@ export default function Landing () {
             href='https://github.com/salteadorneo/playjs'
             target='_blank'
             rel='noreferrer'
-            className='text-[#616161] hover:text-[#999]'
+            className='text-[#858585] hover:text-[#999]'
           >
             <svg
               width='20'

@@ -1,4 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import { decodeCode } from '../core/encode'
+import { loadCode } from '../core/storage'
 
 import Language from './menu/Language'
 import Report from './menu/Report'
@@ -11,8 +14,41 @@ import Languages from './menu/Languages'
 export default function Menu ({ theme, changeTheme, setCode, language, setLanguage }) {
   const [open, setOpen] = useState(false)
 
+  useEffect(() => {
+    const keyDown = (event) => {
+      if (event.key === 's' && event.ctrlKey) {
+        event.preventDefault()
+        downloadCode()
+      }
+    }
+    document.addEventListener('keydown', keyDown)
+
+    return () => {
+      document.removeEventListener('keydown', keyDown)
+    }
+  }, [])
+
+  function downloadCode () {
+    const hashCode = loadCode()
+    const code = decodeCode(hashCode)
+
+    const blob = new window.Blob([code], {
+      type: 'text/plain'
+    })
+    const url = URL.createObjectURL(blob)
+
+    const link = document.createElement('a')
+    link.download = 'playjs.' + (language === 'javascript' ? 'js' : 'ts')
+    link.href = url
+    link.click()
+  }
+
   function handleMenu () {
     setOpen(!open)
+  }
+
+  function handleDownload () {
+    setOpen(false)
   }
 
   function handleUpload (code) {
@@ -24,7 +60,7 @@ export default function Menu ({ theme, changeTheme, setCode, language, setLangua
     <section>
       <button
         onClick={handleMenu}
-        className={`flex items-center border-none text-[#616161] hover:text-[#999] p-0.5 ${open ? 'bg-[#1a1a1a]' : ''}`}
+        className={`flex items-center border-none text-[#858585] hover:text-[#999] p-0.5 ${open ? 'bg-[#1a1a1a]' : ''}`}
       >
         <svg
           width={24}
@@ -40,10 +76,20 @@ export default function Menu ({ theme, changeTheme, setCode, language, setLangua
         <section
           className='absolute top-14 left-0 pl-4 flex flex-col gap-3 w-72 bg-[#1a1a1a] p-2'
         >
-          <Upload setCode={handleUpload} />
-          <Download />
-          <Languages language={language} setLanguage={setLanguage} />
-          <Theme theme={theme} changeTheme={changeTheme} />
+          <Upload
+            setCode={handleUpload}
+          />
+          <Download
+            handleDownload={handleDownload}
+          />
+          <Languages
+            language={language}
+            setLanguage={setLanguage}
+          />
+          <Theme
+            theme={theme}
+            changeTheme={changeTheme}
+          />
           <Report />
           <GitHub />
           <Language />

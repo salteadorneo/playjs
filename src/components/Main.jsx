@@ -133,7 +133,7 @@ export default function Chore () {
           onDragEnd={handleDragEnd}
         >
           <Code code={code} language={language} onChange={onChange} theme={theme} />
-          <Console code={code} direction={direction} theme={theme} />
+          <Console code={code} language={language} direction={direction} theme={theme} />
         </Split>
       )}
       {direction === 'vertical' && (
@@ -145,7 +145,7 @@ export default function Chore () {
           onDragEnd={handleDragEnd}
         >
           <Code code={code} language={language} onChange={onChange} theme={theme} />
-          <Console code={code} direction={direction} theme={theme} />
+          <Console code={code} language={language} direction={direction} theme={theme} />
         </Split>
       )}
     </>

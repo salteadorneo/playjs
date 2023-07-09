@@ -9,7 +9,7 @@ export default function Language () {
   }
 
   return (
-    <div className='relative text-[#616161]'>
+    <div className='relative text-[#858585]'>
       <svg
         width={18}
         height={18}
@@ -31,7 +31,7 @@ export default function Language () {
         value={i18n.resolvedLanguage}
         onChange={changeLanguage}
         title={t('language.globeTitle')}
-        className='pl-[20px] w-full text-[#616161] bg-[#1a1a1a] rounded-md border border-[#1a1a1a] outline-none'
+        className='pl-[20px] w-full text-[#858585] bg-[#1a1a1a] rounded-md border border-[#1a1a1a] outline-none'
       >
         <option value='en'>English</option>
         <option value='es'>Español</option>

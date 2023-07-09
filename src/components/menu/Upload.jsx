@@ -21,7 +21,7 @@ export default function Upload ({ setCode }) {
       <label htmlFor='file'>
         <div
           title={t('upload.uploadTitle')}
-          className='flex items-center gap-2 bg-none border-none text-[#616161] hover:text-[#999] p-0'
+          className='flex items-center gap-2 bg-none border-none text-[#858585] hover:text-[#999] p-0'
         >
           <svg
             width={20}
