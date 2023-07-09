@@ -5,7 +5,7 @@
          "part2": "en tu navegador"
       },
       "slogan": "Prueba tu código en tiempo real, compártelo e intégralo en tu web.",
-      "try_it_now": "¡Probar ahora!",
+      "try_it_now": "¡Empezar!",
       "star_github": "GitHub",
       "features": "Características",
       "feature1": {
@@ -54,8 +54,7 @@
          "embedCopy": "Copiar"
       },
       "language": {
-         "globeTitle": "Cambiar idioma",
-         "toast": "Idioma cambiado!"
+         "globeTitle": "Cambiar idioma"
       },
       "report": {
          "responseOk": "Gracias por tu reporte!",
@@ -69,17 +68,16 @@
          "reportClose": "Cerrar"
       },
       "share": {
-         "toast": "Copiado al portapapeles!",
-         "shareTitle": "Compartir código",
-         "share": "Compartir"
+         "toast": "¡Copiado al portapapeles!",
+         "label": "Compartir código",
+         "share": "Compartir",
+         "title": "PlayJS",
+         "text": "¡Mira este código!"
       },
       "upload": {
-         "toast": "Fichero subido!",
+         "loaded": "¡Fichero cargado!",
          "uploadTitle": "Subir código de fichero",
-         "upload": "Subir",
-         "instructions": "Selecciona o arrastra un fichero",
-         "formCancel": "Cancelar",
-         "formUpload": "Subir"
+         "label": "Abrir"
       },
       "urlLengthError": {
          "warning": "⚠️ Has llegado al límite de código que podemos almacenar en línea. Puedes descargarlo para no perder los últimos cambios."

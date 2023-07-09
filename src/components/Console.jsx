@@ -1,25 +1,28 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import Editor from '@monaco-editor/react'
 
-import { EDITOR_OPTIONS, language } from '../consts'
+import { EDITOR_OPTIONS } from '../consts'
+import { getResult } from '../core'
 
-export default function Console ({ result, direction }) {
+export default function Console ({ code, language, theme, direction }) {
   const lineNumbers = direction === 'horizontal' ? 'off' : 'on'
 
   const editorRef = useRef(null)
 
+  const [result, setResult] = useState('')
+
   useEffect(() => {
-    if (!editorRef.current) return
-    editorRef.current.setValue(result)
-  }, [result])
+    getResult({ code, language }).then(result => {
+      setResult(result)
+    })
+  }, [code])
 
   return (
     <>
       <Editor
-        className='pt-4'
         language={language}
-        theme='vs-dark'
+        theme={theme}
         loading=''
         value={result}
         onMount={(editor) => {

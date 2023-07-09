@@ -1,28 +1,45 @@
 import { version } from '../../package.json'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Split from 'react-split'
 
 import { useWindowSize } from '@/hooks/useWindowSize'
 
 import { Toaster } from 'sonner'
 
-import { getResult } from '../core'
-import { setCodeToURL } from '../core/encode'
+import { encodeCode } from '../core/encode'
+import { saveCode } from '../core/storage'
 import { WIDTH_MOBILE } from '../consts'
 
 import Logo from './atom/Logo'
 import Share from './Share'
-import Footer from './Footer'
 import Console from './Console'
 import Embed from './Embed'
 import Code from './Code'
 import UrlLengthError from './UrlLengthError'
 import DisplayOptions from './DisplayOptions'
-import Language from './Language'
+import Menu from './Menu'
 
 export default function Chore () {
   const size = useWindowSize()
+
+  const [code, setCode] = useState('')
+
+  const [language, setLanguage] = useState(() => {
+    const language = window.localStorage.getItem('language')
+    if (language) return language
+    return 'javascript'
+  })
+
+  useEffect(() => {
+    window.localStorage.setItem('language', language)
+  }, [language])
+
+  const [theme, setTheme] = useState(() => {
+    const theme = window.localStorage.getItem('theme')
+    if (theme) return theme
+    return 'vs-dark'
+  })
 
   const isMobile = size.width < WIDTH_MOBILE
 
@@ -53,38 +70,59 @@ export default function Chore () {
   const gutterSize = isMobile ? 6 : 3
 
   const [lengthLimit, setLengthLimit] = useState(false)
-  const [result, setResult] = useState('')
 
-  const onChange = async ({ code = '', language = 'javascript' }) => {
-    const setCodeToURLresult = setCodeToURL(code)
-    setLengthLimit(!setCodeToURLresult)
+  const onChange = async ({ code = '' }) => {
+    if (!code) return
 
-    const result = await getResult({ code, language })
+    const hashedCode = encodeCode(code)
 
-    setResult(result)
+    setLengthLimit(hashedCode.length + window.location.host.length >= 2000)
+
+    window.history.replaceState(null, null, `/${hashedCode}`)
+
+    saveCode(hashedCode)
+
+    setCode(code)
+  }
+
+  function changeTheme () {
+    const newTheme = theme === 'vs-dark' ? 'light' : 'vs-dark'
+    setTheme(newTheme)
+    window.localStorage.setItem('theme', newTheme)
   }
 
   return (
     <>
       <Toaster position='top-center' />
 
-      <div className='fixed top-0 z-10 w-full flex flex-wrap items-center gap-3 p-3 shadow-sm bg-[#1a1a1a]'>
-        <Logo />
+      <div className='fixed top-0 left-0 z-10 w-full p-3 shadow-sm bg-[#1a1a1a]'>
+        <div className='flex items-center justify-between'>
+          <div className='flex items-center gap-3'>
+            <Menu
+              theme={theme}
+              changeTheme={changeTheme}
+              setCode={setCode}
+              language={language}
+              setLanguage={setLanguage}
+            />
 
-        <span className='text-[#707070] text-sm space-x-2'>
-          <span>v.{version}</span>
-          <span className='text-[#1a1a1a] font-bold bg-[#3f3f3f] rounded py-[1px] px-2'>BETA</span>
-        </span>
+            <Logo language={language} />
 
-        {lengthLimit && <UrlLengthError />}
+            <span className='text-[#707070] text-sm space-x-2'>
+              <span>v.{version}</span>
+              <span className='text-[#1a1a1a] font-bold bg-[#3f3f3f] rounded py-[1px] px-2'>BETA</span>
+            </span>
+          </div>
+
+          <div className='flex items-center gap-4'>
+            <DisplayOptions direction={direction} changeDirection={changeDirection} />
+            <Share />
+            <Embed />
+          </div>
+        </div>
       </div>
 
-      <div className='fixed top-3 right-4 z-10 flex items-center gap-4'>
-        <DisplayOptions direction={direction} changeDirection={changeDirection} />
-        <Share />
-        <Embed />
-        <Language />
-      </div>
+      {lengthLimit && <UrlLengthError />}
 
       {direction === 'horizontal' && (
         <Split
@@ -94,8 +132,8 @@ export default function Chore () {
           gutterSize={gutterSize}
           onDragEnd={handleDragEnd}
         >
-          <Code onChange={onChange} />
-          <Console result={result} direction={direction} />
+          <Code code={code} language={language} onChange={onChange} theme={theme} />
+          <Console code={code} language={language} direction={direction} theme={theme} />
         </Split>
       )}
       {direction === 'vertical' && (
@@ -106,12 +144,10 @@ export default function Chore () {
           gutterSize={gutterSize}
           onDragEnd={handleDragEnd}
         >
-          <Code onChange={onChange} />
-          <Console result={result} direction={direction} />
+          <Code code={code} language={language} onChange={onChange} theme={theme} />
+          <Console code={code} language={language} direction={direction} theme={theme} />
         </Split>
       )}
-
-      <Footer />
     </>
   )
 }

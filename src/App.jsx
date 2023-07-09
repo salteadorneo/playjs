@@ -1,5 +1,6 @@
 import Main from './components/Main'
 import { getCodeFromURL } from './core/encode'
+import { loadCode } from './core/storage'
 import Landing from './pages/Landing'
 
 export default function App () {
@@ -7,7 +8,8 @@ export default function App () {
   const utmSource = url.searchParams.get('utm_source')
   if (
     utmSource === 'homescreen' ||
-    getCodeFromURL()
+    getCodeFromURL() ||
+    loadCode()
   ) {
     return <Main />
   }

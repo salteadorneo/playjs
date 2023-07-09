@@ -5,7 +5,7 @@
          "part2": "on your browser"
       },
       "slogan": "Test your code, view result, share it and embed it on your website.",
-      "try_it_now": "Try it now!",
+      "try_it_now": "Start now!",
       "star_github": "Star on GitHub",
       "features": "Features",
       "feature1": {
@@ -54,8 +54,7 @@
          "embedCopy": "Copy"
       },
       "language": {
-         "globeTitle": "Change language",
-         "toast": "Language changed!"
+         "globeTitle": "Change language"
       },
       "report": {
          "responseOk": "Thanks for your report!",
@@ -70,16 +69,15 @@
       },
       "share": {
          "toast": "Copied to clipboard!",
-         "shareTitle": "Share code",
-         "share": "Share"
+         "label": "Share code",
+         "share": "Share",
+         "title": "PlayJS",
+         "text": "Check out this code I wrote on PlayJS"
       },
       "upload": {
-         "toast": "File uploaded!",
+         "loaded": "File loaded!",
          "uploadTitle": "Upload code from file",
-         "upload": "Upload",
-         "instructions": "Select or drop a file below",
-         "formCancel": "Cancel",
-         "formUpload": "Upload"
+         "label": "Open"
       },
       "urlLengthError": {
          "warning": "⚠️ You reached the limit of data we can store online. You may want to download your code so recent changes don't get lost."

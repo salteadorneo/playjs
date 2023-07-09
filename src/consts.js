@@ -13,6 +13,7 @@ const DEFAULT_VALUE_TS = import('./typescript')
 export const DEFAULT_CODE = language === 'typescript' ? DEFAULT_VALUE_TS : DEFAULT_VALUE
 
 export const EDITOR_OPTIONS = {
+  padding: { top: 10 },
   automaticLayout: true,
   lineNumbers: 'off',
   fontFamily: 'monospace',

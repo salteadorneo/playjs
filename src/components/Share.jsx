@@ -6,17 +6,25 @@ import { IS_IFRAME } from '../consts'
 export default function Share () {
   const { t } = useTranslation()
 
-  function shareURL () {
-    const url = window.location.href
-    navigator.clipboard.writeText(url)
+  function share () {
+    if (navigator.share) {
+      navigator.share({
+        title: t('share.title'),
+        text: t('share.text'),
+        url: window.location.href
+      })
+    } else {
+      const url = window.location.href
+      navigator.clipboard.writeText(url)
 
-    toast.success(t('share.toast'))
+      toast.success(t('share.toast'))
+    }
   }
 
   return (
     <Button
-      onClick={shareURL}
-      title={t('share.shareTitle')}
+      onClick={share}
+      title={t('share.label')}
     >
       <svg
         width='18'
