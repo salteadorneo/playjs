@@ -20,7 +20,7 @@ const throttle = (callback, time) => {
   }, time)
 }
 
-export default function Code ({ onChange }) {
+export default function Code ({ theme, onChange }) {
   const editorRef = useRef(null)
   const { t } = useTranslation()
 
@@ -66,9 +66,8 @@ export default function Code ({ onChange }) {
   return (
     <div>
       <Editor
-        className='pt-4'
         language={language}
-        theme='vs-dark'
+        theme={theme}
         defaultValue={defaultValue}
         onMount={onMount}
         onChange={handleEditorChange}

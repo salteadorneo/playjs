@@ -24,6 +24,12 @@ import Menu from './Menu'
 export default function Chore () {
   const size = useWindowSize()
 
+  const [theme, setTheme] = useState(() => {
+    const theme = window.localStorage.getItem('theme')
+    if (theme) return theme
+    return 'vs-dark'
+  })
+
   const isMobile = size.width < WIDTH_MOBILE
 
   const [direction, setDirection] = useState(() => {
@@ -71,12 +77,18 @@ export default function Chore () {
     setResult(result)
   }
 
+  function changeTheme () {
+    const newTheme = theme === 'vs-dark' ? 'light' : 'vs-dark'
+    setTheme(newTheme)
+    window.localStorage.setItem('theme', newTheme)
+  }
+
   return (
     <>
       <Toaster position='top-center' />
 
       <div className='fixed top-0 left-0 z-10 w-full flex flex-wrap items-center gap-3 p-3 shadow-sm bg-[#1a1a1a]'>
-        <Menu />
+        <Menu theme={theme} changeTheme={changeTheme} />
 
         <Logo />
 
@@ -102,8 +114,8 @@ export default function Chore () {
           gutterSize={gutterSize}
           onDragEnd={handleDragEnd}
         >
-          <Code onChange={onChange} />
-          <Console result={result} direction={direction} />
+          <Code onChange={onChange} theme={theme} />
+          <Console result={result} direction={direction} theme={theme} />
         </Split>
       )}
       {direction === 'vertical' && (
@@ -114,8 +126,8 @@ export default function Chore () {
           gutterSize={gutterSize}
           onDragEnd={handleDragEnd}
         >
-          <Code onChange={onChange} />
-          <Console result={result} direction={direction} />
+          <Code onChange={onChange} theme={theme} />
+          <Console result={result} direction={direction} theme={theme} />
         </Split>
       )}
     </>

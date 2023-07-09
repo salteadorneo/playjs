@@ -4,7 +4,7 @@ import Editor from '@monaco-editor/react'
 
 import { EDITOR_OPTIONS, language } from '../consts'
 
-export default function Console ({ result, direction }) {
+export default function Console ({ theme, result, direction }) {
   const lineNumbers = direction === 'horizontal' ? 'off' : 'on'
 
   const editorRef = useRef(null)
@@ -17,9 +17,8 @@ export default function Console ({ result, direction }) {
   return (
     <>
       <Editor
-        className='pt-4'
         language={language}
-        theme='vs-dark'
+        theme={theme}
         loading=''
         value={result}
         onMount={(editor) => {

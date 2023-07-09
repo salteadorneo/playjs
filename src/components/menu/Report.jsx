@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import Button from './atom/Button'
+import Button from '../atom/Button'
 
 export default function Report () {
   const [modal, setModal] = useState(false)
