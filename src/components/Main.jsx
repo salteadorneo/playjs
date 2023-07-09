@@ -24,6 +24,8 @@ import Menu from './Menu'
 export default function Chore () {
   const size = useWindowSize()
 
+  const [code, setCode] = useState('')
+
   const [theme, setTheme] = useState(() => {
     const theme = window.localStorage.getItem('theme')
     if (theme) return theme
@@ -88,7 +90,11 @@ export default function Chore () {
       <Toaster position='top-center' />
 
       <div className='fixed top-0 left-0 z-10 w-full flex flex-wrap items-center gap-3 p-3 shadow-sm bg-[#1a1a1a]'>
-        <Menu theme={theme} changeTheme={changeTheme} />
+        <Menu
+          theme={theme}
+          changeTheme={changeTheme}
+          setCode={setCode}
+        />
 
         <Logo />
 
@@ -114,7 +120,7 @@ export default function Chore () {
           gutterSize={gutterSize}
           onDragEnd={handleDragEnd}
         >
-          <Code onChange={onChange} theme={theme} />
+          <Code code={code} onChange={onChange} theme={theme} />
           <Console result={result} direction={direction} theme={theme} />
         </Split>
       )}
@@ -126,7 +132,7 @@ export default function Chore () {
           gutterSize={gutterSize}
           onDragEnd={handleDragEnd}
         >
-          <Code onChange={onChange} theme={theme} />
+          <Code code={code} onChange={onChange} theme={theme} />
           <Console result={result} direction={direction} theme={theme} />
         </Split>
       )}

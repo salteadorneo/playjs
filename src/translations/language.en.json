@@ -73,12 +73,9 @@
          "share": "Share"
       },
       "upload": {
-         "toast": "File uploaded!",
+         "loaded": "File loaded!",
          "uploadTitle": "Upload code from file",
-         "upload": "Upload",
-         "instructions": "Select or drop a file below",
-         "formCancel": "Cancel",
-         "formUpload": "Upload"
+         "label": "Open"
       },
       "urlLengthError": {
          "warning": "⚠️ You reached the limit of data we can store online. You may want to download your code so recent changes don't get lost."

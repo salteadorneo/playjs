@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import Editor from '@monaco-editor/react'
 import { useTranslation } from 'react-i18next'
 
@@ -7,8 +7,7 @@ import { decodeCode, getCodeFromURL } from '../core/encode'
 import { loadCode } from '../core/storage'
 
 import Button from './atom/Button'
-
-import Upload from './Upload'
+import { toast } from 'sonner'
 
 let throttlePause
 const throttle = (callback, time) => {
@@ -20,13 +19,22 @@ const throttle = (callback, time) => {
   }, time)
 }
 
-export default function Code ({ theme, onChange }) {
+export default function Code ({ code, theme, onChange }) {
   const editorRef = useRef(null)
   const { t } = useTranslation()
 
   const localCode = loadCode()
 
   const defaultValue = getCodeFromURL() || decodeCode(localCode)
+
+  useEffect(() => {
+    if (!code) return
+    const editor = editorRef.current
+    if (!editor) return
+    editor.setValue(code)
+
+    toast.success(t('upload.loaded'))
+  }, [code])
 
   function handleChange () {
     if (!editorRef.current) return
@@ -119,7 +127,6 @@ export default function Code ({ theme, onChange }) {
             <span className='hidden sm:block'>{t('code.download')}</span>
           )}
         </Button>
-        <Upload editor={editorRef.current} />
       </div>
     </div>
   )

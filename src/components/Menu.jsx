@@ -4,12 +4,18 @@ import Language from './menu/Language'
 import Report from './menu/Report'
 import GitHub from './menu/GitHub'
 import Theme from './menu/Theme'
+import Upload from './menu/Upload'
 
-export default function Menu ({ theme, changeTheme }) {
+export default function Menu ({ theme, changeTheme, setCode }) {
   const [open, setOpen] = useState(false)
 
   function handleMenu () {
     setOpen(!open)
+  }
+
+  function handleUpload (code) {
+    setCode(code)
+    setOpen(false)
   }
 
   return (
@@ -32,6 +38,7 @@ export default function Menu ({ theme, changeTheme }) {
         <section
           className='absolute top-14 left-0 flex flex-col gap-3 w-72 bg-[#1a1a1a] p-2'
         >
+          <Upload setCode={handleUpload} />
           <Report />
           <Language />
           <Theme theme={theme} changeTheme={changeTheme} />

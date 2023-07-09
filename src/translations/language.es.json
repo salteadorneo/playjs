@@ -73,12 +73,9 @@
          "share": "Compartir"
       },
       "upload": {
-         "toast": "Fichero subido!",
+         "loaded": "¡Fichero cargado!",
          "uploadTitle": "Subir código de fichero",
-         "upload": "Subir",
-         "instructions": "Selecciona o arrastra un fichero",
-         "formCancel": "Cancelar",
-         "formUpload": "Subir"
+         "label": "Abrir"
       },
       "urlLengthError": {
          "warning": "⚠️ Has llegado al límite de código que podemos almacenar en línea. Puedes descargarlo para no perder los últimos cambios."
