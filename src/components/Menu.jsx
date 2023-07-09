@@ -9,11 +9,23 @@ export default function Menu () {
     setOpen(!open)
   }
   return (
-    <div className='fixed bottom-0 right-0 z-20 p-3 flex flex-col items-end'>
+    <section className=''>
+      <button
+        onClick={handleMenu}
+        className={`flex items-center border-none text-[#616161] hover:text-[#999] p-0.5 ${open ? 'bg-[#1a1a1a]' : ''}`}
+      >
+        <svg
+          width={24}
+          height={24}
+          viewBox='0 0 512 512'
+          xmlns='http://www.w3.org/2000/svg'
+          fill='currentColor'
+        >
+          <path d='M64 96h384v48H64V96Zm0 136h384v48H64v-48Zm0 136h384v48H64v-48Z' />
+        </svg>
+      </button>
       {open && (
-        <section className='flex flex-col gap-3 w-72 bg-background drop-shadow-xl p-2'>
-          <Report />
-          <Language />
+        <section className='absolute top-14 flex flex-col gap-3 w-72 bg-[#1a1a1a] p-2'>
           <a
             href='https://github.com/salteadorneo/playjs'
             target='_blank'
@@ -32,27 +44,10 @@ export default function Menu () {
             </svg>
             GitHub
           </a>
+          <Report />
+          <Language />
         </section>
       )}
-      <div>
-        <button
-          onClick={handleMenu}
-          className={`flex items-center border-none text-[#616161] hover:text-[#999] p-2 ${open ? 'bg-background drop-shadow-xl' : ''}`}
-        >
-          <svg
-            width={18}
-            height={18}
-            viewBox='0 0 48 48'
-            xmlns='http://www.w3.org/2000/svg'
-            fill='currentColor'
-          >
-            <path d='M0 0h48v48H0z' fill='none' />
-            <circle cx={24} cy={24} r={5} />
-            <circle cx={24} cy={11} r={5} />
-            <circle cx={24} cy={37} r={5} />
-          </svg>
-        </button>
-      </div>
-    </div>
+    </section>
   )
 }

@@ -54,8 +54,7 @@
          "embedCopy": "Copiar"
       },
       "language": {
-         "globeTitle": "Cambiar idioma",
-         "toast": "Idioma cambiado!"
+         "globeTitle": "Cambiar idioma"
       },
       "report": {
          "responseOk": "Gracias por tu reporte!",

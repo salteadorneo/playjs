@@ -75,7 +75,9 @@ export default function Chore () {
     <>
       <Toaster position='top-center' />
 
-      <div className='fixed top-0 z-10 w-full flex flex-wrap items-center gap-3 p-3 shadow-sm bg-[#1a1a1a]'>
+      <div className='fixed top-0 left-0 z-10 w-full flex flex-wrap items-center gap-3 p-3 shadow-sm bg-[#1a1a1a]'>
+        <Menu />
+
         <Logo />
 
         <span className='text-[#707070] text-sm space-x-2'>
@@ -91,8 +93,6 @@ export default function Chore () {
         <Share />
         <Embed />
       </div>
-
-      <Menu />
 
       {direction === 'horizontal' && (
         <Split
