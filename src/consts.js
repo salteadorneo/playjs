@@ -1,4 +1,4 @@
-export const language = typeof window !== 'undefined' && window.location.host === 'ts.playjs.dev'
+export const LANGUAGE_BY_SUBDOMAIN = typeof window !== 'undefined' && window.location.host === 'ts.playjs.dev'
   ? 'typescript'
   : 'javascript'
 
@@ -10,7 +10,7 @@ const DEFAULT_VALUE = import('./javascript')
 
 const DEFAULT_VALUE_TS = import('./typescript')
 
-export const DEFAULT_CODE = language === 'typescript' ? DEFAULT_VALUE_TS : DEFAULT_VALUE
+export const DEFAULT_CODE = LANGUAGE_BY_SUBDOMAIN === 'typescript' ? DEFAULT_VALUE_TS : DEFAULT_VALUE
 
 export const EDITOR_OPTIONS = {
   padding: { top: 10 },

@@ -9,7 +9,7 @@ import { Toaster } from 'sonner'
 
 import { encodeCode } from '../core/encode'
 import { saveCode } from '../core/storage'
-import { WIDTH_MOBILE } from '../consts'
+import { LANGUAGE_BY_SUBDOMAIN, WIDTH_MOBILE } from '../consts'
 
 import Logo from './atom/Logo'
 import Share from './Share'
@@ -28,7 +28,7 @@ export default function Chore () {
   const [language, setLanguage] = useState(() => {
     const language = window.localStorage.getItem('language')
     if (language) return language
-    return 'javascript'
+    return LANGUAGE_BY_SUBDOMAIN
   })
 
   useEffect(() => {
