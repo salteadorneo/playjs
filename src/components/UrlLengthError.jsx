@@ -4,7 +4,7 @@ export default function UrlLengthError () {
   const { t } = useTranslation()
 
   return (
-    <div className='text-[#825c0f] bg-[#fbf2de] w-full text-left p-[10px] pl-[15px] rounded-md'>
+    <div className='fixed bottom-14 z-10 text-black bg-yellow-200 w-full text-left p-2'>
       <p>{t('urlLengthError.warning')}</p>
     </div>
   )

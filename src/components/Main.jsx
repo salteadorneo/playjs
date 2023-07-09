@@ -89,28 +89,32 @@ export default function Chore () {
     <>
       <Toaster position='top-center' />
 
-      <div className='fixed top-0 left-0 z-10 w-full flex flex-wrap items-center gap-3 p-3 shadow-sm bg-[#1a1a1a]'>
-        <Menu
-          theme={theme}
-          changeTheme={changeTheme}
-          setCode={setCode}
-        />
+      <div className='fixed top-0 left-0 z-10 w-full p-3 shadow-sm bg-[#1a1a1a]'>
+        <div className='flex items-center justify-between'>
+          <div className='flex items-center gap-3'>
+            <Menu
+              theme={theme}
+              changeTheme={changeTheme}
+              setCode={setCode}
+            />
 
-        <Logo />
+            <Logo />
 
-        <span className='text-[#707070] text-sm space-x-2'>
-          <span>v.{version}</span>
-          <span className='text-[#1a1a1a] font-bold bg-[#3f3f3f] rounded py-[1px] px-2'>BETA</span>
-        </span>
+            <span className='text-[#707070] text-sm space-x-2'>
+              <span>v.{version}</span>
+              <span className='text-[#1a1a1a] font-bold bg-[#3f3f3f] rounded py-[1px] px-2'>BETA</span>
+            </span>
+          </div>
 
-        {lengthLimit && <UrlLengthError />}
+          <div className='flex items-center gap-4'>
+            <DisplayOptions direction={direction} changeDirection={changeDirection} />
+            <Share />
+            <Embed />
+          </div>
+        </div>
       </div>
 
-      <div className='fixed top-3 right-4 z-10 flex items-center gap-4'>
-        <DisplayOptions direction={direction} changeDirection={changeDirection} />
-        <Share />
-        <Embed />
-      </div>
+      {lengthLimit && <UrlLengthError />}
 
       {direction === 'horizontal' && (
         <Split

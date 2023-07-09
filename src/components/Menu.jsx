@@ -5,6 +5,7 @@ import Report from './menu/Report'
 import GitHub from './menu/GitHub'
 import Theme from './menu/Theme'
 import Upload from './menu/Upload'
+import Download from './menu/Download'
 
 export default function Menu ({ theme, changeTheme, setCode }) {
   const [open, setOpen] = useState(false)
@@ -39,6 +40,7 @@ export default function Menu ({ theme, changeTheme, setCode }) {
           className='absolute top-14 left-0 flex flex-col gap-3 w-72 bg-[#1a1a1a] p-2'
         >
           <Upload setCode={handleUpload} />
+          <Download />
           <Report />
           <Language />
           <Theme theme={theme} changeTheme={changeTheme} />
