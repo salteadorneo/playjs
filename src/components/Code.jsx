@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import Editor from '@monaco-editor/react'
 
-import { EDITOR_OPTIONS, language } from '../consts'
+import { EDITOR_OPTIONS } from '../consts'
 import { decodeCode, getCodeFromURL } from '../core/encode'
 import { loadCode } from '../core/storage'
 
@@ -15,7 +15,7 @@ const throttle = (callback, time) => {
   }, time)
 }
 
-export default function Code ({ code, theme, onChange }) {
+export default function Code ({ code, language, theme, onChange }) {
   const editorRef = useRef(null)
 
   const localCode = loadCode()
@@ -39,9 +39,7 @@ export default function Code ({ code, theme, onChange }) {
 
   function onMount (editor) {
     editorRef.current = editor
-
     editor.focus()
-
     handleChange()
   }
 

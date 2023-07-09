@@ -6,8 +6,9 @@ import GitHub from './menu/GitHub'
 import Theme from './menu/Theme'
 import Upload from './menu/Upload'
 import Download from './menu/Download'
+import Languages from './menu/Languages'
 
-export default function Menu ({ theme, changeTheme, setCode }) {
+export default function Menu ({ theme, changeTheme, setCode, language, setLanguage }) {
   const [open, setOpen] = useState(false)
 
   function handleMenu () {
@@ -41,6 +42,7 @@ export default function Menu ({ theme, changeTheme, setCode }) {
         >
           <Upload setCode={handleUpload} />
           <Download />
+          <Languages language={language} setLanguage={setLanguage} />
           <Theme theme={theme} changeTheme={changeTheme} />
           <Report />
           <GitHub />

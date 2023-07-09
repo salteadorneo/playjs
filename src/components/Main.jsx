@@ -1,6 +1,6 @@
 import { version } from '../../package.json'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Split from 'react-split'
 
 import { useWindowSize } from '@/hooks/useWindowSize'
@@ -24,6 +24,16 @@ export default function Chore () {
   const size = useWindowSize()
 
   const [code, setCode] = useState('')
+
+  const [language, setLanguage] = useState(() => {
+    const language = window.localStorage.getItem('language')
+    if (language) return language
+    return 'javascript'
+  })
+
+  useEffect(() => {
+    window.localStorage.setItem('language', language)
+  }, [language])
 
   const [theme, setTheme] = useState(() => {
     const theme = window.localStorage.getItem('theme')
@@ -92,9 +102,11 @@ export default function Chore () {
               theme={theme}
               changeTheme={changeTheme}
               setCode={setCode}
+              language={language}
+              setLanguage={setLanguage}
             />
 
-            <Logo />
+            <Logo language={language} />
 
             <span className='text-[#707070] text-sm space-x-2'>
               <span>v.{version}</span>
@@ -120,7 +132,7 @@ export default function Chore () {
           gutterSize={gutterSize}
           onDragEnd={handleDragEnd}
         >
-          <Code code={code} onChange={onChange} theme={theme} />
+          <Code code={code} language={language} onChange={onChange} theme={theme} />
           <Console code={code} direction={direction} theme={theme} />
         </Split>
       )}
@@ -132,7 +144,7 @@ export default function Chore () {
           gutterSize={gutterSize}
           onDragEnd={handleDragEnd}
         >
-          <Code code={code} onChange={onChange} theme={theme} />
+          <Code code={code} language={language} onChange={onChange} theme={theme} />
           <Console code={code} direction={direction} theme={theme} />
         </Split>
       )}
