@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { language } from '../../consts'
+import { LANGUAGE_BY_SUBDOMAIN } from '../../consts'
 
 export default function Upload ({ setCode }) {
   const { t } = useTranslation()
@@ -45,7 +45,7 @@ export default function Upload ({ setCode }) {
             type='file'
             id='file'
             className='hidden'
-            accept={language === 'javascript' ? '.js' : '.js, .ts'}
+            accept={LANGUAGE_BY_SUBDOMAIN === 'javascript' ? '.js' : '.js, .ts'}
             ref={fileInputRef}
             onChange={handleSubmit}
           />
