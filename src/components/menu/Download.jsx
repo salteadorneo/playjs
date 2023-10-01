@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next'
 import Button from '../atom/Button'
 
-export default function Download ({ handleDownload }) {
+export default function Download({ handleDownload }) {
   const { t } = useTranslation()
 
   return (
     <Button
       onClick={handleDownload}
       title={t('code.downloadTitle')}
-      className='flex justify-between'
+      className='flex justify-between text-[#e2dfdf]'
     >
       <div className='flex items-center gap-2'>
         <svg
@@ -31,8 +31,8 @@ export default function Download ({ handleDownload }) {
         {t('code.download')}
       </div>
       <div className='flex items-center gap-1 text-[#858585]'>
-        <span className='bg-[#3f3f3f] px-1 rounded text-sm'>Ctrl</span>
-        <span className='bg-[#3f3f3f] px-1 rounded text-sm'>S</span>
+        <span className='bg-[#3f3f3f] text-[#e2dfdf] px-1 rounded text-sm'>Ctrl</span>
+        <span className='bg-[#3f3f3f] text-[#e2dfdf] px-1 rounded text-sm'>S</span>
       </div>
     </Button>
   )
