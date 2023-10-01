@@ -1,10 +1,10 @@
-export default function GitHub () {
+export default function GitHub() {
   return (
     <a
       href='https://github.com/salteadorneo/playjs'
       target='_blank'
       rel='noreferrer'
-      className='flex items-center gap-2 text-[#858585] hover:text-[#999]'
+      className='flex items-center gap-2 text-[#e2dfdf] hover:text-[#999]'
     >
       <svg
         width={20}

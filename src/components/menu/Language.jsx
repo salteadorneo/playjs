@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next'
 
-export default function Language () {
+export default function Language() {
   const { t, i18n } = useTranslation()
 
-  function changeLanguage () {
+  function changeLanguage() {
     const newLanguage = i18n.resolvedLanguage === 'en' ? 'es' : 'en'
     i18n.changeLanguage(newLanguage)
   }
 
   return (
-    <div className='relative text-[#858585]'>
+    <div className='relative text-[#e2dfdf]'>
       <svg
         width={18}
         height={18}
@@ -31,7 +31,7 @@ export default function Language () {
         value={i18n.resolvedLanguage}
         onChange={changeLanguage}
         title={t('language.globeTitle')}
-        className='pl-[20px] w-full text-[#858585] bg-[#1a1a1a] rounded-md border border-[#1a1a1a] outline-none'
+        className='pl-[20px] w-full text-[#e2dfdf] bg-[#1a1a1a] rounded-md border border-[#1a1a1a] outline-none'
       >
         <option value='en'>English</option>
         <option value='es'>Español</option>

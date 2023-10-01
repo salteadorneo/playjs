@@ -1,9 +1,10 @@
 import Button from '../atom/Button'
 
-export default function Theme ({ theme, changeTheme }) {
+export default function Theme({ theme, changeTheme }) {
   return (
     <Button
       onClick={changeTheme}
+      className='text-[#e2dfdf]'
     >
       {theme === 'vs-dark'
         ? (
@@ -30,7 +31,7 @@ export default function Theme ({ theme, changeTheme }) {
             </svg>
             Modo claro
           </>
-          )
+        )
         : (
           <>
             <svg
@@ -51,7 +52,7 @@ export default function Theme ({ theme, changeTheme }) {
             </svg>
             Modo oscuro
           </>
-          )}
+        )}
     </Button>
 
   )

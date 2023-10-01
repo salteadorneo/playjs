@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Button from '../atom/Button'
 
-export default function Report () {
+export default function Report() {
   const [modal, setModal] = useState(false)
   const [status, setStatus] = useState(null)
   const { t } = useTranslation()
@@ -13,15 +13,15 @@ export default function Report () {
     }
   }, [modal])
 
-  function handleClick () {
+  function handleClick() {
     setModal(status => !status)
   }
 
-  function reportBug () {
+  function reportBug() {
     setModal(status => !status)
   }
 
-  function handleSubmit (event) {
+  function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const data = new FormData(form)
@@ -55,6 +55,7 @@ export default function Report () {
       <Button
         onClick={reportBug}
         title={t('report.reportTitle')}
+        className='text-[#e2dfdf]'
       >
         <svg
           width={20}

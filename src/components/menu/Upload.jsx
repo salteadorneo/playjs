@@ -2,12 +2,12 @@ import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LANGUAGE_BY_SUBDOMAIN } from '../../consts'
 
-export default function Upload ({ setCode }) {
+export default function Upload({ setCode }) {
   const { t } = useTranslation()
 
   const fileInputRef = useRef(null)
 
-  async function handleSubmit (event) {
+  async function handleSubmit(event) {
     event.preventDefault()
 
     const file = fileInputRef.current.files[0]
@@ -21,7 +21,7 @@ export default function Upload ({ setCode }) {
       <label htmlFor='file'>
         <div
           title={t('upload.uploadTitle')}
-          className='flex items-center gap-2 bg-none border-none text-[#858585] hover:text-[#999] p-0'
+          className='flex items-center gap-2 bg-none border-none text-[#e2dfdf] hover:text-[#999] p-0'
         >
           <svg
             width={20}

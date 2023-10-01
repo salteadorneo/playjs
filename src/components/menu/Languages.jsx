@@ -1,7 +1,7 @@
 import Button from '../atom/Button'
 
-export default function Languages ({ language, setLanguage }) {
-  function handleChange () {
+export default function Languages({ language, setLanguage }) {
+  function handleChange() {
     if (language === 'typescript') {
       setLanguage('javascript')
       return
@@ -12,6 +12,7 @@ export default function Languages ({ language, setLanguage }) {
   return (
     <Button
       onClick={handleChange}
+      className='text-[#e2dfdf]'
     >
       <svg
         width={20}
