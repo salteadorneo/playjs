@@ -1,4 +1,5 @@
 import ts from 'typescript'
+import { LANGUAGES } from '../consts'
 
 let codeWithDependencies = false
 
@@ -43,7 +44,7 @@ export async function getResult ({ code, language = 'javascript' }) {
     }
 
     try {
-      const lineCodeJS = language === 'typescript'
+      const lineCodeJS = language === LANGUAGES.TYPESCRIPT
         ? ts.transpile(lineCode)
         : lineCode
 
