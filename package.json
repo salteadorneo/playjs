@@ -13,7 +13,6 @@
     "@monaco-editor/react": "4.6.0",
     "i18next": "^23.8.2",
     "i18next-browser-languagedetector": "^7.2.0",
-    "js-base64": "3.7.6",
     "monaco-js-linter": "1.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
