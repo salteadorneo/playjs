@@ -8,14 +8,16 @@ export default function PlayJS({
   height = '100dvh',
   language = LANGUAGE.JAVASCRIPT,
   direction = DIRECTION.HORIZONTAL,
-  theme = THEME.DARK
+  theme = THEME.DARK,
+  onChange = (code: string) => { }
 }: {
   code?: string,
   width?: string,
   height?: string,
   language?: LanguageType,
   direction?: DirectionType,
-  theme?: ThemeType
+  theme?: ThemeType,
+  onChange?: (code: string) => void
 }) {
   return (
     <section style={{
@@ -34,6 +36,7 @@ export default function PlayJS({
         code={code}
         language={language}
         theme={theme}
+        onChange={onChange}
       />
     </section>
   )
