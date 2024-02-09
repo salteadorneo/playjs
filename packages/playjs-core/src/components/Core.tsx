@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Split from 'react-split'
 
-import { useWindowSize } from '@/hooks/useWindowSize'
+import { useWindowSize } from '../hooks/useWindowSize'
 
 import Console from './Console'
 import Code from './Code'
@@ -9,14 +9,14 @@ import { Logo } from './Logo'
 
 import { DIRECTION, LANGUAGE, THEME, WIDTH_MOBILE } from '../consts'
 
-export function Core ({
+export function Core({
   code: defaultCode = '',
   width = '100dvw',
   height = '100dvh',
   direction = DIRECTION.HORIZONTAL,
   language = LANGUAGE.JAVASCRIPT,
   theme = THEME.DARK,
-  onChange: updateCode = () => { }
+  onChange: updateCode = (code: string) => { }
 }) {
   const size = useWindowSize()
 
@@ -36,7 +36,7 @@ export function Core ({
 
   const [sizes, setSizes] = useState([50, 50])
 
-  function handleDragEnd (e) {
+  function handleDragEnd(e: number[]) {
     const [left, right] = e
     setSizes([left, right])
   }
@@ -64,7 +64,7 @@ export function Core ({
           width,
           height
         }}
-        direction={direction}
+        direction={direction === DIRECTION.HORIZONTAL ? 'horizontal' : 'vertical'}
         sizes={sizes}
         gutterSize={gutterSize}
         gutterStyle={() => ({

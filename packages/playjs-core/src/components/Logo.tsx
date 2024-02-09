@@ -1,10 +1,12 @@
 import { LANGUAGE, THEME } from '../consts'
 
-export function Logo ({
+export function Logo({
   theme = THEME.DARK,
   language = LANGUAGE.JAVASCRIPT
 }) {
-  const Wrapper = ({ children }) => (
+  const Wrapper = ({ children }: {
+    children: React.ReactNode
+  }) => (
     <a
       href='https://playjs.dev'
       target='_blank'

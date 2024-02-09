@@ -6,8 +6,8 @@ import path from 'path'
 export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'index.js'),
-      name: 'create-playjs',
+      entry: path.resolve(__dirname, 'index.ts'),
+      name: 'playjs-core',
       fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {

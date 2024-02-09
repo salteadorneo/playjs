@@ -1,6 +1,6 @@
 {
   "name": "playjs-core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "license": "BSD-3-Clause",
   "keywords": [
@@ -11,8 +11,9 @@
     "react",
     "runjs"
   ],
-  "bin": {
-    "playjs": "playjs.js"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/salteadorneo/PlayJS"
   },
   "files": [
     "/dist"
@@ -24,9 +25,9 @@
     }
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "tsc && vite",
+    "build": "tsc && vite build",
+    "preview": "tsc && vite preview",
     "test": "vitest"
   },
   "peerDependencies": {
@@ -41,8 +42,8 @@
     "react-split": "2.0.14"
   },
   "devDependencies": {
-    "@types/react": "18.2.55",
-    "@types/react-dom": "18.2.19",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "4.2.1",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "standard": "17.1.0",

@@ -2,10 +2,16 @@ import { useEffect, useRef, useState } from 'react'
 
 import Editor from '@monaco-editor/react'
 
-import { DIRECTION, EDITOR_OPTIONS } from '../consts'
+import { DIRECTION, DirectionType, EDITOR_OPTIONS, LanguageType, ThemeType } from '../consts'
 import { getResult } from '../core'
 
-export default function Console ({ code, language, theme, direction }) {
+export default function Console({ code, language, theme, direction }: {
+  code: string,
+  language: LanguageType,
+  theme: ThemeType,
+  direction: DirectionType
+
+}) {
   const lineNumbers = direction === DIRECTION.HORIZONTAL ? 'off' : 'on'
 
   const editorRef = useRef(null)
@@ -26,7 +32,7 @@ export default function Console ({ code, language, theme, direction }) {
         loading=''
         value={result}
         onMount={(editor) => {
-          editorRef.current = editor
+          editorRef.current = editor as any
         }}
         options={{
           ...EDITOR_OPTIONS,

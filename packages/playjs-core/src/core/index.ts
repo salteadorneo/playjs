@@ -1,12 +1,15 @@
 import ts from 'typescript'
 
-import { LANGUAGE } from '../consts'
+import { LANGUAGE, LanguageType } from '../consts'
 
 let codeWithDependencies = false
 
 const TAG_CONSOLE_LOG = 'window.console.log'
 
-export async function getResult ({ code, language = LANGUAGE.JAVASCRIPT }) {
+export async function getResult({ code, language = LANGUAGE.JAVASCRIPT }: {
+  code: string,
+  language: LanguageType
+}) {
   if (!code) return ''
 
   if (codeWithDependencies) {
@@ -77,7 +80,7 @@ if (typeof window !== 'undefined') {
   }
 }
 
-export async function resolveHTML (html) {
+export async function resolveHTML(html: any) {
   if (typeof html === 'object') {
     if (html instanceof Promise) {
       const resolvedValue = await html
@@ -90,7 +93,7 @@ export async function resolveHTML (html) {
       const htmlParsed = html.replace(TAG_CONSOLE_LOG, '')
       return htmlParsed.split('|||').map(arg => {
         const value = isNumeric(arg)
-        if (isNaN(value)) return `'${arg}'`
+        if (typeof value === 'string') return `'${arg}'`
         return value
       }).join(' ')
     }
@@ -110,7 +113,7 @@ export async function resolveHTML (html) {
   return html
 }
 
-function isNumeric (str) {
+function isNumeric(str: string) {
   try {
     return parseFloat(str)
   } catch (err) {
