@@ -48,6 +48,7 @@ export default function Menu ({ theme, changeTheme, setCode, language, setLangua
   }
 
   function handleDownload () {
+    downloadCode()
     setOpen(false)
   }
 
