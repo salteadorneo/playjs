@@ -27,7 +27,7 @@ export function Logo({
       <div style={{
         width: '1rem',
         height: '1rem',
-        backgroundColor: `var(--${language})`
+        backgroundColor: language === LANGUAGE.TYPESCRIPT ? '#007acc' : '#f0db4f'
       }}
       />
       <h1
