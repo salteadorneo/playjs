@@ -27,9 +27,19 @@
   <meta property="twitter:description"
     content="Playground de JavaScript para navegador. Tu código en cualquier dispositivo.">
   <meta property="twitter:image" content="https://playjs.dev/og.png">
+
+  <style>
+    body {
+      margin: 0;
+      box-sizing: border-box;
+      display: grid;
+      place-content: center;
+      height: 100dvh;
+    }
+  </style>
 </head>
 
-<body style="background: #1e1e1e;">
+<body>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
   <script data-no-cookie async src="https://cdn.splitbee.io/sb.js"></script>

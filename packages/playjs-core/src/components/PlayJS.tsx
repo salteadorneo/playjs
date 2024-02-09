@@ -1,10 +1,11 @@
 import { DIRECTION, DirectionType, LANGUAGE, LanguageType, THEME, ThemeType } from '../consts'
 
 import { Core } from './Core'
+import { Logo } from './Logo'
 
 export default function PlayJS({
   code = '',
-  width = '100vw',
+  width = '100dvw',
   height = '100dvh',
   language = LANGUAGE.JAVASCRIPT,
   direction = DIRECTION.HORIZONTAL,
@@ -21,14 +22,25 @@ export default function PlayJS({
 }) {
   return (
     <section style={{
+      position: 'relative',
       display: 'flex',
       flexDirection: 'column',
       fontFamily: 'monospace',
       width,
       height,
-      backgroundColor: theme === THEME.DARK ? '#1E1E1E' : 'white'
+      backgroundColor: theme === THEME.DARK ? '#1e1e1e' : 'white'
     }}
     >
+      <div style={{
+        position: 'absolute',
+        right: 12,
+        bottom: 2,
+        zIndex: 1,
+        opacity: 0.3
+      }}
+      >
+        <Logo theme={theme} language={language} />
+      </div>
       <Core
         width={width}
         height={height}
