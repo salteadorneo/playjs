@@ -30,7 +30,7 @@ export function Logo({
         backgroundColor: language === LANGUAGE.TYPESCRIPT ? '#007acc' : '#f0db4f'
       }}
       />
-      <h1
+      <span
         style={{
           color: theme === THEME.DARK ? 'white' : 'black',
           fontSize: '1rem',
@@ -40,7 +40,7 @@ export function Logo({
         }}
       >
         PlayJS
-      </h1>
+      </span>
     </Wrapper>
   )
 }
