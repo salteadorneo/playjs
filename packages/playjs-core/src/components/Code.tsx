@@ -4,7 +4,7 @@ import Editor from '@monaco-editor/react'
 import { EDITOR_OPTIONS, LanguageType, ThemeType } from '../consts'
 
 let throttlePause: any = null
-const throttle = (callback: any, time: number) => {
+const debounce = (callback: any, time: number) => {
   if (throttlePause) return
   throttlePause = true
   setTimeout(() => {
@@ -45,7 +45,7 @@ export default function Code(
   }
 
   function handleEditorChange() {
-    throttle(handleChange, 800)
+    debounce(handleChange, 50)
   }
 
   return (
