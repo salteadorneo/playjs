@@ -1,7 +1,6 @@
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import Button from './atom/Button'
-import { IS_IFRAME } from '../consts'
 
 export default function Share () {
   const { t } = useTranslation()
@@ -54,9 +53,6 @@ export default function Share () {
           fillRule='evenodd'
         />
       </svg>
-      {!IS_IFRAME && (
-        <span className='hidden sm:block'>{t('share.share')}</span>
-      )}
     </Button>
   )
 }

@@ -74,7 +74,7 @@ export default function Menu ({ theme, changeTheme, setCode, language, setLangua
       </button>
       {open && (
         <section
-          className='absolute top-14 left-0 pl-4 flex flex-col gap-3 w-72 bg-[#1a1a1a] p-2'
+          className='absolute top-0 left-14 pl-4 flex flex-col gap-3 w-72 bg-[#1a1a1a] p-2'
         >
           <Upload
             setCode={handleUpload}

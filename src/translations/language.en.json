@@ -78,9 +78,6 @@
          "loaded": "File loaded!",
          "uploadTitle": "Upload code from file",
          "label": "Open"
-      },
-      "urlLengthError": {
-         "warning": "⚠️ You reached the limit of data we can store online. You may want to download your code so recent changes don't get lost."
       }
    }
 }

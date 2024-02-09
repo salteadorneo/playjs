@@ -78,9 +78,6 @@
          "loaded": "¡Fichero cargado!",
          "uploadTitle": "Subir código de fichero",
          "label": "Abrir"
-      },
-      "urlLengthError": {
-         "warning": "⚠️ Has llegado al límite de código que podemos almacenar en línea. Puedes descargarlo para no perder los últimos cambios."
       }
    }
 }

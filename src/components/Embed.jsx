@@ -46,7 +46,6 @@ export default function Embed () {
             }}
           />
         </svg>
-        <span className='hidden sm:block'>{t('embed.embed')}</span>
       </Button>
       {modal && (
         <section className='modal fixed top-0 left-0 z-20 w-screen h-screen bg-black/80 grid place-content-center'>

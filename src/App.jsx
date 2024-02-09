@@ -11,7 +11,7 @@ export default function App () {
     getCodeFromURL() ||
     loadCode()
   ) {
-    return <Main />
+    return <Main code={getCodeFromURL() ?? loadCode()} />
   }
 
   return <Landing />
