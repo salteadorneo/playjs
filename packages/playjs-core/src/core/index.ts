@@ -4,8 +4,6 @@ import { LANGUAGE, LanguageType } from '../consts'
 
 let codeWithDependencies = false
 
-const TAG_CONSOLE_LOG = 'window.console.log'
-
 export async function getResult({ code, language = LANGUAGE.JAVASCRIPT }: {
   code: string,
   language: LanguageType
@@ -34,6 +32,8 @@ export async function getResult({ code, language = LANGUAGE.JAVASCRIPT }: {
     .trimEnd()
     .split(/\r?\n|\r|\n/g)
 
+  const logs = getConsoleLogs(wrappedCode)
+
   for (let i = 0; i < codeLines.length; i++) {
     const line = codeLines[i].trim()
     if (line === '') {
@@ -47,12 +47,27 @@ export async function getResult({ code, language = LANGUAGE.JAVASCRIPT }: {
       continue
     }
 
+    const logsLine = logs.filter((log) => log.line === i + 1)
+    if (logsLine.length > 0) {
+      const logsGrouped = logsLine.reduce((acc, log) => {
+        const lastLog = acc[acc.length - 1]
+        if (lastLog && lastLog.id === log.id) {
+          lastLog.message += ' ' + log.message
+        } else {
+          acc.push(log)
+        }
+        return acc
+      }, [] as Log[])
+      result += logsGrouped.map((log) => log.message).join(' ┊ ')
+      result += '\n'
+      continue
+    }
+
     try {
       const lineCodeJS = language === LANGUAGE.TYPESCRIPT
         ? ts.transpile(lineCode)
         : lineCode
 
-      // eslint-disable-next-line no-eval
       const html = await eval(lineCodeJS)
       if (i > 0 && line !== codeLines[i - 1].trim() && prevResult === html) {
         result += '\n'
@@ -74,29 +89,15 @@ export async function getResult({ code, language = LANGUAGE.JAVASCRIPT }: {
   return result
 }
 
-if (typeof window !== 'undefined') {
-  window.console.log = async function (...args) {
-    return TAG_CONSOLE_LOG + args.join('|||')
-  }
-}
-
-export async function resolveHTML(html: any) {
+export function resolveHTML(html: any): any {
   if (typeof html === 'object') {
     if (html instanceof Promise) {
-      const resolvedValue = await html
-      return await resolveHTML(resolvedValue)
+      return html
+        .then((resolvedValue: any) => resolveHTML(resolvedValue));
     }
-    return JSON.stringify(html)
+    return JSON.stringify(html);
   }
   if (typeof html === 'string') {
-    if (html.startsWith(TAG_CONSOLE_LOG)) {
-      const htmlParsed = html.replace(TAG_CONSOLE_LOG, '')
-      return htmlParsed.split('|||').map(arg => {
-        const value = isNumeric(arg)
-        if (typeof value === 'string') return `'${arg}'`
-        return value
-      }).join(' ')
-    }
     // start or end with ' or "
     if (html.match(/^['"].*['"]$/)) return html
     return `'${html}'`
@@ -113,10 +114,37 @@ export async function resolveHTML(html: any) {
   return html
 }
 
-function isNumeric(str: string) {
+interface Log {
+  id: string;
+  message: string;
+  line: number | null;
+}
+
+function getConsoleLogs(codigo: string): Log[] {
+  let logs: Log[] = [];
+
+  console.log = function (...args: any[]) {
+    const callerLineNumber = (new Error().stack?.split("\n")[2].split(":").slice(-2)[0]) || null;
+    const line = callerLineNumber != null ? parseInt(callerLineNumber) - 2 : null
+
+    const id = Math.random().toString(36).substr(2, 9);
+
+    args.forEach((arg) => {
+      logs.push({
+        id, message: resolveHTML(arg), line,
+      });
+    });
+  };
+
   try {
-    return parseFloat(str)
-  } catch (err) {
-    return str
+    const auxFunction = new Function(codigo);
+    auxFunction();
+  } catch (error: any) {
+    const callerLineNumber = error.stack?.split("\n")[1].split(":").slice(-2)[0];
+    const line = callerLineNumber != null ? parseInt(callerLineNumber) - 2 : null
+
+    logs.push({ id: '', message: error.message, line });
   }
+
+  return logs;
 }
