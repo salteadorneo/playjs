@@ -1,3 +1,4 @@
+import { THEME } from '../../consts'
 import Button from '../atom/Button'
 
 export default function Theme ({ theme, changeTheme }) {
@@ -5,7 +6,7 @@ export default function Theme ({ theme, changeTheme }) {
     <Button
       onClick={changeTheme}
     >
-      {theme === 'vs-dark'
+      {theme === THEME.DARK
         ? (
           <>
             <svg

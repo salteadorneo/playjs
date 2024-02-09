@@ -6,7 +6,7 @@ import { Toaster } from 'sonner'
 
 import { encodeCode } from '../core/encode'
 import { saveCode } from '../core/storage'
-import { LANGUAGE_BY_SUBDOMAIN, WIDTH_MOBILE } from '../consts'
+import { DIRECTION, LANGUAGE_BY_SUBDOMAIN, THEME, WIDTH_MOBILE } from '../consts'
 
 import Share from './Share'
 import Embed from './Embed'
@@ -32,7 +32,7 @@ export default function Main ({ code: defaultCode = '' }) {
   const [theme, setTheme] = useState(() => {
     const theme = window.localStorage.getItem('theme')
     if (theme) return theme
-    return 'vs-dark'
+    return THEME.DARK
   })
 
   const isMobile = size.width < WIDTH_MOBILE
@@ -40,11 +40,11 @@ export default function Main ({ code: defaultCode = '' }) {
   const [direction, setDirection] = useState(() => {
     const direction = window.localStorage.getItem('split-direction')
     if (direction) return direction
-    return isMobile ? 'vertical' : 'horizontal'
+    return isMobile ? DIRECTION.VERTICAL : DIRECTION.HORIZONTAL
   })
 
   function changeDirection () {
-    const newDirection = direction === 'horizontal' ? 'vertical' : 'horizontal'
+    const newDirection = direction === DIRECTION.HORIZONTAL ? DIRECTION.VERTICAL : DIRECTION.HORIZONTAL
     setDirection(newDirection)
     window.localStorage.setItem('split-direction', newDirection)
   }
@@ -62,7 +62,7 @@ export default function Main ({ code: defaultCode = '' }) {
   }
 
   function changeTheme () {
-    const newTheme = theme === 'vs-dark' ? 'light' : 'vs-dark'
+    const newTheme = theme === THEME.DARK ? THEME.LIGHT : THEME.DARK
     setTheme(newTheme)
     window.localStorage.setItem('theme', newTheme)
   }

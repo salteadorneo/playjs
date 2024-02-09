@@ -10,6 +10,7 @@ import Theme from './menu/Theme'
 import Upload from './menu/Upload'
 import Download from './menu/Download'
 import Languages from './menu/Languages'
+import { LANGUAGE } from '../consts'
 
 export default function Menu ({ theme, changeTheme, setCode, language, setLanguage }) {
   const [open, setOpen] = useState(false)
@@ -38,7 +39,7 @@ export default function Menu ({ theme, changeTheme, setCode, language, setLangua
     const url = URL.createObjectURL(blob)
 
     const link = document.createElement('a')
-    link.download = 'playjs.' + (language === 'javascript' ? 'js' : 'ts')
+    link.download = 'playjs.' + (language === LANGUAGE.JAVASCRIPT ? 'js' : 'ts')
     link.href = url
     link.click()
   }

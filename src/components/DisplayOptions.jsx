@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import Button from './atom/Button'
+import { DIRECTION } from '../consts'
 
 export default function DisplayOptions ({ direction, changeDirection }) {
   const { t } = useTranslation()
@@ -16,7 +17,7 @@ export default function DisplayOptions ({ direction, changeDirection }) {
           viewBox='0 0 24 24'
           xmlns='http://www.w3.org/2000/svg'
           fill='currentColor'
-          className={`${direction === 'vertical' ? '' : 'rotate-90'}`}
+          className={`${direction === DIRECTION.VERTICAL ? '' : 'rotate-90'}`}
         >
           <path
             fillRule='evenodd'
