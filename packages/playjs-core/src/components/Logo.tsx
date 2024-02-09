@@ -13,7 +13,8 @@ export function Logo({
       style={{
         display: 'flex',
         alignItems: 'center',
-        gap: '0.3rem'
+        gap: '0.3rem',
+        textDecoration: 'none'
       }}
       rel='noreferrer'
     >
@@ -24,19 +25,18 @@ export function Logo({
   return (
     <Wrapper>
       <div style={{
-        width: '.8rem',
-        height: '.8rem',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: language === LANGUAGE.TYPESCRIPT ? '#007acc' : '#f0db4f'
+        width: '1rem',
+        height: '1rem',
+        backgroundColor: `var(--${language})`
       }}
       />
       <h1
         style={{
-          color: theme === THEME.DARK ? '#fff' : '#000',
+          color: theme === THEME.DARK ? 'white' : 'black',
           fontSize: '1rem',
-          fontWeight: 100
+          lineHeight: '1rem',
+          fontWeight: 100,
+          letterSpacing: '-.05rem',
         }}
       >
         PlayJS
