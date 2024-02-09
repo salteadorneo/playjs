@@ -34,7 +34,7 @@ export default function PlayJS({
       <div style={{
         position: 'absolute',
         right: 12,
-        bottom: 2,
+        bottom: 12,
         zIndex: 1,
         opacity: 0.3
       }}
