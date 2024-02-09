@@ -29,7 +29,7 @@ export default function PlayJS({
     >
       <Core
         width={width}
-        height='100dvh'
+        height={height}
         direction={direction}
         code={code}
         language={language}
