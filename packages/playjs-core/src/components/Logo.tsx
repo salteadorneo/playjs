@@ -1,46 +1,53 @@
 import { LANGUAGE, THEME } from '../consts'
+import { version } from '../../package.json'
 
 export function Logo({
   theme = THEME.DARK,
   language = LANGUAGE.JAVASCRIPT
 }) {
-  const Wrapper = ({ children }: {
-    children: React.ReactNode
-  }) => (
-    <a
-      href='https://playjs.dev'
-      target='_blank'
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0.3rem',
-        textDecoration: 'none'
-      }}
-      rel='noreferrer'
-    >
-      {children}
-    </a>
-  )
-
   return (
-    <Wrapper>
-      <div style={{
-        width: '1rem',
-        height: '1rem',
-        backgroundColor: language === LANGUAGE.TYPESCRIPT ? '#007acc' : '#f0db4f'
-      }}
-      />
+    <div style={{
+      display: "flex",
+      alignItems: "end",
+      gap: 8,
+      fontFamily: "monospace",
+    }}>
+      <a
+        href='https://playjs.dev'
+        target='_blank'
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px',
+          textDecoration: 'none'
+        }}
+        rel='noreferrer'
+      >
+        <div style={{
+          width: '16px',
+          height: '16px',
+          backgroundColor: language === LANGUAGE.TYPESCRIPT ? '#007acc' : '#f0db4f'
+        }}
+        />
+        <span
+          style={{
+            color: theme === THEME.DARK ? 'white' : 'black',
+            fontSize: '16px',
+            lineHeight: '16px',
+            fontWeight: 100,
+          }}
+        >
+          PlayJS
+        </span>
+      </a>
       <span
         style={{
           color: theme === THEME.DARK ? 'white' : 'black',
-          fontSize: '1rem',
-          lineHeight: '1rem',
+          opacity: 0.5,
+          fontSize: '10px',
           fontWeight: 100,
-          letterSpacing: '-.05rem',
         }}
-      >
-        PlayJS
-      </span>
-    </Wrapper>
+      >v.{version}</span>
+    </div>
   )
 }
