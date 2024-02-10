@@ -1,0 +1,63 @@
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+
+import { LANGUAGE } from '../consts'
+import { encodeCode } from '../core/encode'
+
+const code = `// Bienvenido a PlayJS
+
+const holaMundo = () => '👋🌎'
+
+holaMundo()
+`
+
+const DEFAULT_CODES = [{
+  id: crypto.randomUUID(),
+  title: 'Example',
+  code,
+  hashedCode: encodeCode(code)
+}]
+
+export const useCodeStore = create(
+  persist((set, get) => ({
+    current: DEFAULT_CODES[0],
+    setCurrent: (current) => set({ current }),
+    codes: DEFAULT_CODES,
+    upsertCode: ({ id, ...props }) => set((state) => {
+      const codes = [...get().codes]
+      const index = codes.findIndex((c) => c.id === id)
+      if (index !== -1) {
+        codes[index] = {
+          ...codes[index],
+          ...props
+        }
+        state.current = codes[index]
+      } else {
+        const newCode = {
+          id: crypto.randomUUID(),
+          title: '>',
+          code: '',
+          hashedCode: '',
+          language: LANGUAGE.JAVASCRIPT,
+          ...props
+        }
+        codes.push(newCode)
+        state.current = newCode
+      }
+      return { codes }
+    }),
+    removeCode: (id) => set((state) => {
+      const codes = [...get().codes]
+      const index = codes.findIndex((c) => c.id === id)
+      if (index !== -1) {
+        codes.splice(index, 1)
+      }
+      state.current = codes[index] || codes[index - 1] || DEFAULT_CODES[0]
+      return { codes }
+    })
+  }),
+  {
+    name: 'playjs-storage'
+  }
+  )
+)

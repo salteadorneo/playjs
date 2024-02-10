@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import { decodeCode } from '../core/encode'
-import { loadCode } from '../core/storage'
-
 import Language from './menu/Language'
 import Report from './menu/Report'
 import GitHub from './menu/GitHub'
@@ -12,7 +9,7 @@ import Download from './menu/Download'
 import Languages from './menu/Languages'
 import { LANGUAGE } from '../consts'
 
-export default function Menu ({ theme, changeTheme, setCode, language, setLanguage }) {
+export default function Menu ({ theme, changeTheme, code, setCode, language, setLanguage }) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -30,8 +27,7 @@ export default function Menu ({ theme, changeTheme, setCode, language, setLangua
   }, [])
 
   function downloadCode () {
-    const hashCode = loadCode()
-    const code = decodeCode(hashCode)
+    if (!code) return
 
     const blob = new window.Blob([code], {
       type: 'text/plain'
@@ -76,7 +72,7 @@ export default function Menu ({ theme, changeTheme, setCode, language, setLangua
       </button>
       {open && (
         <section
-          className='absolute top-0 left-14 pl-4 flex flex-col gap-3 w-72 bg-[#1a1a1a] p-2'
+          className='absolute top-0 left-14 pt-4 pl-4 flex flex-col gap-3 w-72 bg-[#1a1a1a] p-2'
         >
           <Upload
             setCode={handleUpload}

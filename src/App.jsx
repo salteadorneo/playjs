@@ -1,6 +1,5 @@
 import Main from './components/Main'
-import { getCodeFromURL } from './core/encode'
-import { loadCode } from './core/storage'
+import { getHashFromURL } from './core/encode'
 import Landing from './pages/Landing'
 
 export default function App () {
@@ -8,10 +7,9 @@ export default function App () {
   const utmSource = url.searchParams.get('utm_source')
   if (
     utmSource === 'homescreen' ||
-    getCodeFromURL() ||
-    loadCode()
+    getHashFromURL()
   ) {
-    return <Main code={getCodeFromURL() ?? loadCode()} />
+    return <Main hashedCode={getHashFromURL()} />
   }
 
   return <Landing />

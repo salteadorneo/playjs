@@ -6,11 +6,19 @@ export function decodeCode (code) {
   return new TextDecoder().decode(base64ToBytes(code))
 }
 
-export function getCodeFromURL () {
+export function getHashFromURL () {
   try {
     const { pathname } = window.location
     if (pathname.length <= 1) return false
-    const hashCode = pathname.slice(1)
+    return pathname.slice(1)
+  } catch {
+    return false
+  }
+}
+
+export function getCodeFromURL () {
+  try {
+    const hashCode = getHashFromURL()
     return hashCode ? decodeCode(hashCode) : false
   } catch {
     return false
