@@ -45,7 +45,7 @@ export default function Code(
   }
 
   function handleEditorChange() {
-    debounce(handleChange, 50)
+    debounce(handleChange, 200)
   }
 
   return (
