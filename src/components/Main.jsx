@@ -13,6 +13,7 @@ import Menu from './Menu'
 import { PlayJS } from 'playjs-core'
 import { useCodeStore } from '../hooks/useCodeStore'
 import { decodeCode, encodeCode } from '../core/encode'
+import { IconClose, IconPlus } from './Icons'
 
 export default function Main ({ hashedCode }) {
   const { current, setCurrent, codes, upsertCode, removeCode } = useCodeStore()
@@ -121,24 +122,23 @@ export default function Main ({ hashedCode }) {
                   ? (
                     <div
                       key={code.id}
-                      className='group relative flex items-center text-primary h-full min-w-24 text-left pl-4 pr-8 hover:bg-background bg-background'
+                      className='group relative flex items-center justify-between gap-3 text-primary h-full min-w-36 text-left px-4 bg-background'
                     >
-                      {code.title}
-                      <button
-                        className='opacity-0 group-hover:opacity-100 absolute right-3 transition-opacity duration-300 delay-300'
-                        onClick={() => removeCode(code.id)}
-                      >
-                        x
-                      </button>
+                      <p className='max-w-32 truncate overflow-hidden' title={code.title}>{code.title}</p>
+                      {codes.length > 1 && (
+                        <button className='hover:bg-[#858585]/50 rounded-full p-0.5' onClick={() => removeCode(code.id)}>
+                          <IconClose size={4} />
+                        </button>
+                      )}
                     </div>
                     )
                   : (
                     <button
                       key={code.id}
                       onClick={() => setCurrent(code)}
-                      className='text-primary h-full min-w-24 text-left pl-4 pr-8 hover:bg-background'
+                      className='text-primary h-full min-w-36 text-left pl-4 pr-12 hover:bg-background'
                     >
-                      {code.title}
+                      <p className='max-w-32 truncate overflow-hidden' title={code.title}>{code.title}</p>
                     </button>
                     )
               ))}
@@ -146,7 +146,7 @@ export default function Main ({ hashedCode }) {
                 onClick={handleNewCode}
                 className='text-primary h-full text-left px-4 hover:bg-background'
               >
-                +
+                <IconPlus size={6} />
               </button>
             </section>
           )}

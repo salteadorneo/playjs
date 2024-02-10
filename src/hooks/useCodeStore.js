@@ -35,7 +35,7 @@ export const useCodeStore = create(
       } else {
         const newCode = {
           id: crypto.randomUUID(),
-          title: '>',
+          title: '',
           code: '',
           hashedCode: '',
           language: LANGUAGE.JAVASCRIPT,
