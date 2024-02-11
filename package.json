@@ -2,6 +2,9 @@
   "name": "playjs",
   "version": "0.6.0",
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "license": "BSD-3-Clause",
   "keywords": [
     "playjs",

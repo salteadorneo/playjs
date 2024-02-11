@@ -4,6 +4,8 @@ import { persist } from 'zustand/middleware'
 import { LANGUAGE } from '../consts'
 import { encodeCode } from '../core/encode'
 
+const TAB_DEFAULT_TITLE = 'Untitled'
+
 const code = `// Bienvenido a PlayJS
 
 const holaMundo = () => '👋🌎'
@@ -35,7 +37,7 @@ export const useCodeStore = create(
       } else {
         const newCode = {
           id: crypto.randomUUID(),
-          title: '',
+          title: TAB_DEFAULT_TITLE,
           code: '',
           hashedCode: '',
           language: LANGUAGE.JAVASCRIPT,
