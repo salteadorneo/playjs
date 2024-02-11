@@ -8,8 +8,11 @@ import Upload from './menu/Upload'
 import Download from './menu/Download'
 import Languages from './menu/Languages'
 import { LANGUAGE } from '../consts'
+import { useCodeStore } from '../hooks/useCodeStore'
 
-export default function Menu ({ theme, changeTheme, code, setCode, language, setLanguage }) {
+export default function Menu ({ theme, changeTheme }) {
+  const { current, upsertCode } = useCodeStore()
+
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -27,15 +30,15 @@ export default function Menu ({ theme, changeTheme, code, setCode, language, set
   }, [])
 
   function downloadCode () {
-    if (!code) return
+    if (!current?.code) return
 
-    const blob = new window.Blob([code], {
+    const blob = new window.Blob([current?.code], {
       type: 'text/plain'
     })
     const url = URL.createObjectURL(blob)
 
     const link = document.createElement('a')
-    link.download = 'playjs.' + (language === LANGUAGE.JAVASCRIPT ? 'js' : 'ts')
+    link.download = 'playjs.' + (current?.language === LANGUAGE.JAVASCRIPT ? 'js' : 'ts')
     link.href = url
     link.click()
   }
@@ -50,8 +53,15 @@ export default function Menu ({ theme, changeTheme, code, setCode, language, set
   }
 
   function handleUpload (code) {
-    setCode(code)
+    upsertCode({ code })
     setOpen(false)
+  }
+
+  function handleChangeLanguage (language) {
+    upsertCode({
+      ...current,
+      language
+    })
   }
 
   return (
@@ -81,8 +91,8 @@ export default function Menu ({ theme, changeTheme, code, setCode, language, set
             handleDownload={handleDownload}
           />
           <Languages
-            language={language}
-            setLanguage={setLanguage}
+            language={current?.language}
+            setLanguage={handleChangeLanguage}
           />
           <Theme
             theme={theme}

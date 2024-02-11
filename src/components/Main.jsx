@@ -1,22 +1,28 @@
 import { useEffect, useState } from 'react'
 
-import { useWindowSize } from '@/hooks/useWindowSize'
+import { PlayJS } from 'playjs-core'
 
 import { Toaster } from 'sonner'
 
+import { useWindowSize } from '@/hooks/useWindowSize'
+import { useCodeStore } from '../hooks/useCodeStore'
+import { useDebounce } from '../hooks/useDebounce'
+
 import { DIRECTION, IS_IFRAME, LANGUAGE, THEME, WIDTH_MOBILE } from '../consts'
+import { decodeCode, encodeCode } from '../core/encode'
 
 import Share from './Share'
 import Embed from './Embed'
 import DisplayOptions from './DisplayOptions'
 import Menu from './Menu'
-import { PlayJS } from 'playjs-core'
-import { useCodeStore } from '../hooks/useCodeStore'
-import { decodeCode, encodeCode } from '../core/encode'
-import { IconClose, IconPlus } from './Icons'
+import Tabs from './Tabs'
 
 export default function Main ({ hashedCode }) {
-  const { current, setCurrent, codes, upsertCode, removeCode } = useCodeStore()
+  const { current, setCurrent, codes, upsertCode } = useCodeStore()
+
+  const [value, setValue] = useState('')
+
+  const debouncedValue = useDebounce(value, 100)
 
   const isEmbed = IS_IFRAME && hashedCode
 
@@ -58,36 +64,23 @@ export default function Main ({ hashedCode }) {
     window.localStorage.setItem('split-direction', newDirection)
   }
 
-  const onChange = async (code) => {
+  useEffect(() => {
+    const { id, code } = debouncedValue
+
     const hashedCode = encodeCode(code)
     window.history.replaceState(null, null, `/${hashedCode}`)
 
     upsertCode({
-      ...current,
+      id,
       code,
       hashedCode
     })
-  }
+  }, [debouncedValue])
 
   function changeTheme () {
     const newTheme = theme === THEME.DARK ? THEME.LIGHT : THEME.DARK
     setTheme(newTheme)
     window.localStorage.setItem('theme', newTheme)
-  }
-
-  function handleNewCode () {
-    upsertCode({})
-  }
-
-  function handleChangeLanguage (language) {
-    upsertCode({
-      ...current,
-      language
-    })
-  }
-
-  function handleUpload (code) {
-    upsertCode({ code })
   }
 
   return (
@@ -100,10 +93,6 @@ export default function Main ({ hashedCode }) {
             <Menu
               theme={theme}
               changeTheme={changeTheme}
-              code={current?.code}
-              setCode={handleUpload}
-              language={current?.language || LANGUAGE.JAVASCRIPT}
-              setLanguage={handleChangeLanguage}
             />
 
             <div className='flex flex-col items-center gap-4'>
@@ -115,48 +104,17 @@ export default function Main ({ hashedCode }) {
         </div>
 
         <div className='flex flex-col'>
-          {!isEmbed && (
-            <section className='basis-12 flex items-center bg-[#1a1a1a]'>
-              {codes.map((code) => (
-                current?.id === code.id
-                  ? (
-                    <div
-                      key={code.id}
-                      className='group relative flex items-center justify-between gap-3 text-primary h-full min-w-36 text-left px-4 bg-background'
-                    >
-                      <p className='max-w-32 truncate overflow-hidden' title={code.title}>{code.title}</p>
-                      {codes.length > 1 && (
-                        <button className='hover:bg-[#858585]/50 rounded-full p-0.5' onClick={() => removeCode(code.id)}>
-                          <IconClose size={4} />
-                        </button>
-                      )}
-                    </div>
-                    )
-                  : (
-                    <button
-                      key={code.id}
-                      onClick={() => setCurrent(code)}
-                      className='text-primary h-full min-w-36 text-left pl-4 pr-12 hover:bg-background'
-                    >
-                      <p className='max-w-32 truncate overflow-hidden' title={code.title}>{code.title}</p>
-                    </button>
-                    )
-              ))}
-              <button
-                onClick={handleNewCode}
-                className='text-primary h-full text-left px-4 hover:bg-background'
-              >
-                <IconPlus size={6} />
-              </button>
-            </section>
-          )}
+          {!isEmbed && <Tabs />}
 
           <PlayJS
             code={current?.code}
             direction={direction}
             language={current?.language || LANGUAGE.JAVASCRIPT}
             theme={theme}
-            onChange={onChange}
+            onChange={(code) => setValue({
+              ...current,
+              code
+            })}
             width='calc(100dvw - 48px)'
             height={isEmbed ? '100dvh' : 'calc(100dvh - 40px)'}
           />
