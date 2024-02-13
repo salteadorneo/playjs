@@ -25,7 +25,28 @@ export const useCodeStore = create(
     current: DEFAULT_CODES[0],
     setCurrent: (current) => set({ current }),
     codes: DEFAULT_CODES,
-    upsertCode: ({ id, ...props }) => set((state) => {
+    upsertCode: ({ id, ...props }) => set(() => {
+      const codes = [...get().codes]
+      const index = codes.findIndex((c) => c.id === id)
+      if (index !== -1) {
+        codes[index] = {
+          ...codes[index],
+          ...props
+        }
+      } else {
+        const newCode = {
+          id: crypto.randomUUID(),
+          title: TAB_DEFAULT_TITLE,
+          code: '',
+          hashedCode: '',
+          language: LANGUAGE.JAVASCRIPT,
+          ...props
+        }
+        codes.push(newCode)
+      }
+      return { codes }
+    }),
+    upsertCodeAndSelect: ({ id, ...props }) => set((state) => {
       const codes = [...get().codes]
       const index = codes.findIndex((c) => c.id === id)
       if (index !== -1) {
@@ -48,13 +69,12 @@ export const useCodeStore = create(
       }
       return { codes }
     }),
-    removeCode: (id) => set((state) => {
+    removeCode: (id) => set(() => {
       const codes = [...get().codes]
       const index = codes.findIndex((c) => c.id === id)
       if (index !== -1) {
         codes.splice(index, 1)
       }
-      state.current = codes[index] || codes[index - 1] || DEFAULT_CODES[0]
       return { codes }
     })
   }),

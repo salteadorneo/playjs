@@ -11,9 +11,9 @@ export default function App () {
   if (
     utmSource === 'homescreen' ||
     getHashFromURL() ||
-    codes.length > 0
+    codes.length > 1
   ) {
-    return <Main hashedCode={getHashFromURL()} />
+    return <Main />
   }
 
   return <Landing />

@@ -6,10 +6,9 @@ import { Toaster } from 'sonner'
 
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { useCodeStore } from '../hooks/useCodeStore'
-import { useDebounce } from '../hooks/useDebounce'
 
 import { DIRECTION, IS_IFRAME, LANGUAGE, THEME, WIDTH_MOBILE } from '../consts'
-import { decodeCode, encodeCode } from '../core/encode'
+import { decodeCode, encodeCode, getHashFromURL } from '../core/encode'
 
 import Share from './Share'
 import Embed from './Embed'
@@ -17,30 +16,24 @@ import DisplayOptions from './DisplayOptions'
 import Menu from './Menu'
 import Tabs from './Tabs'
 
-export default function Main ({ hashedCode }) {
-  const { current, setCurrent, codes, upsertCode } = useCodeStore()
-
-  const [value, setValue] = useState('')
-
-  const debouncedValue = useDebounce(value, 100)
-
-  const isEmbed = IS_IFRAME && hashedCode
+export default function Main () {
+  const { current, setCurrent, codes, upsertCode, upsertCodeAndSelect } = useCodeStore()
 
   useEffect(() => {
-    if (!hashedCode) return
+    const hashFromURL = getHashFromURL()
 
-    const current = codes.find((c) => c.hashedCode === hashedCode)
-    setTimeout(() => {
-      if (current) {
-        setCurrent(current)
-      } else {
-        upsertCode({
-          code: decodeCode(hashedCode),
-          hashedCode
-        })
-      }
-    }, 500)
-  }, [hashedCode])
+    if (!hashFromURL) return
+
+    const current = codes.find((c) => c.hashedCode === hashFromURL)
+    if (current) {
+      setCurrent(current)
+    } else {
+      upsertCodeAndSelect({
+        code: decodeCode(hashFromURL),
+        hashFromURL
+      })
+    }
+  }, [])
 
   const size = useWindowSize()
 
@@ -65,7 +58,9 @@ export default function Main ({ hashedCode }) {
   }
 
   useEffect(() => {
-    const { id, code } = debouncedValue
+    if (!current) return
+
+    const { id, code } = current
 
     const hashedCode = encodeCode(code)
     window.history.replaceState(null, null, `/${hashedCode}`)
@@ -75,7 +70,7 @@ export default function Main ({ hashedCode }) {
       code,
       hashedCode
     })
-  }, [debouncedValue])
+  }, [current?.code])
 
   function changeTheme () {
     const newTheme = theme === THEME.DARK ? THEME.LIGHT : THEME.DARK
@@ -104,19 +99,19 @@ export default function Main ({ hashedCode }) {
         </div>
 
         <div className='flex flex-col'>
-          {!isEmbed && <Tabs />}
+          {!IS_IFRAME && <Tabs />}
 
           <PlayJS
             code={current?.code}
             direction={direction}
             language={current?.language || LANGUAGE.JAVASCRIPT}
             theme={theme}
-            onChange={(code) => setValue({
+            onChange={(code) => setCurrent({
               ...current,
               code
             })}
             width='calc(100dvw - 48px)'
-            height={isEmbed ? '100dvh' : 'calc(100dvh - 40px)'}
+            height={IS_IFRAME ? '100dvh' : 'calc(100dvh - 40px)'}
           />
         </div>
       </main>

@@ -3,21 +3,26 @@ import { IconClose, IconPlus } from './Icons'
 import { useCodeStore } from '../hooks/useCodeStore'
 
 export default function Tabs () {
-  const { current, setCurrent, codes, upsertCode, removeCode } = useCodeStore()
+  const { current, setCurrent, codes, upsertCode, upsertCodeAndSelect, removeCode } = useCodeStore()
 
   function handleNewCode () {
-    upsertCode({})
+    upsertCodeAndSelect({})
   }
 
   function handleRemove (code) {
     const draft = codes.find((c) => c.id === code.id)
+    const index = codes.indexOf(draft)
     removeCode(code.id)
+
+    setCurrent(codes[index - 1] || codes[index + 1] || codes[index] || null)
 
     toast('Code has been removed', {
       position: 'top-right',
       action: {
         label: 'Undo',
-        onClick: () => upsertCode(draft)
+        onClick: () => {
+          upsertCodeAndSelect(draft)
+        }
       }
     })
   }
