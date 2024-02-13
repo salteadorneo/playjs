@@ -2,9 +2,6 @@
   "name": "playjs",
   "version": "0.6.2",
   "type": "module",
-  "workspaces": [
-    "packages/*"
-  ],
   "license": "BSD-3-Clause",
   "keywords": [
     "playjs",
@@ -23,7 +20,7 @@
   "dependencies": {
     "i18next": "^23.8.2",
     "i18next-browser-languagedetector": "^7.2.0",
-    "playjs-core": "0.6.1",
+    "playjs-core": "0.6.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^14.0.5",
