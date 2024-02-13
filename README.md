@@ -1,10 +1,8 @@
-<p lang="es" align="right">
-	<a href="./README.es.md">🎉 Ahora también en español</a>
-</p>
-
 # 🟨PlayJS
 
-Try your JavaScript code online. [**Start programming now.**](https://playjs.dev/) 
+Try your JavaScript code online. [**Start programming now.**](https://playjs.dev/)
+
+[Readme en español](https://github.com/salteadorneo/playjs/README.es.md)
 
 ## Current Features
 
