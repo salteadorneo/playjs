@@ -3,6 +3,10 @@
 Try your JavaScript code online. [**Start programming now.**](https://playjs.dev/)
 
 [Readme en español](https://github.com/salteadorneo/playjs/README.es.md)
+<br><br>
+<a href="https://www.npmjs.com/package/playjs-core">
+<img alt="npm downloads/month" src="https://img.shields.io/npm/dm/playjs-core"  />
+</a>
 
 ## Current Features
 
