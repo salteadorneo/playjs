@@ -1,27 +1,21 @@
-# Flujo de trabajo simple para implementar contenido estático en Github Pages
-name: Implementar contenido estático a Pages
+name: Deploy
 
 on:
-  # Se ejecuta en anotaciones dirigidas a la rama predeterminada
   push:
     branches: ['main']
 
-  # Te permite ejecutar este flujo de trabajo manualmente desde la pestaña Acciones
   workflow_dispatch:
 
-# Establece los permisos de GITHUB_TOKEN para permitir la implementación en GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Permite una implementación simultánea
 concurrency:
   group: 'pages'
   cancel-in-progress: true
 
 jobs:
-  # Trabajo de implementación único ya que solo estamos implementando
   deploy:
     environment:
       name: github-pages
@@ -44,7 +38,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload dist folder
           path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
