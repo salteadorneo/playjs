@@ -8,11 +8,7 @@ export default function App () {
 
   const url = new URL(window.location.href)
   const utmSource = url.searchParams.get('utm_source')
-  if (
-    utmSource === 'homescreen' ||
-    getHashFromURL() ||
-    codes.length > 1
-  ) {
+  if (utmSource === 'homescreen' || getHashFromURL() || codes.length > 1) {
     return <Main />
   }
 
