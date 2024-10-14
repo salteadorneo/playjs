@@ -11,9 +11,7 @@ export default function Languages ({ language, setLanguage }) {
   }
 
   return (
-    <Button
-      onClick={handleChange}
-    >
+    <Button onClick={handleChange}>
       <svg
         width={20}
         height={20}

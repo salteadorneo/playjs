@@ -29,10 +29,8 @@ export const useCodeStore = create(
       const codes = [...get().codes]
       const index = codes.findIndex((c) => c.id === id)
       if (index !== -1) {
-        codes[index] = {
-          ...codes[index],
-          ...props
-        }
+        codes[index].title = props.title
+        codes[index].language = props.language
       } else {
         const newCode = {
           id: crypto.randomUUID(),
