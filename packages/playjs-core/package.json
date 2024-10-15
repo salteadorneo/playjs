@@ -1,6 +1,6 @@
 {
   "name": "playjs-core",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "type": "module",
   "license": "BSD-3-Clause",
   "main": "dist/index.umd.js",
@@ -32,25 +32,23 @@
     "test": "vitest"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^17.0.2 || ^18.2.0",
+    "react-dom": "^17.0.2 || ^18.2.0"
   },
   "dependencies": {
     "@monaco-editor/react": "4.6.0",
     "monaco-js-linter": "1.0.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-split": "2.0.14"
   },
   "devDependencies": {
-    "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
-    "@vitejs/plugin-react": "4.2.1",
-    "@vitejs/plugin-react-swc": "^3.6.0",
-    "standard": "17.1.0",
-    "typescript": "^5.3.3",
-    "vite": "5.1.0",
-    "vitest": "^1.2.2"
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "4.3.2",
+    "@vitejs/plugin-react-swc": "^3.7.1",
+    "standard": "17.1.2",
+    "typescript": "^5.6.3",
+    "vite": "5.4.9",
+    "vitest": "^1.6.0"
   },
   "eslintConfig": {
     "extends": [

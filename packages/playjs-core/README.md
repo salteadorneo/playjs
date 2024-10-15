@@ -2,13 +2,25 @@ Add a JavaScript Playground on your project.
 
 ![PlayJS screenshot with a simple Hello World function](https://github.com/salteadorneo/PlayJS/assets/4882454/fa04d8cd-2f1a-4819-9d5e-1dcf23faa985)
 
-```javascript
-import { PlayJS } from 'playjs-core';
+## Installation
+
+```bash
+npm install react react-dom playjs-core
+```
+
+```bash
+yarn add react react-dom playjs-core
+```
+
+```bash
+pnpm install react react-dom playjs-core
 ```
 
 ## Basic usage
 
-```html
+```tsx
+import { PlayJS } from 'playjs-core';
+
 <PlayJS />
 ```
 
