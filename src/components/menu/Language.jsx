@@ -9,7 +9,7 @@ export default function Language () {
   }
 
   return (
-    <div className='relative text-[#858585]'>
+    <div className='relative flex items-center gap-2 bg-none border-none text-[#858585] hover:text-[#999] hover:bg-[#252525] p-1 cursor-default'>
       <svg
         width={18}
         height={18}
@@ -19,7 +19,7 @@ export default function Language () {
         stroke='currentColor'
         strokeLinecap='square'
         fill='none'
-        className='absolute top-1/2 left-0 -translate-y-1/2'
+        className='absolute top-1/2 left-1 -translate-y-1/2'
       >
         <circle cx={12} cy={12} r={10} />
         <path
@@ -31,10 +31,10 @@ export default function Language () {
         value={i18n.resolvedLanguage}
         onChange={changeLanguage}
         title={t('language.globeTitle')}
-        className='pl-[20px] w-full text-[#858585] bg-[#1a1a1a] rounded-md border border-[#1a1a1a] outline-none'
+        className='pl-[22px] w-full text-[#858585] bg-transparent rounded-md outline-none'
       >
-        <option value='en'>English</option>
-        <option value='es'>Español</option>
+        <option value='en' className='bg-[#1a1a1a]'>English</option>
+        <option value='es' className='bg-[#1a1a1a]'>Español</option>
       </select>
     </div>
   )
