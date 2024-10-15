@@ -4,7 +4,7 @@ export default function GitHub () {
       href='https://github.com/salteadorneo/playjs'
       target='_blank'
       rel='noreferrer'
-      className='flex items-center gap-2 bg-none border-none text-[#858585] hover:text-[#999] hover:bg-[#252525] p-1 cursor-default'
+      className='flex items-center gap-2 bg-none border-none rounded-md text-[#858585] hover:text-[#999] hover:bg-[#252525] p-1 cursor-default'
     >
       <svg
         width={20}
