@@ -1,8 +1,10 @@
 export function encodeCode (code) {
+  if (!code) return ''
   return bytesToBase64(new TextEncoder().encode(code))
 }
 
 export function decodeCode (code) {
+  if (!code) return ''
   return new TextDecoder().decode(base64ToBytes(code))
 }
 
