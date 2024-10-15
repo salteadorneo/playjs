@@ -8,9 +8,9 @@ export function decodeCode (code) {
 
 export function getHashFromURL () {
   try {
-    const { pathname } = window.location
-    if (pathname.length <= 1) return false
-    return pathname.slice(1)
+    const { hash } = window.location
+    if (hash.length <= 1) return false
+    return hash.slice(1)
   } catch {
     return false
   }

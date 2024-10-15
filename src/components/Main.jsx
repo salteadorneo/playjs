@@ -63,7 +63,7 @@ export default function Main () {
     const { id, code } = current
 
     const hashedCode = encodeCode(code)
-    window.history.replaceState(null, null, `/${hashedCode}`)
+    window.location.hash = hashedCode
 
     upsertCode({
       id,
