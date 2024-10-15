@@ -10,8 +10,8 @@ import Languages from './menu/Languages'
 import { LANGUAGE } from '../consts'
 import { useCodeStore } from '../hooks/useCodeStore'
 
-export default function Menu ({ theme, changeTheme }) {
-  const { current, upsertCode, upsertCodeAndSelect } = useCodeStore()
+export default function Menu ({ theme, setTheme, language, setLanguage }) {
+  const { current, upsertCodeAndSelect } = useCodeStore()
 
   const [open, setOpen] = useState(false)
 
@@ -57,13 +57,6 @@ export default function Menu ({ theme, changeTheme }) {
     setOpen(false)
   }
 
-  function handleChangeLanguage (language) {
-    upsertCode({
-      ...current,
-      language
-    })
-  }
-
   return (
     <section>
       <button
@@ -82,7 +75,7 @@ export default function Menu ({ theme, changeTheme }) {
       </button>
       {open && (
         <section
-          className='absolute top-0 left-14 pt-4 pl-4 flex flex-col gap-1 w-72 bg-[#1a1a1a] p-2'
+          className='absolute top-0 left-14 p-3 flex flex-col gap-1 w-72 bg-[#1a1a1a]'
         >
           <Upload
             setCode={handleUpload}
@@ -91,15 +84,17 @@ export default function Menu ({ theme, changeTheme }) {
             handleDownload={handleDownload}
           />
           <Languages
-            language={current?.language}
-            setLanguage={handleChangeLanguage}
+            language={language}
+            setLanguage={setLanguage}
           />
-          <Theme
-            theme={theme}
-            changeTheme={changeTheme}
-          />
+          <hr className='border-[#252525]' />
           <Report />
           <GitHub />
+          <hr className='border-[#252525]' />
+          <Theme
+            theme={theme}
+            setTheme={setTheme}
+          />
           <Language />
         </section>
       )}
