@@ -5,7 +5,6 @@ import { PlayJS } from 'playjs-core'
 import { Toaster } from 'sonner'
 
 import { useWindowSize } from '@/hooks/useWindowSize'
-import { useCodeStore } from '@/hooks/useCodeStore'
 
 import { DIRECTION, IS_IFRAME, LANGUAGE, THEME, WIDTH_MOBILE } from '@/consts'
 import { decodeCode, encodeCode, getHashFromURL } from '@/core/encode'
@@ -17,22 +16,11 @@ import Menu from '@/components/Menu'
 import Tabs from '@/components/Tabs'
 
 export default function App () {
-  const { current, setCurrent, codes, upsertCode, upsertCodeAndSelect } = useCodeStore()
+  const [code, setCode] = useState('')
 
   useEffect(() => {
     const hashFromURL = getHashFromURL()
-
-    if (!hashFromURL) return
-
-    const current = codes.find((c) => c.hashedCode === hashFromURL)
-    if (current) {
-      setCurrent(current)
-    } else {
-      upsertCodeAndSelect({
-        code: decodeCode(hashFromURL),
-        hashFromURL
-      })
-    }
+    setCode(decodeCode(hashFromURL))
   }, [])
 
   const size = useWindowSize()
@@ -41,6 +29,12 @@ export default function App () {
     const theme = window.localStorage.getItem('theme')
     if (theme) return theme
     return THEME.DARK
+  })
+
+  const [language, setLanguage] = useState(() => {
+    const language = window.localStorage.getItem('language')
+    if (language) return language
+    return LANGUAGE.JAVASCRIPT
   })
 
   const isMobile = size.width < WIDTH_MOBILE
@@ -58,25 +52,10 @@ export default function App () {
   }
 
   useEffect(() => {
-    if (!current) return
-
-    const { id, code } = current
-
+    if (!code) return
     const hashedCode = encodeCode(code)
     window.location.hash = hashedCode
-
-    upsertCode({
-      id,
-      code,
-      hashedCode
-    })
-  }, [current?.code])
-
-  function changeTheme () {
-    const newTheme = theme === THEME.DARK ? THEME.LIGHT : THEME.DARK
-    setTheme(newTheme)
-    window.localStorage.setItem('theme', newTheme)
-  }
+  }, [code])
 
   return (
     <>
@@ -87,7 +66,9 @@ export default function App () {
           <div className='flex flex-col justify-between h-full'>
             <Menu
               theme={theme}
-              changeTheme={changeTheme}
+              setTheme={setTheme}
+              language={language}
+              setLanguage={setLanguage}
             />
 
             <div className='flex flex-col items-center gap-4'>
@@ -102,14 +83,11 @@ export default function App () {
           {!IS_IFRAME && <Tabs />}
 
           <PlayJS
-            code={current?.code}
+            code={code}
+            onChange={setCode}
             direction={direction}
-            language={current?.language || LANGUAGE.JAVASCRIPT}
+            language={language || LANGUAGE.JAVASCRIPT}
             theme={theme}
-            onChange={(code) => setCurrent({
-              ...current,
-              code
-            })}
             width='calc(100dvw - 50px)'
             height={IS_IFRAME ? '100dvh' : 'calc(100dvh - 40px)'}
           />
