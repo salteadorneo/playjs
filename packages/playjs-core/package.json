@@ -37,7 +37,6 @@
   },
   "dependencies": {
     "@monaco-editor/react": "4.6.0",
-    "monaco-js-linter": "1.0.2",
     "react-split": "2.0.14"
   },
   "devDependencies": {
