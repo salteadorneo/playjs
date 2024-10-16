@@ -15,7 +15,7 @@ holaMundo()
 
 const DEFAULT_CODES = [{
   id: crypto.randomUUID(),
-  title: 'Example',
+  title: 'PlayJS',
   code,
   hashedCode: encodeCode(code)
 }]

@@ -70,6 +70,7 @@ export default function App () {
               setTheme={setTheme}
               language={language}
               setLanguage={setLanguage}
+              setCode={setCode}
             />
 
             <div className='flex flex-col items-center gap-4'>

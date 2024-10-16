@@ -10,8 +10,8 @@ import Languages from './menu/Languages'
 import { LANGUAGE } from '../consts'
 import { useCodeStore } from '../hooks/useCodeStore'
 
-export default function Menu ({ theme, setTheme, language, setLanguage }) {
-  const { current, upsertCodeAndSelect } = useCodeStore()
+export default function Menu ({ theme, setTheme, language, setLanguage, setCode }) {
+  const { current } = useCodeStore()
 
   const [open, setOpen] = useState(false)
 
@@ -53,7 +53,7 @@ export default function Menu ({ theme, setTheme, language, setLanguage }) {
   }
 
   function handleUpload (code) {
-    upsertCodeAndSelect({ code })
+    setCode(code)
     setOpen(false)
   }
 
