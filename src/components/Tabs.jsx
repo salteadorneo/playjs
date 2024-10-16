@@ -1,13 +1,13 @@
 import { toast } from 'sonner'
-import { IconClose, IconPlus } from './Icons'
+import { IconClose } from './Icons'
 import { useCodeStore } from '../hooks/useCodeStore'
 
 export default function Tabs () {
-  const { current, setCurrent, codes, upsertCode, upsertCodeAndSelect, removeCode } = useCodeStore()
+  const { current, setCurrent, codes, upsertCodeAndSelect, removeCode } = useCodeStore()
 
-  function handleNewCode () {
-    upsertCodeAndSelect({})
-  }
+  // function handleNewCode () {
+  //   upsertCodeAndSelect({})
+  // }
 
   function handleRemove (code) {
     const draft = codes.find((c) => c.id === code.id)
@@ -37,15 +37,16 @@ export default function Tabs () {
               className='group relative flex items-center justify-between gap-3 text-primary h-full min-w-36 text-left px-4 bg-background'
             >
               <input
-                className='w-32 truncate overflow-hidden appearance-none outline-none bg-transparent border-none text-primary'
+                className='w-32 truncate overflow-hidden appearance-none outline-none bg-transparent border-none text-primary cursor-default'
                 title={code.title}
                 value={code.title}
-                onChange={(e) => upsertCode({ ...code, title: e.target.value })}
-                onMouseDown={(e) => {
-                  if (e.button === 1) {
-                    handleRemove(code)
-                  }
-                }}
+                readOnly
+                // onChange={(e) => upsertCode({ ...code, title: e.target.value })}
+                // onMouseDown={(e) => {
+                //   if (e.button === 1) {
+                //     handleRemove(code)
+                //   }
+                // }}
               />
               {codes.length > 1 && (
                 <button
@@ -72,12 +73,12 @@ export default function Tabs () {
             </button>
             )
       ))}
-      <button
+      {/* <button
         onClick={handleNewCode}
         className='text-primary h-full text-left px-4 hover:bg-background'
       >
         <IconPlus size={6} />
-      </button>
+      </button> */}
     </section>
   )
 }
