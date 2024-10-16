@@ -62,7 +62,7 @@ export default function App () {
       <Toaster position='top-center' />
 
       <main className='flex'>
-        <div className='relative z-10 p-3 shadow-sm bg-[#1a1a1a]'>
+        <div className='relative z-10 shadow-sm bg-[#1a1a1a]'>
           <div className='flex flex-col justify-between h-full'>
             <Menu
               theme={theme}

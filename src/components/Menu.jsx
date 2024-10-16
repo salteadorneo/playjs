@@ -61,7 +61,7 @@ export default function Menu ({ theme, setTheme, language, setLanguage }) {
     <section>
       <button
         onClick={handleMenu}
-        className={`flex items-center border-none text-[#858585] hover:text-[#999] p-0.5 ${open ? 'bg-[#1a1a1a]' : ''}`}
+        className={`flex items-center border-none text-[#858585] hover:text-[#999] p-2.5 ${open ? 'bg-[#111111]' : ''}`}
       >
         <svg
           width={24}
@@ -75,7 +75,7 @@ export default function Menu ({ theme, setTheme, language, setLanguage }) {
       </button>
       {open && (
         <section
-          className='absolute top-0 left-14 p-3 flex flex-col gap-1 w-72 bg-[#1a1a1a]'
+          className='absolute top-12 left-0 p-3 flex flex-col gap-1 w-72 bg-[#111111]'
         >
           <Upload
             setCode={handleUpload}
