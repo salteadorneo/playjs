@@ -52,9 +52,10 @@ export default function App () {
   }
 
   useEffect(() => {
-    if (!code) return
-    const hashedCode = encodeCode(code)
-    window.location.hash = hashedCode
+    setTimeout(() => {
+      const hashedCode = encodeCode(code)
+      window.location.hash = hashedCode
+    }, 1)
   }, [code])
 
   return (
