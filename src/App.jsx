@@ -23,6 +23,13 @@ export default function App () {
     setCode(decodeCode(hashFromURL))
   }, [])
 
+  useEffect(() => {
+    setTimeout(() => {
+      const hashedCode = encodeCode(code)
+      window.location.hash = hashedCode
+    }, 1)
+  }, [code])
+
   const size = useWindowSize()
 
   const [theme, setTheme] = useState(() => {
@@ -50,13 +57,6 @@ export default function App () {
     setDirection(newDirection)
     window.localStorage.setItem('split-direction', newDirection)
   }
-
-  useEffect(() => {
-    setTimeout(() => {
-      const hashedCode = encodeCode(code)
-      window.location.hash = hashedCode
-    }, 1)
-  }, [code])
 
   return (
     <>
