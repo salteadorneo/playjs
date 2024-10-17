@@ -13,7 +13,7 @@ export default function Language () {
       <select
         value={i18n.resolvedLanguage}
         onChange={changeLanguage}
-        title={t('language.globeTitle')}
+        title={t('changeLanguage')}
         className='w-full text-[#858585] bg-transparent outline-none'
       >
         <option value='en' className='bg-[#1a1a1a]'>English</option>

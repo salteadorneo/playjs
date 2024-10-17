@@ -11,23 +11,7 @@ export default function Download ({ handleDownload }) {
       className='flex justify-between'
     >
       <div className='flex items-center gap-2'>
-        <svg
-          width={20}
-          height={20}
-          aria-hidden='true'
-          focusable='false'
-          role='img'
-          viewBox='0 0 20 20'
-          fill='none'
-          stroke='currentColor'
-          strokeLinecap='round'
-          strokeLinejoin='round'
-        >
-          <path
-            strokeWidth='1.25'
-            d='M3.333 14.167v1.666c0 .92.747 1.667 1.667 1.667h10c.92 0 1.667-.746 1.667-1.667v-1.666M5.833 9.167 10 13.333l4.167-4.166M10 3.333v10'
-          />
-        </svg>
+        <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4' /><polyline points='7 10 12 15 17 10' /><line x1='12' x2='12' y1='15' y2='3' /></svg>
         {t('code.download')}
       </div>
       <div className='flex items-center gap-1 text-[#858585]'>

@@ -1,41 +1,7 @@
 {
    "translation": {
-      "title": {
-         "part1": "The JavaScript playground",
-         "part2": "on your browser"
-      },
-      "slogan": "Test your code, view result, share it and embed it on your website.",
-      "try_it_now": "Start now!",
-      "star_github": "Star on GitHub",
-      "features": "Features",
-      "feature1": {
-         "title": "TypeScript support",
-         "description": ""
-      },
-      "feature2": {
-         "title": "Autocomplete",
-         "description": "Code suggestions while you type"
-      },
-      "feature3": {
-         "title": "NPM packages",
-         "description": "Work with dependencies (Experimental)"
-      },
-      "feature4": {
-         "title": "Asychronous requests to APIs",
-         "description": ""
-      },
-      "feature5": {
-         "title": "Download / upload files",
-         "description": ""
-      },
-      "feature6": {
-         "title": "Share / embed your code",
-         "description": ""
-      },
-      "subscribe_title": "Be the first to use new features",
-      "subscribe_description": "Sign up for project updates, early exclusive features, and to find out when it's ready.",
-      "subscribe_placeholder": "Email",
-      "subscribe_button": "Subscribe",
+      "languages": "Languages",
+      "language": "Language",
       "code": {
          "formatTitle": "Format code",
          "format": "Format",
@@ -53,14 +19,12 @@
          "embedClose": "Close",
          "embedCopy": "Copy"
       },
-      "language": {
-         "globeTitle": "Change language"
-      },
+      "changeLanguage": "Change language",
       "report": {
          "responseOk": "Thanks for your report!",
          "responseError": "Oops! There was a problem submitting your form",
-         "reportTitle": "Report a bug",
-         "report": "Report bug",
+         "reportTitle": "Report",
+         "report": "Report",
          "formEmail": "Email (optional)",
          "formDescription": "Description",
          "formCancel": "Cancel",

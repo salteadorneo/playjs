@@ -1,41 +1,7 @@
 {
    "translation": {
-      "title": {
-         "part1": "Playground JavaScript",
-         "part2": "en tu navegador"
-      },
-      "slogan": "Prueba tu código en tiempo real, compártelo e intégralo en tu web.",
-      "try_it_now": "¡Empezar!",
-      "star_github": "GitHub",
-      "features": "Características",
-      "feature1": {
-         "title": "Soporte TypeScript",
-         "description": ""
-      },
-      "feature2": {
-         "title": "Autocompletado",
-         "description": "Sugerencias de código mientras escribes"
-      },
-      "feature3": {
-         "title": "Paquetes NPM",
-         "description": "Trabaja con dependencias (experimental)"
-      },
-      "feature4": {
-         "title": "Llamadas asíncronas a APIs",
-         "description": ""
-      },
-      "feature5": {
-         "title": "Descarga / importa archivos",
-         "description": ""
-      },
-      "feature6": {
-         "title": "Comparte / integra tu código",
-         "description": ""
-      },
-      "subscribe_title": "Sea el primero en utilizar las nuevas funciones",
-      "subscribe_description": "Inscríbete para recibir actualizaciones del proyecto, funciones exclusivas anticipadas y saber cuándo estará listo.",
-      "subscribe_placeholder": "Email",
-      "subscribe_button": "Inscríbete",
+      "languages": "Lenguajes",
+      "language": "Lenguaje",
       "code": {
          "formatTitle": "Dar formato",
          "format": "Formato",
@@ -53,14 +19,12 @@
          "embedClose": "Cerrar",
          "embedCopy": "Copiar"
       },
-      "language": {
-         "globeTitle": "Cambiar idioma"
-      },
+      "changeLanguage": "Cambiar idioma",
       "report": {
          "responseOk": "Gracias por tu reporte!",
          "responseError": "Ups! Ha habido un problema enviando el formulario",
-         "reportTitle": "Reportar error",
-         "report": "Reportar error",
+         "reportTitle": "Reportar",
+         "report": "Reportar",
          "formEmail": "Email (opcional)",
          "formDescription": "Descripción",
          "formCancel": "Cancelar",
