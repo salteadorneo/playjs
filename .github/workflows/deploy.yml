@@ -65,7 +65,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: './web/dist'
-          name: 'main-artifact-${{ github.run_id }}'
+          name: 'web-artifact-${{ github.run_id }}'
       - name: Deploy to GitHub Pages
         id: deployment-web
         uses: actions/deploy-pages@v4
