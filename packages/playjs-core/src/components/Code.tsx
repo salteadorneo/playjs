@@ -39,7 +39,7 @@ export default function Code({ code, language, theme, onChange, ia = false }: Pr
     return () => {
       completion.deregister();
     };
-  }, [monaco, editor]);
+  }, [monaco, editor, language]);
 
   useEffect(() => {
     if (code == null) return
