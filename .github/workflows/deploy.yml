@@ -1,42 +1,50 @@
 name: Deploy
+
 on:
   push:
-    branches: main
-  pull_request:
-    branches: main
+    branches: ['main']
+    paths:
+      - 'web/**'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
 
 jobs:
   deploy:
-    name: Deploy
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
-    permissions:
-      id-token: write # Needed for auth with Deno Deploy
-      contents: read # Needed to clone the repository
-
     steps:
-      - name: Clone repository
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Install Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.x
-
-      - name: Install Node.js
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
-
-      - name: Install step
-        run: "cd web && npm install"
-
-      - name: Build step
-        run: "cd web && npm run build"
-
-      - name: Upload to Deno Deploy
-        uses: denoland/deployctl@v1
+          node-version: 20
+          cache: 'npm'
+      - name: Install dependencies
+        run: |
+          cd web
+          npm ci
+      - name: Build
+        run: |
+          cd web
+          npm run build
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          project: "playjs"
-          entrypoint: "server/entry.mjs"
-          root: "web/dist"
+          path: './web/dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
