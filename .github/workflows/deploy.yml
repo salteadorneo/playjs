@@ -46,36 +46,36 @@ jobs:
         with:
           artifact_name: 'github-pages'
 
-  deploy-web:
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages-web
-      url: https://web.playjs.dev
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-      - name: Install dependencies
-        run: |
-          cd web
-          npm ci
-      - name: Build
-        run: |
-          cd web
-          npm run build
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './web/dist'
-          name: 'github-pages-web'
-      - name: Deploy to GitHub Pages
-        id: deployment-web
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: 'github-pages-web'
+  # deploy-web:
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: github-pages-web
+  #     url: https://web.playjs.dev
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - name: Set up Node
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 20
+  #         cache: 'npm'
+  #     - name: Install dependencies
+  #       run: |
+  #         cd web
+  #         npm ci
+  #     - name: Build
+  #       run: |
+  #         cd web
+  #         npm run build
+  #     - name: Setup Pages
+  #       uses: actions/configure-pages@v4
+  #     - name: Upload artifact
+  #       uses: actions/upload-pages-artifact@v3
+  #       with:
+  #         path: './web/dist'
+  #         name: 'github-pages-web'
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment-web
+  #       uses: actions/deploy-pages@v4
+  #       with:
+  #         artifact_name: 'github-pages-web'
