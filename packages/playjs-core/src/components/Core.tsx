@@ -15,7 +15,8 @@ export function Core({
   direction = DIRECTION.HORIZONTAL,
   language = LANGUAGE.JAVASCRIPT,
   theme = THEME.DARK,
-  onChange: updateCode = (code: string) => { }
+  onChange: updateCode = (code: string) => { },
+  ia = false
 }) {
   const size = useWindowSize()
 
@@ -67,7 +68,7 @@ export function Core({
       })}
       onDragEnd={handleDragEnd}
     >
-      <Code code={code} language={language} onChange={onChange} theme={theme} />
+      <Code code={code} language={language} onChange={onChange} theme={theme} ia={ia} />
       <Console code={code} language={language} direction={direction} theme={theme} />
     </Split>
   )

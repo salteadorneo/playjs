@@ -3,15 +3,7 @@ import { DIRECTION, DirectionType, LANGUAGE, LanguageType, THEME, ThemeType } fr
 import { Core } from './Core'
 import { Logo } from './Logo'
 
-export default function PlayJS({
-  code = '',
-  width = '100dvw',
-  height = '100dvh',
-  language = LANGUAGE.JAVASCRIPT,
-  direction = DIRECTION.HORIZONTAL,
-  theme = THEME.DARK,
-  onChange = (code: string) => { }
-}: {
+type Props = {
   code?: string,
   width?: string,
   height?: string,
@@ -19,7 +11,19 @@ export default function PlayJS({
   direction?: DirectionType,
   theme?: ThemeType,
   onChange?: (code: string) => void
-}) {
+  ia?: boolean
+}
+
+export default function PlayJS({
+  code = '',
+  width = '100dvw',
+  height = '100dvh',
+  language = LANGUAGE.JAVASCRIPT,
+  direction = DIRECTION.HORIZONTAL,
+  theme = THEME.DARK,
+  onChange = (code: string) => { },
+  ia = false
+}: Props) {
   return (
     <section style={{
       position: 'relative',
@@ -49,6 +53,7 @@ export default function PlayJS({
         language={language}
         theme={theme}
         onChange={onChange}
+        ia={ia}
       />
     </section>
   )
