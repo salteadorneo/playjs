@@ -32,7 +32,7 @@ export default function Code({ code, language, theme, onChange, ia = false }: Pr
 
     const completion = registerCompletion(monaco, editor, {
       endpoint: 'https://good-spider-26.deno.dev/complete',
-      language: 'javascript',
+      language,
       maxContextLines: 60,
     });
 

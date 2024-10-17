@@ -1,5 +1,4 @@
 import { toast } from 'sonner'
-import { IconClose } from './Icons'
 import { useCodeStore } from '../hooks/useCodeStore'
 
 export default function Tabs () {
@@ -53,7 +52,7 @@ export default function Tabs () {
                   className='hover:bg-[#858585]/50 rounded-full p-0.5'
                   onClick={() => handleRemove(code)}
                 >
-                  <IconClose size={4} />
+                  x
                 </button>
               )}
             </div>
@@ -77,7 +76,7 @@ export default function Tabs () {
         onClick={handleNewCode}
         className='text-primary h-full text-left px-4 hover:bg-background'
       >
-        <IconPlus size={6} />
+        +
       </button> */}
     </section>
   )
