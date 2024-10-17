@@ -36,10 +36,12 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
-          name: 'main-artifact-${{ github.run_id }}'
+          name: 'github-pages'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact-name: 'github-pages'
 
   deploy-web:
     runs-on: ubuntu-latest
@@ -65,7 +67,9 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: './web/dist'
-          name: 'web-artifact-${{ github.run_id }}'
+          name: 'github-pages-web'
       - name: Deploy to GitHub Pages
         id: deployment-web
         uses: actions/deploy-pages@v4
+        with:
+          artifact-name: 'github-pages-web'
