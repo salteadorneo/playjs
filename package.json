@@ -20,7 +20,8 @@
   "dependencies": {
     "i18next": "^23.16.0",
     "i18next-browser-languagedetector": "^7.2.1",
-    "playjs-core": "0.6.4",
+    "monacopilot": "^0.11.6",
+    "playjs-core": "0.6.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-i18next": "^14.1.3",

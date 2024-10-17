@@ -92,6 +92,7 @@ export default function App () {
             theme={theme}
             width='calc(100dvw - 50px)'
             height={IS_IFRAME ? '100dvh' : 'calc(100dvh - 40px)'}
+            ia={true}
           />
         </div>
       </main>
