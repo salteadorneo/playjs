@@ -41,7 +41,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact-name: 'github-pages'
+          artifact_name: 'github-pages'
 
   deploy-web:
     runs-on: ubuntu-latest
@@ -72,4 +72,4 @@ jobs:
         id: deployment-web
         uses: actions/deploy-pages@v4
         with:
-          artifact-name: 'github-pages-web'
+          artifact_name: 'github-pages-web'
