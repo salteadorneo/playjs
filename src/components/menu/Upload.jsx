@@ -1,18 +1,26 @@
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { LANGUAGE_BY_SUBDOMAIN } from '../../consts'
 import Button from '../atom/Button'
+import { LANGUAGE } from '../../consts'
 
-export default function Upload ({ setCode }) {
+export default function Upload ({ setCode, setLanguage }) {
   const { t } = useTranslation()
 
   const fileInputRef = useRef(null)
 
-  async function handleSubmit (event) {
-    event.preventDefault()
+  async function handleSubmit (e) {
+    e.preventDefault()
 
     const file = fileInputRef.current.files[0]
-    if (!fileInputRef || !file) return
+    if (!fileInputRef || !file) {
+      return
+    }
+
+    const ext = file.name.split('.').pop()
+    if (ext === 'ts') {
+      setLanguage(LANGUAGE.TYPESCRIPT)
+    }
+
     const fileText = await file.text()
     setCode(fileText)
   }
@@ -28,7 +36,7 @@ export default function Upload ({ setCode }) {
         type='file'
         id='file'
         className='hidden'
-        accept={LANGUAGE_BY_SUBDOMAIN === 'javascript' ? '.js' : '.js, .ts'}
+        accept='.js,.ts'
         ref={fileInputRef}
         onChange={handleSubmit}
       />

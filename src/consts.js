@@ -3,10 +3,6 @@ export const LANGUAGE = {
   TYPESCRIPT: 'typescript'
 }
 
-export const LANGUAGE_BY_SUBDOMAIN = typeof window !== 'undefined' && window.location.host === 'ts.playjs.dev'
-  ? LANGUAGE.TYPESCRIPT
-  : LANGUAGE.JAVASCRIPT
-
 export const DIRECTION = {
   VERTICAL: 'vertical',
   HORIZONTAL: 'horizontal'

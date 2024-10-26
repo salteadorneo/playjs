@@ -72,6 +72,7 @@ export default function Menu ({ theme, setTheme, language, setLanguage, setCode 
         >
           <Upload
             setCode={handleUpload}
+            setLanguage={setLanguage}
           />
           <Download
             handleDownload={handleDownload}
