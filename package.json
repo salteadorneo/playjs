@@ -18,25 +18,25 @@
     "test": "vitest"
   },
   "dependencies": {
-    "i18next": "^23.16.0",
+    "i18next": "^23.16.5",
     "i18next-browser-languagedetector": "^7.2.1",
-    "monacopilot": "^0.11.6",
+    "monacopilot": "^0.14.1",
     "playjs-core": "^0.6.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-i18next": "^14.1.3",
-    "sonner": "^1.5.0",
+    "sonner": "^1.7.0",
     "zustand": "^4.5.5"
   },
   "devDependencies": {
-    "@types/react": "^18.3.11",
+    "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "4.3.2",
+    "@vitejs/plugin-react": "4.3.3",
     "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
+    "postcss": "^8.4.49",
     "standard": "17.1.2",
     "tailwindcss": "^3.4.14",
-    "vite": "5.4.9",
+    "vite": "5.4.11",
     "vitest": "^1.6.0"
   },
   "eslintConfig": {
