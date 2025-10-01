@@ -42,6 +42,7 @@
          "loaded": "File loaded!",
          "uploadTitle": "Upload code from file",
          "label": "Open"
-      }
+      },
+      "theme": "Theme"
    }
 }
