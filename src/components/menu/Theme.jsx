@@ -1,11 +1,14 @@
+import { useTranslation } from 'react-i18next'
 import { THEME } from '../../consts'
 
 export default function Theme ({ theme, setTheme }) {
+  const { t } = useTranslation()
+
   return (
     <section
       className='flex items-center justify-between gap-2 bg-none border-none text-[#858585] p-1 cursor-default'
     >
-      <span>Tema</span>
+      <span>{t('theme')}</span>
       <div className='flex gap-1'>
         <button
           onClick={() => setTheme(THEME.LIGHT)}

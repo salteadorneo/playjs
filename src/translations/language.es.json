@@ -42,6 +42,7 @@
          "loaded": "¡Fichero cargado!",
          "uploadTitle": "Subir código de fichero",
          "label": "Abrir"
-      }
+      },
+      "theme": "Tema"
    }
 }
