@@ -1,9 +1,9 @@
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import Button from '../atom/Button'
-import { LANGUAGE } from '../../consts'
+import Button from '@/atom/Button'
+import { LANGUAGE } from '@/consts'
 
-export default function Upload ({ setCode, setLanguage }) {
+export default function Upload ({ setCode, current, setCurrent }) {
   const { t } = useTranslation()
 
   const fileInputRef = useRef(null)
@@ -18,7 +18,7 @@ export default function Upload ({ setCode, setLanguage }) {
 
     const ext = file.name.split('.').pop()
     if (ext === 'ts') {
-      setLanguage(LANGUAGE.TYPESCRIPT)
+      setCurrent({ ...current, language: LANGUAGE.TYPESCRIPT })
     }
 
     const fileText = await file.text()
