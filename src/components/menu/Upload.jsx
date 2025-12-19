@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import Button from '@/atom/Button'
+import Button from '@/components/atom/Button'
 import { LANGUAGE } from '@/consts'
 
 export default function Upload ({ setCode, current, setCurrent }) {
