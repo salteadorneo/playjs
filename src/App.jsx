@@ -1,23 +1,20 @@
 import { useEffect, useState } from 'react'
-
 import { PlayJS } from 'playjs-core'
-
 import { Toaster } from 'sonner'
-
 import { useWindowSize } from '@/hooks/useWindowSize'
-
 import { DIRECTION, IS_IFRAME, LANGUAGE, THEME, WIDTH_MOBILE } from '@/consts'
 import { decodeCode, encodeCode, getHashFromURL } from '@/core/encode'
-
 import Share from '@/components/Share'
 import Embed from '@/components/Embed'
 import Button from '@/components/atom/Button'
 import Menu from '@/components/Menu'
 import Tabs from '@/components/Tabs'
 import { useTranslation } from 'react-i18next'
+import { useCodeStore } from '@/hooks/useCodeStore'
 
 export default function App () {
   const { t } = useTranslation()
+  const { current } = useCodeStore()
 
   const [code, setCode] = useState('')
 
@@ -35,17 +32,7 @@ export default function App () {
 
   const size = useWindowSize()
 
-  const [theme, setTheme] = useState(() => {
-    const theme = window.localStorage.getItem('theme')
-    if (theme) return theme
-    return THEME.DARK
-  })
-
-  const [language, setLanguage] = useState(() => {
-    const language = window.localStorage.getItem('language')
-    if (language) return language
-    return LANGUAGE.JAVASCRIPT
-  })
+  const [theme, setTheme] = useState(current?.theme || THEME.DARK)
 
   const isMobile = size.width < WIDTH_MOBILE
 
@@ -72,8 +59,6 @@ export default function App () {
               <Menu
                 theme={theme}
                 setTheme={setTheme}
-                language={language}
-                setLanguage={setLanguage}
                 setCode={setCode}
               />
 
@@ -98,7 +83,7 @@ export default function App () {
             code={code}
             onChange={setCode}
             direction={direction}
-            language={language || LANGUAGE.JAVASCRIPT}
+            language={current?.language || LANGUAGE.JAVASCRIPT}
             theme={theme}
             width={!IS_IFRAME ? 'calc(100dvw - 50px)' : '100vw'}
             height={!IS_IFRAME ? 'calc(100dvh - 40px)' : '100dvh'}
