@@ -83,6 +83,22 @@ getFetch()`
     expect(output).eq(expected)
   })
 
+  it('expect eq outputs pass', async () => {
+    const output = await getResult({ code: 'expect(2 + 2).eq(4)' })
+    const expected = "'✓' 4 'eq' 4"
+    expect(output).eq(expected)
+  })
+
+  it('cases runs multiple inputs', async () => {
+    const output = await getResult({
+      code: `function double(n){return n*2}
+cases(double, [[1,2],[2,4]])`
+    })
+    const expected = `
+'✓' 2 'eq' 2 ┊ '✓' 4 'eq' 4`
+    expect(output).eq(expected)
+  })
+
   // TODO: fix this test
   /*
   it('import from', async () => {

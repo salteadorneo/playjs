@@ -43,6 +43,35 @@ import { PlayJS } from 'playjs-core';
 <PlayJS theme="light" />
 ```
 
+## Testing Helpers
+
+PlayJS includes a minimal testing API available inside the editor:
+
+- `expect(actual).eq(expected)`
+- `expect(actual).neq(expected)`
+- `expect(actual).truthy()`
+- `expect(actual).falsy()`
+- `cases(fn, [[input, expected], ...])`
+
+### Examples
+
+```js
+expect(2 + 2).eq(4)
+// ➜ '✓' 4 'eq' 4
+
+expect(2 + 2).eq(5)
+// ➜ '✗' 4 'eq' 5
+
+expect(0).falsy()
+// ➜ '✓' 0 'falsy' false
+
+function double(n){ return n * 2 }
+cases(double, [[1,2],[3,6],[5,10]])
+// ➜ '✓' 2 'eq' 2 ┊ '✓' 6 'eq' 6 ┊ '✓' 10 'eq' 10
+```
+
+These helpers log concise results to the Console pane without requiring any imports.
+
 ## Contributing
 
 If you think PlayJS is a cool project and you would like to do your bit, check out [**How to Contribute**](HOW_TO_CONTRIBUTE.md) for more information.
