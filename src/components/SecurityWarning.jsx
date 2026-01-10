@@ -1,4 +1,8 @@
+import { useTranslation } from 'react-i18next'
+
 export default function SecurityWarning ({ show, onClose }) {
+  const { t } = useTranslation()
+
   if (!show) return null
 
   return (
@@ -14,28 +18,28 @@ export default function SecurityWarning ({ show, onClose }) {
           </div>
           <div className='flex-1'>
             <h2 className='text-2xl font-bold text-yellow-400 mb-2'>
-              Advertencia de Seguridad
+              {t('security.title')}
             </h2>
             <div className='text-gray-300 space-y-2 text-sm'>
               <p className=''>
-                Este playground ejecuta código JavaScript directamente en tu navegador.
+                {t('security.intro')}
               </p>
               <ul className='list-disc list-inside space-y-1'>
-                <li>No ejecutes código de fuentes no confiables</li>
-                <li>El código tiene acceso a localStorage y cookies</li>
-                <li>Evita pegar código que no entiendas completamente</li>
-                <li>No ingreses información sensible o personal</li>
-                <li>Los imports pueden cargar código de terceros</li>
+                <li>{t('security.bulletUntrusted')}</li>
+                <li>{t('security.bulletStorage')}</li>
+                <li>{t('security.bulletUnderstand')}</li>
+                <li>{t('security.bulletSensitive')}</li>
+                <li>{t('security.bulletImports')}</li>
               </ul>
               <p className='text-yellow-400/90 mt-3'>
-                Usa este playground solo con código que tú mismo escribas o de fuentes confiables.
+                {t('security.note')}
               </p>
             </div>
             <button
               onClick={onClose}
               className='mt-4 w-full bg-yellow-600/80 hover:bg-yellow-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors'
             >
-              Entendido
+              {t('security.ack')}
             </button>
           </div>
         </div>

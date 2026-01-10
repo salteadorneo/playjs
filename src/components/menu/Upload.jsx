@@ -22,20 +22,20 @@ export default function Upload ({ setCode, current, setCurrent }) {
     }
 
     if (file.size > MAX_FILE_SIZE) {
-      toast.error('El archivo es demasiado grande. Máximo 1MB permitido.')
+      toast.error(t('upload.errorSize'))
       fileInputRef.current.value = ''
       return
     }
 
     const ext = file.name.split('.').pop()?.toLowerCase()
     if (!ext || !ALLOWED_EXTENSIONS.includes(ext)) {
-      toast.error('Solo se permiten archivos .js o .ts')
+      toast.error(t('upload.errorExt'))
       fileInputRef.current.value = ''
       return
     }
 
     if (!ALLOWED_MIME_TYPES.includes(file.type) && file.type !== '') {
-      toast.error('Tipo de archivo no válido')
+      toast.error(t('upload.errorMime'))
       fileInputRef.current.value = ''
       return
     }
@@ -44,13 +44,13 @@ export default function Upload ({ setCode, current, setCurrent }) {
       const fileText = await file.text()
 
       if (!fileText.trim()) {
-        toast.error('El archivo está vacío')
+        toast.error(t('upload.errorEmpty'))
         fileInputRef.current.value = ''
         return
       }
 
       if (fileText.length > MAX_FILE_SIZE) {
-        toast.error('El contenido del archivo es demasiado grande')
+        toast.error(t('upload.errorContentSize'))
         fileInputRef.current.value = ''
         return
       }
@@ -65,7 +65,7 @@ export default function Upload ({ setCode, current, setCurrent }) {
       const hasSuspiciousContent = suspiciousPatterns.some(pattern => pattern.test(fileText))
 
       if (hasSuspiciousContent) {
-        toast.warning('⚠️ El archivo contiene código potencialmente peligroso. Usa con precaución.')
+        toast.warning(t('upload.warningSuspicious'))
       }
 
       if (ext === 'ts') {
@@ -73,10 +73,10 @@ export default function Upload ({ setCode, current, setCurrent }) {
       }
 
       setCode(fileText)
-      toast.success('Archivo cargado correctamente')
+      toast.success(t('upload.success'))
       fileInputRef.current.value = ''
     } catch (error) {
-      toast.error('Error al leer el archivo')
+      toast.error(t('upload.errorRead'))
       fileInputRef.current.value = ''
     }
   }

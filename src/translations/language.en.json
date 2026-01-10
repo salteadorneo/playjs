@@ -41,8 +41,28 @@
       "upload": {
          "loaded": "File loaded!",
          "uploadTitle": "Upload code from file",
-         "label": "Open"
+         "label": "Open",
+         "errorSize": "File is too large. Max 1MB allowed.",
+         "errorExt": "Only .js or .ts files are allowed",
+         "errorMime": "Invalid file type",
+         "errorEmpty": "The file is empty",
+         "errorContentSize": "File content is too large",
+         "warningSuspicious": "⚠️ The file contains potentially dangerous code. Use with caution.",
+         "success": "File loaded successfully",
+         "errorRead": "Error reading file"
       },
-      "theme": "Theme"
+      "theme": "Theme",
+      "security": {
+         "title": "Security Warning",
+         "intro": "This playground runs JavaScript code directly in your browser.",
+         "bulletUntrusted": "Do not run code from untrusted sources",
+         "bulletStorage": "Code has access to localStorage and cookies",
+         "bulletUnderstand": "Avoid pasting code you do not fully understand",
+         "bulletSensitive": "Do not enter sensitive or personal information",
+         "bulletImports": "Imports can load third-party code",
+         "note": "Use this playground only with code you write or from trusted sources.",
+         "ack": "Got it",
+         "open": "Security"
+      }
    }
 }

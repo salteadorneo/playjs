@@ -41,8 +41,28 @@
       "upload": {
          "loaded": "¡Fichero cargado!",
          "uploadTitle": "Subir código de fichero",
-         "label": "Abrir"
+         "label": "Abrir",
+         "errorSize": "El archivo es demasiado grande. Máximo 1MB permitido.",
+         "errorExt": "Solo se permiten archivos .js o .ts",
+         "errorMime": "Tipo de archivo no válido",
+         "errorEmpty": "El archivo está vacío",
+         "errorContentSize": "El contenido del archivo es demasiado grande",
+         "warningSuspicious": "⚠️ El archivo contiene código potencialmente peligroso. Usa con precaución.",
+         "success": "Archivo cargado correctamente",
+         "errorRead": "Error al leer el archivo"
       },
-      "theme": "Tema"
+      "theme": "Tema",
+      "security": {
+         "title": "Advertencia de Seguridad",
+         "intro": "Este playground ejecuta código JavaScript directamente en tu navegador.",
+         "bulletUntrusted": "No ejecutes código de fuentes no confiables",
+         "bulletStorage": "El código tiene acceso a localStorage y cookies",
+         "bulletUnderstand": "Evita pegar código que no entiendas completamente",
+         "bulletSensitive": "No ingreses información sensible o personal",
+         "bulletImports": "Los imports pueden cargar código de terceros",
+         "note": "Usa este playground solo con código que tú mismo escribas o de fuentes confiables.",
+         "ack": "Entendido",
+         "open": "Seguridad"
+      }
    }
 }
