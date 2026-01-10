@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next'
 import { useCodeStore } from '@/hooks/useCodeStore'
 
 export default function App () {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { current } = useCodeStore()
 
   const [code, setCode] = useState('')
@@ -22,6 +22,10 @@ export default function App () {
     const hashFromURL = getHashFromURL()
     setCode(decodeCode(hashFromURL))
   }, [])
+
+  useEffect(() => {
+    document.documentElement.lang = i18n.resolvedLanguage || 'en'
+  }, [i18n.resolvedLanguage])
 
   useEffect(() => {
     setTimeout(() => {
