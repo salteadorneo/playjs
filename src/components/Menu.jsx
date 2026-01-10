@@ -32,15 +32,21 @@ export default function Menu ({ theme, setTheme, setCode }) {
   function downloadCode () {
     if (!current?.code) return
 
+    const isTypeScript = current?.language === LANGUAGE.TYPESCRIPT
+    const extension = isTypeScript ? 'ts' : 'js'
+    const mimeType = isTypeScript ? 'application/typescript' : 'application/javascript'
+
     const blob = new window.Blob([current?.code], {
-      type: 'text/plain'
+      type: mimeType
     })
     const url = URL.createObjectURL(blob)
 
     const link = document.createElement('a')
-    link.download = 'playjs.' + (current?.language === LANGUAGE.JAVASCRIPT ? 'js' : 'ts')
+    link.download = `playjs.${extension}`
     link.href = url
     link.click()
+
+    setTimeout(() => URL.revokeObjectURL(url), 100)
   }
 
   function handleMenu () {
