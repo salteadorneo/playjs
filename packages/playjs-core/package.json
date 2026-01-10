@@ -1,6 +1,6 @@
 {
   "name": "playjs-core",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "type": "module",
   "license": "BSD-3-Clause",
   "main": "dist/index.umd.js",
