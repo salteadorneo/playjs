@@ -8,19 +8,10 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
-
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,24 +24,16 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to playjs.dev
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: './dist'
-          name: 'github-pages'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: 'github-pages'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          cname: playjs.dev
+          destination_dir: ./
 
   deploy-web:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages-web
-      url: https://web.playjs.dev
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -67,15 +50,11 @@ jobs:
         run: |
           cd web
           npm run build
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to web.playjs.dev
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: './web/dist'
-          name: 'github-pages-web'
-      - name: Deploy to GitHub Pages
-        id: deployment-web
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: 'github-pages-web'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./web/dist
+          cname: web.playjs.dev
+          destination_dir: ./
+          publish_branch: gh-pages-web
