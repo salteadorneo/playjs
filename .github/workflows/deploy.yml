@@ -55,6 +55,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./web/dist
+          external_repository: salteadorneo/playjs-web
+          publish_branch: gh-pages
           cname: web.playjs.dev
-          destination_dir: ./
-          publish_branch: gh-pages-web
