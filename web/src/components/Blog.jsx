@@ -6,19 +6,19 @@ import blog3 from "../assets/images/blog3.png";
 
 const blogData = [
   {
-    title: "AI and Machine Learning",
+    title: "Aprender JavaScript Desde Cero",
     subtitle:
-      "Discover insights and trends in the world of data analytics. Delve into how AI and machine learning are revolutionizing industries",
+      "Descubre cómo empezar tu viaje en programación con JavaScript. PlayJS te ofrece un entorno seguro para practicar sin instalaciones complicadas.",
     image: blog1.src,
   },
   {
-    title: "Data-Driven Analytics",
-    subtitle: "Explore the impact of AI and ML on data analytics.",
+    title: "Testing en JavaScript",
+    subtitle: "Comprende la importancia del testing y cómo hacerlo de forma sencilla con PlayJS.",
     image: blog2.src,
   },
   {
-    title: "Real-Time Data Processing",
-    subtitle: "Learn about the importance of processing real-time.",
+    title: "Async/Await y Promesas",
+    subtitle: "Domina la programación asincrónica en JavaScript con ejemplos prácticos en tiempo real.",
     image: blog3.src,
   },
 ];
@@ -35,12 +35,12 @@ export const Blog = () => (
       >
         <div className="container px-4 mb-20">
           <div className="max-w-2xl text-center lg:text-left mb-16 mx-auto lg:ml-0 lg:mr-0">
-            <span className="block-subtitle">Our Blog</span>
+            <span className="block-subtitle">Blog</span>
             <h2 className="mt-6 mb-6 text-4xl lg:text-5xl font-bold font-heading text-primaryText">
-              Latest Insights
+              Últimos Artículos
             </h2>
             <p className="mb-6 text-secondaryText">
-              Stay updated with the latest trends and insights in our industry.
+              Aprende sobre JavaScript, TypeScript, testing y mucho más con nuestros artículos.
             </p>
           </div>
           <div className="flex 2xl:w-[1200px] lg:w-[1000px] xl:w-[1150px] flex-wrap -mx-4 items-start h-auto sm:h-[30rem] lg:h-[31rem]  xl:h-[35rem]">

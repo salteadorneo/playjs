@@ -19,7 +19,7 @@ export const Hero = () => {
           transition={{ duration: 0.5 }}
         >
           <h3 className="text-secondaryColor text-sm sm:text-base  mb-6 sm:mt-32 mt-16  font-bold">
-            Discover new data flow
+            ✨ Tu Playground JavaScript/TypeScript
           </h3>
         </motion.div>
         <motion.div
@@ -28,11 +28,11 @@ export const Hero = () => {
           transition={{ duration: 0.5, delay: 0.05 }}
         >
           <div className="text-5xl sm:text-6xl lg:text-7xl xl:text-7xl font-bold tracking-wide  text-primaryText  px-8 sm:px-8 md:px-20 lg:px-4">
-            <h1 className="inline md:hidden">Analytics</h1>
-            <h1 className="hidden md:inline">Analytic tools suite</h1>
+            <h1 className="inline md:hidden">Código</h1>
+            <h1 className="hidden md:inline">Escribe Código</h1>
           </div>
           <h1 className="mt-2 sm:mt-2 text-4xl sm:text-6xl lg:text-7xl xl:text-7xl font-bold tracking-wide  text-primaryText  px-8 sm:px-20 md:px-24 lg:px-24">
-            for developers
+            Ve Resultados Al Instante
           </h1>
         </motion.div>
         <motion.div
@@ -41,8 +41,9 @@ export const Hero = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <h2 className="text-secondaryText text-sm lg:text-base xl:text-lg sm:text-base mt-10 px-12 sm:px-48 ">
-            Experience seamless business integrations and powerful insights with
-            our cutting-edge analytic tools.
+            Aprende, prueba y experimenta con JavaScript y TypeScript en un 
+            playground moderno. Con testing integrado, soporte async/await y 
+            compartir código fácilmente.
           </h2>
         </motion.div>
         <motion.div
@@ -51,20 +52,22 @@ export const Hero = () => {
           transition={{ duration: 0.5, delay: 0.15 }}
         >
           <div className="flex flex-col gap-2 sm:flex-row mt-14 mb-24 sm:mb-40 justify-center">
-            <button
-              className="contained-button w-64 sm:w-52 h-12 mr-0 sm:mr-4 lg:mr-6 mb-2 sm:mb-0"
-              onClick={() => setIsModalOpen(true)}
-              aria-label="Get started"
+            <a
+              href="https://playjs.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contained-button w-64 sm:w-52 h-12 mr-0 sm:mr-4 lg:mr-6 mb-2 sm:mb-0 text-center flex justify-center items-center"
             >
-              Get Started
-            </button>
-            <button
+              Abrir Playground
+            </a>
+            <a
+              href="https://github.com/salteadorneo/PlayJS"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-64 sm:w-52 h-12 rounded-xl font-bold text-primaryText border border-solid  flex justify-center items-center cursor-pointer bg-bgDark2 hover:bg-bgDark3 border-primaryColor transition"
-              onClick={() => setIsModalOpen(true)}
-              aria-label="Live demo"
             >
-              Live demo
-            </button>
+              GitHub
+            </a>
           </div>
         </motion.div>
         <motion.div
@@ -75,7 +78,7 @@ export const Hero = () => {
           <div className="relative w-screen flex justify-center ">
             <img
               src={dashboard.src}
-              alt="Dashboard image"
+              alt="Imagen del Playground"
               className="w-4/5 2xl:w-[1200px] mx-auto absolute z-10 rounded-xl main-border-gray hero-dashboard-border-gradient lg:top-6 xl:top-0"
             />
           </div>

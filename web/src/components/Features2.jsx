@@ -34,27 +34,26 @@ export const Features2 = () => (
 
         <div className="w-full lg:w-1/2 mb-12 lg:mb-0 xl:pl-8">
           <div className="mx-auto lg:mx-auto w-11/12 sm:w-4/5 md:w-3/4 lg:w-unset">
-            <span className="block-subtitle">Make Data-Driven Decisions</span>
+            <span className="block-subtitle">Aprende Practicando</span>
             <h2 className="mt-6 mb-8 text-4xl lg:text-5xl block-big-title">
-              Issue tracking you’ll enjoy using
+              Testing integrado sin complicaciones
             </h2>
             <p className="mb-12 text-secondaryText leading-loose">
-              Monitor and track data issues with ease using our intuitive and
-              efficient issue tracking system. Stay ahead of potential problems
-              and improve your workflow.
+              Verifica tu código al instante con helpers de testing. No necesitas configurar 
+              testing frameworks complejos. Escribe expect() y cases() directamente en el editor.
             </p>
             <ul className="mb-6 text-primaryText">
               <li className="mb-4 flex">
                 <CheckArrowIcon />
-                <span>Collaborative environment</span>
+                <span>expect(value).eq(expected) - Igualdad</span>
               </li>
               <li className="mb-4 flex">
                 <CheckArrowIcon />
-                <span>Smart issue categorization</span>
+                <span>expect(value).truthy/falsy() - Booleanos</span>
               </li>
               <li className="mb-4 flex">
                 <CheckArrowIcon />
-                <span>Customizable notifications</span>
+                <span>cases(fn, [[input, expected], ...]) - Múltiples casos</span>
               </li>
             </ul>
           </div>

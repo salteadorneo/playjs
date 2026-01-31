@@ -5,11 +5,11 @@ import { Logo } from "../assets/logos/Logo";
 import { GithubIcon } from "../assets/icons/GithubIcon";
 
 const navbarLinks = [
-  { label: "Home", href: "/#home", ariaLabel: "Home" },
-  { label: "Features", href: "/#features", ariaLabel: "Features" },
-  { label: "Pricing", href: "/#pricing", ariaLabel: "Pricing" },
-  { label: "Feedback", href: "/#feedback", ariaLabel: "Feedback" },
-  { label: "FAQ", href: "/#FAQ", ariaLabel: "FAQ" },
+  { label: "Inicio", href: "/#home", ariaLabel: "Inicio" },
+  { label: "Características", href: "/#features", ariaLabel: "Características" },
+  { label: "Planes", href: "/#pricing", ariaLabel: "Planes" },
+  { label: "Testimonios", href: "/#feedback", ariaLabel: "Testimonios" },
+  { label: "Preguntas", href: "/#FAQ", ariaLabel: "Preguntas" },
 ];
 
 export const Navbar = () => {
@@ -67,7 +67,7 @@ export const Navbar = () => {
             <a
               className="text-white main-border-gray rounded-xl
            bg-bgDark2 hover:bg-bgDark3  border-gray-700 pl-6 pr-8 pt-2 pb-2 text-sm flex"
-              href="https://github.com/matt765/Tidestream"
+              href="https://github.com/salteadorneo/PlayJS"
               target="_blank"
               aria-label="source code"
             >
@@ -112,7 +112,7 @@ export const Navbar = () => {
               ))}
               <a
                 className="outlined-button pl-6 pr-8 pt-2 pb-2  flex"
-                href="https://github.com/matt765/Tidestream"
+                href="https://github.com/salteadorneo/PlayJS"
                 target="_blank"
               >
                 <GithubIcon />

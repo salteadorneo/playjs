@@ -5,23 +5,23 @@ import { TwitterIcon } from "../assets/icons/TwitterIcon";
 
 const footerData = [
   {
-    title: "Products",
-    items: ["Services", "About Us", "News and Stories", "Roadmap"],
+    title: "Producto",
+    items: ["Características", "Acerca de", "Roadmap", "GitHub"],
   },
   {
-    title: "Important Links",
+    title: "Enlaces",
     items: [
-      "Organization Team",
-      "Our Journeys",
-      "Pricing Plans",
+      "Documentación",
+      "Contribuir",
+      "Reportar Bug",
       "Roadmap",
-      "Terms & Conditions",
-      "Privacy Policy",
+      "Términos",
+      "Privacidad",
     ],
   },
   {
-    title: "Company",
-    items: ["About Us", "Jobs", "Press", "Contact Us"],
+    title: "Comunidad",
+    items: ["Acerca de PlayJS", "Twitter", "GitHub", "Contacto"],
   },
 ];
 
@@ -41,16 +41,8 @@ export const Footer = () => {
                 </div>
               </div>
               <p className="mb-10 mt-4 sm:w-[22rem] lg:w-[20rem] xl:w-[24rem] text-gray-400 leading-loose text-center lg:text-left mx-auto lg:mx-0">
-                Dashboard images were made using free Dark Admin dashboard that
-                you can find
-                <a
-                  href="https://bootstrapious.com/p/bootstrap-4-dark-admin"
-                  target="_blank"
-                  className="text-gray-100 ml-1.5 "
-                  aria-label="Dark Admin Dashboard"
-                >
-                  here.
-                </a>
+                PlayJS - Un playground interactivo para aprender JavaScript y TypeScript. 
+                Hecho con ❤️ por la comunidad de desarrolladores.
               </p>
               <div className="w-36 mx-auto lg:mx-0">
                 <a

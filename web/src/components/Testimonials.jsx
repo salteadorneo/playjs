@@ -7,24 +7,24 @@ import testimonial3 from "../assets/images/testimonial3.png";
 
 const testimonialsData = [
   {
-    customerName: "John Watkins",
-    customerTitle: "Founder of Dashflow",
+    customerName: "María García",
+    customerTitle: "Desarrolladora Full Stack",
     content:
-      "The powerful analytic tools have helped us streamline our processes and make data-driven decisions that positively impact our efficiency. PlayJS has been a game-changer for our business. The platform is easy to use, and the insights we've gained have driven significant improvements.",
+      "PlayJS me ha ayudado a practicar JavaScript de forma interactiva. Los helpers de testing integrados son increíbles para aprender y verificar que mi código funciona. La plataforma es muy intuitiva y he mejorado muchísimo mis habilidades.",
     image: testimonial1,
   },
   {
-    customerName: "John Watkins",
-    customerTitle: "Founder of Dashflow",
+    customerName: "Carlos López",
+    customerTitle: "Instructor de Programación",
     content:
-      "The powerful analytic tools have helped us streamline our processes and make data-driven decisions that positively impact our efficiency. PlayJS has been a game-changer for our business. The platform is easy to use, and the insights we've gained have driven significant improvements.",
+      "Como profesor, recomiendo PlayJS a mis estudiantes. Es perfecto para experimentar sin configuraciones. La capacidad de compartir código por URL es excelente para ayudar en línea.",
     image: testimonial2,
   },
   {
-    customerName: "John Watkins",
-    customerTitle: "Founder of Dashflow",
+    customerName: "Ana Rodríguez",
+    customerTitle: "Desarrolladora Junior",
     content:
-      "The powerful analytic tools have helped us streamline our processes and make data-driven decisions that positively impact our efficiency. PlayJS has been a game-changer for our business. The platform is easy to use, and the insights we've gained have driven significant improvements.",
+      "PlayJS me permitió aprender TypeScript sin complicaciones. La interfaz es hermosa, los ejemplos son claros y veo resultados al instante. Es mi herramienta favorita para practicar diariamente.",
     image: testimonial3,
   },
 ];
@@ -39,9 +39,9 @@ export const Testimonials = () => (
         viewport={{ once: true }}
         transition={{ duration: 0.4, delay: 0.3 }}
       >
-        <div className="block-subtitle text-center mb-6">Testimonials</div>
+        <div className="block-subtitle text-center mb-6">Testimonios</div>
         <div className="block-big-title text-center mb-20 px-8 sm:px-24 md:px-48">
-          People like you love PlayJS
+          Desarrolladores como tú aman PlayJS
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-5 xl:gap-10 px-6 xl:px-0 items-center">
