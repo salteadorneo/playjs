@@ -3,6 +3,7 @@ import react from '@astrojs/react'
 import tailwind from '@astrojs/tailwind'
 
 export default defineConfig({
-  site: 'https://web.playjs.dev',
+  site: 'https://salteadorneo.github.io',
+  base: '/playjs-web',
   integrations: [react(), tailwind()],
 })
