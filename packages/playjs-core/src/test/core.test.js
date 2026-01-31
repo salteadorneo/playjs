@@ -99,8 +99,14 @@ cases(double, [[1,2],[2,4]])`
     expect(output).eq(expected)
   })
 
-  // TODO: fix this test
-  /*
+  it('console.log with await fetch inline', async () => {
+    const output = await getResult({
+      code: `console.log(await fetch('https://jsonplaceholder.typicode.com/todos/1').then(r => r.json()))`
+    })
+    expect(output).toContain('userId')
+    expect(output).toContain('delectus aut autem')
+  })
+
   it('import from', async () => {
     const output = await getResult({
       code: `import confetti from 'canvas-confetti'
@@ -136,7 +142,6 @@ getParty()`
 `
     expect(output).eq(expected)
   })
-  */
 })
 
 describe('resolveHTML helpers', () => {

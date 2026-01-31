@@ -32,6 +32,9 @@ export async function getResult({ code, language = LANGUAGE.JAVASCRIPT }: {
     .trimEnd()
     .split(/\r?\n|\r|\n/g)
 
+  // Check if entire code has await
+  const hasAwaitInCode = wrappedCode.includes('await ')
+
   for (let i = 0; i < codeLines.length; i++) {
     const line = codeLines[i].trim()
     if (line === '') {
@@ -60,7 +63,17 @@ export async function getResult({ code, language = LANGUAGE.JAVASCRIPT }: {
         ? ts.transpile(combined)
         : combined
 
-      const html = await eval(lineCodeJS)
+      let wrappedEval = lineCodeJS
+      let htmlPromise = false
+      if (hasAwaitInCode) {
+        const lines = lineCodeJS.trim().split('\n');
+        const lastLine = lines[lines.length - 1];
+        const beforeLastLine = lines.slice(0, -1).join('\n');
+        wrappedEval = `(async () => { ${beforeLastLine}; return ${lastLine}; })()` 
+        htmlPromise = true
+      }
+
+      let html = await eval(wrappedEval)
       if (logsThisLine.length > 0) {
         const logsGrouped = logsThisLine.reduce((acc, log) => {
           const lastLog = acc[acc.length - 1]
