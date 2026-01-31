@@ -35,7 +35,7 @@ jobs:
           publish_dir: ./web/dist
           external_repository: salteadorneo/playjs-web
           publish_branch: gh-pages
-          cname: web.playjs.dev
+          cname: www2.playjs.dev
 
   deploy:
     runs-on: ubuntu-latest
