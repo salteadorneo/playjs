@@ -2,12 +2,11 @@ import ts from 'typescript'
 
 import { LANGUAGE, LanguageType } from '../consts'
 
-let codeWithDependencies = false
-
 export async function getResult({ code, language = LANGUAGE.JAVASCRIPT }: {
   code: string,
   language: LanguageType
 }) {
+  let codeWithDependencies = false
   if (!code) return ''
 
   const prelude = "var __tests=[];function expect(actual){function out(ok,op,expected){console.log(ok?'✓':'✗',actual,op,expected);__tests.push({ok:ok,actual:actual,expected:expected,op:op});return ok}return{eq:function(expected){return out(actual===expected,'eq',expected)},neq:function(expected){return out(actual!==expected,'neq',expected)},truthy:function(){return out(!!actual,'truthy',true)},falsy:function(){return out(!actual,'falsy',false)}}}function cases(fn,table){for(var i=0;i<table.length;i++){var row=table[i];var input=row[0];var expected=row[1];var res=fn(input);expect(res).eq(expected)}}";
@@ -22,9 +21,9 @@ export async function getResult({ code, language = LANGUAGE.JAVASCRIPT }: {
 
   let wrappedCode = code
 
-  const regex = /import\s+(\w+)\s+from\s+(['"])(.*?)\2\s*;?/g
+  const regex = /import\s+(?:\{[^}]*\}|\*\s+as\s+\w+|\w+)\s+from\s+(['"])(.*?)\1\s*;?/g
   if (code.match(regex)) {
-    const updatedCode = code.replace(regex, "const { default: $1 } = await import('https://cdn.skypack.dev/$3');")
+    const updatedCode = code.replace(regex, "const { default: $1 } = await import('https://cdn.skypack.dev/$2');")
     wrappedCode = `(async () => {\n      ${updatedCode}\n    })();`
     codeWithDependencies = true
   }
@@ -126,47 +125,4 @@ interface Log {
   id: string;
   message: string;
   line: number | null;
-}
-
-function getConsoleLogs(codigo: string): Log[] {
-  let logs: Log[] = [];
-
-  const prelude = "var __tests=[];function expect(actual){function out(ok,op,expected){console.log(ok?'✓':'✗',actual,op,expected);__tests.push({ok:ok,actual:actual,expected:expected,op:op});return ok}return{eq:function(expected){return out(actual===expected,'eq',expected)},neq:function(expected){return out(actual!==expected,'neq',expected)},truthy:function(){return out(!!actual,'truthy',true)},falsy:function(){return out(!actual,'falsy',false)}}}function cases(fn,table){for(var i=0;i<table.length;i++){var row=table[i];var input=row[0];var expected=row[1];var res=fn(input);expect(res).eq(expected)}}";
-
-  console.log = function (...args: any[]) {
-    const stack = new Error().stack?.split("\n") || [];
-    let frame: string | undefined = undefined;
-    for (let i = stack.length - 1; i >= 0; i--) {
-      if (stack[i].includes(":")) { frame = stack[i]; break }
-    }
-    const callerLineNumber = frame ? frame.split(":").slice(-2)[0] : null;
-    let line = callerLineNumber != null ? parseInt(callerLineNumber) - 2 : null
-    if (line == null || !isFinite(line) || line < 1) line = 1
-
-    const id = Math.random().toString(36).substr(2, 9);
-
-    args.forEach((arg) => {
-      logs.push({
-        id, message: resolveHTML(arg), line,
-      });
-    });
-  };
-
-  try {
-    const auxFunction = new Function(prelude + "\n" + codigo);
-    auxFunction();
-  } catch (error: any) {
-    const stack = error.stack?.split("\n") || [];
-    let frame: string | undefined = undefined;
-    for (let i = stack.length - 1; i >= 0; i--) {
-      if (stack[i].includes(":")) { frame = stack[i]; break }
-    }
-    const callerLineNumber = frame ? frame.split(":").slice(-2)[0] : undefined;
-    let line = callerLineNumber != null ? parseInt(callerLineNumber) - 2 : null
-    if (line == null || !isFinite(line) || line < 1) line = 1
-
-    logs.push({ id: '', message: error.message, line });
-  }
-
-  return logs;
 }
