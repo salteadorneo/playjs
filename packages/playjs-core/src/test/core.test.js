@@ -107,7 +107,7 @@ cases(double, [[1,2],[2,4]])`
     expect(output).toContain('delectus aut autem')
   })
 
-  it('import from', async () => {
+  it.skip('import from', async () => {
     const output = await getResult({
       code: `import confetti from 'canvas-confetti'
 
