@@ -4,15 +4,18 @@ import { registerCompletion, type Monaco, type StandaloneCodeEditor } from 'mona
 
 import { EDITOR_OPTIONS, LanguageType, ThemeType } from '../consts'
 
-let throttlePause: any = null
-const debounce = (callback: any, time: number) => {
-  if (throttlePause) return
-  throttlePause = true
-  setTimeout(() => {
-    callback()
-    throttlePause = false
-  }, time)
+const createDebounce = () => {
+  let timeoutId: ReturnType<typeof setTimeout> | null = null
+  return (callback: () => void, delay: number) => {
+    if (timeoutId) clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => {
+      callback()
+      timeoutId = null
+    }, delay)
+  }
 }
+
+const debounce = createDebounce()
 
 type Props = {
   code: string,
