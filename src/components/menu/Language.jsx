@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { trackEvent } from '@/core/analytics'
 
 export default function Language () {
   const { t, i18n } = useTranslation()
@@ -6,6 +7,9 @@ export default function Language () {
   function changeLanguage () {
     const newLanguage = i18n.resolvedLanguage === 'en' ? 'es' : 'en'
     i18n.changeLanguage(newLanguage)
+    trackEvent('ui_language_changed', {
+      language: newLanguage
+    })
   }
 
   return (

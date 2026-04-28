@@ -1,12 +1,16 @@
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import Button from './atom/Button'
+import { trackEvent } from '@/core/analytics'
 
 export default function Share () {
   const { t } = useTranslation()
 
   function share () {
     if (navigator.share) {
+      trackEvent('share_clicked', {
+        share_type: 'native'
+      })
       navigator.share({
         title: t('share.title'),
         text: t('share.text'),
@@ -15,6 +19,10 @@ export default function Share () {
     } else {
       const url = window.location.href
       navigator.clipboard.writeText(url)
+
+      trackEvent('share_clicked', {
+        share_type: 'clipboard'
+      })
 
       toast.success(t('share.toast'))
     }

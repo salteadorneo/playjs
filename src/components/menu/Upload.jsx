@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import Button from '@/components/atom/Button'
 import { LANGUAGE } from '@/consts'
+import { trackEvent } from '@/core/analytics'
 
 const MAX_FILE_SIZE = 1024 * 1024 // 1MB
 const ALLOWED_EXTENSIONS = ['js', 'ts']
@@ -22,6 +23,9 @@ export default function Upload ({ setCode, current, setCurrent }) {
     }
 
     if (file.size > MAX_FILE_SIZE) {
+      trackEvent('code_upload_failed', {
+        reason: 'file_too_large'
+      })
       toast.error(t('upload.errorSize'))
       fileInputRef.current.value = ''
       return
@@ -29,12 +33,18 @@ export default function Upload ({ setCode, current, setCurrent }) {
 
     const ext = file.name.split('.').pop()?.toLowerCase()
     if (!ext || !ALLOWED_EXTENSIONS.includes(ext)) {
+      trackEvent('code_upload_failed', {
+        reason: 'invalid_extension'
+      })
       toast.error(t('upload.errorExt'))
       fileInputRef.current.value = ''
       return
     }
 
     if (!ALLOWED_MIME_TYPES.includes(file.type) && file.type !== '') {
+      trackEvent('code_upload_failed', {
+        reason: 'invalid_mime'
+      })
       toast.error(t('upload.errorMime'))
       fileInputRef.current.value = ''
       return
@@ -44,12 +54,18 @@ export default function Upload ({ setCode, current, setCurrent }) {
       const fileText = await file.text()
 
       if (!fileText.trim()) {
+        trackEvent('code_upload_failed', {
+          reason: 'empty_file'
+        })
         toast.error(t('upload.errorEmpty'))
         fileInputRef.current.value = ''
         return
       }
 
       if (fileText.length > MAX_FILE_SIZE) {
+        trackEvent('code_upload_failed', {
+          reason: 'content_too_large'
+        })
         toast.error(t('upload.errorContentSize'))
         fileInputRef.current.value = ''
         return
@@ -65,6 +81,9 @@ export default function Upload ({ setCode, current, setCurrent }) {
       const hasSuspiciousContent = suspiciousPatterns.some(pattern => pattern.test(fileText))
 
       if (hasSuspiciousContent) {
+        trackEvent('code_upload_warning', {
+          reason: 'suspicious_content'
+        })
         toast.warning(t('upload.warningSuspicious'))
       }
 
@@ -73,9 +92,17 @@ export default function Upload ({ setCode, current, setCurrent }) {
       }
 
       setCode(fileText)
+      trackEvent('code_uploaded', {
+        extension: ext,
+        size: file.size,
+        language_selected: ext === 'ts' ? LANGUAGE.TYPESCRIPT : current?.language
+      })
       toast.success(t('upload.success'))
       fileInputRef.current.value = ''
     } catch (error) {
+      trackEvent('code_upload_failed', {
+        reason: 'read_error'
+      })
       toast.error(t('upload.errorRead'))
       fileInputRef.current.value = ''
     }
@@ -84,7 +111,10 @@ export default function Upload ({ setCode, current, setCurrent }) {
   return (
     <Button
       title={t('upload.uploadTitle')}
-      onClick={() => fileInputRef.current.click()}
+      onClick={() => {
+        trackEvent('code_upload_opened')
+        fileInputRef.current.click()
+      }}
     >
       <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><path d='M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z' /></svg>
       {t('upload.label')}

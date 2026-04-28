@@ -3,6 +3,7 @@ import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import Button from './atom/Button'
 import { IS_IFRAME } from '../consts'
+import { trackEvent } from '@/core/analytics'
 
 export default function Embed () {
   const [modal, setModal] = useState(false)
@@ -12,11 +13,18 @@ export default function Embed () {
   const iframe = `<iframe src="${url}" width="100%" height="500" style="border:none;" allow="clipboard-read;clipboard-write"></iframe>`
 
   function handleClick () {
-    setModal(status => !status)
+    setModal(status => {
+      const nextStatus = !status
+      trackEvent('embed_modal_toggled', {
+        open: nextStatus
+      })
+      return nextStatus
+    })
   }
 
   function handleCopy () {
     navigator.clipboard.writeText(iframe)
+    trackEvent('embed_code_copied')
     toast.success(t('embed.toast'))
     setModal(false)
   }

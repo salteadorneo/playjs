@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Button from '../atom/Button'
+import { trackEvent } from '@/core/analytics'
 
 export default function Report () {
   const [modal, setModal] = useState(false)
@@ -14,11 +15,23 @@ export default function Report () {
   }, [modal])
 
   function handleClick () {
-    setModal(status => !status)
+    setModal(status => {
+      const nextStatus = !status
+      trackEvent('report_modal_toggled', {
+        open: nextStatus
+      })
+      return nextStatus
+    })
   }
 
   function reportBug () {
-    setModal(status => !status)
+    setModal(status => {
+      const nextStatus = !status
+      trackEvent('report_modal_toggled', {
+        open: nextStatus
+      })
+      return nextStatus
+    })
   }
 
   function handleSubmit (event) {
@@ -34,9 +47,15 @@ export default function Report () {
       }
     }).then(response => {
       if (response.ok) {
+        trackEvent('report_submitted', {
+          status: 'success'
+        })
         setStatus(t('report.responseOk'))
         form.reset()
       } else {
+        trackEvent('report_submitted', {
+          status: 'error'
+        })
         response.json().then(data => {
           if (Object.hasOwn(data, 'errors')) {
             setStatus(data.errors.map(error => error.message).join(', '))
@@ -46,6 +65,9 @@ export default function Report () {
         })
       }
     }).catch(() => {
+      trackEvent('report_submitted', {
+        status: 'error'
+      })
       setStatus(t('report.responseError'))
     })
   }

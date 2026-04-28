@@ -1,5 +1,6 @@
 import { toast } from 'sonner'
 import { useCodeStore } from '../hooks/useCodeStore'
+import { trackEvent } from '@/core/analytics'
 
 export default function Tabs () {
   const { current, setCurrent, codes, upsertCodeAndSelect, removeCode } = useCodeStore()
@@ -12,6 +13,10 @@ export default function Tabs () {
     const draft = codes.find((c) => c.id === code.id)
     const index = codes.indexOf(draft)
     removeCode(code.id)
+    trackEvent('tab_removed', {
+      tab_id: code.id,
+      tabs_before_remove: codes.length
+    })
 
     setCurrent(codes[index - 1] || codes[index + 1] || codes[index] || null)
 
@@ -21,6 +26,9 @@ export default function Tabs () {
         label: 'Undo',
         onClick: () => {
           upsertCodeAndSelect(draft)
+          trackEvent('tab_remove_undone', {
+            tab_id: draft?.id
+          })
         }
       }
     })
@@ -60,7 +68,12 @@ export default function Tabs () {
           : (
             <button
               key={code.id}
-              onClick={() => setCurrent(code)}
+              onClick={() => {
+                setCurrent(code)
+                trackEvent('tab_selected', {
+                  tab_id: code.id
+                })
+              }}
               className='text-primary h-full min-w-36 text-left pl-4 pr-12 hover:bg-background'
             >
               <p

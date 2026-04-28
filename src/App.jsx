@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { PlayJS } from 'playjs-core'
 import { Toaster } from 'sonner'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { DIRECTION, IS_IFRAME, LANGUAGE, THEME, WIDTH_MOBILE } from '@/consts'
 import { decodeCode, encodeCode, getHashFromURL } from '@/core/encode'
+import { trackEvent, trackVisitStart } from '@/core/analytics'
 import Share from '@/components/Share'
 import Embed from '@/components/Embed'
 import Button from '@/components/atom/Button'
@@ -17,10 +18,15 @@ export default function App () {
   const { current } = useCodeStore()
 
   const [code, setCode] = useState('')
+  const lastCodeTrackRef = useRef(0)
 
   useEffect(() => {
     const hashFromURL = getHashFromURL()
     setCode(decodeCode(hashFromURL))
+
+    trackVisitStart({
+      is_iframe: IS_IFRAME
+    })
   }, [])
 
   useEffect(() => {
@@ -29,6 +35,20 @@ export default function App () {
       window.location.hash = hashedCode
     }, 1)
   }, [code])
+
+  useEffect(() => {
+    if (!code) return
+
+    const now = Date.now()
+    const hasEnoughTimePassed = now - lastCodeTrackRef.current > 30000
+    if (!hasEnoughTimePassed) return
+
+    lastCodeTrackRef.current = now
+    trackEvent('code_edited', {
+      code_length: code.length,
+      language: current?.language || LANGUAGE.JAVASCRIPT
+    })
+  }, [code, current?.language])
 
   const size = useWindowSize()
 
@@ -46,6 +66,9 @@ export default function App () {
     const newDirection = direction === DIRECTION.HORIZONTAL ? DIRECTION.VERTICAL : DIRECTION.HORIZONTAL
     setDirection(newDirection)
     window.localStorage.setItem('split-direction', newDirection)
+    trackEvent('layout_direction_changed', {
+      direction: newDirection
+    })
   }
 
   return (
